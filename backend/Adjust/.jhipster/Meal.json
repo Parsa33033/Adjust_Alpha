@@ -1,0 +1,85 @@
+{
+  "name": "Meal",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "lowFatDairyUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mediumFatDairyUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "highFatDairyUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "lowFatMeatUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mediumFatMeatUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "highFatMeatUnti",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "breadUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cerealUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "riceUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pastaUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fruitUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "vegetableUnit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fatUnit",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "nutritionProgram",
+      "otherEntityRelationshipName": "meals",
+      "relationshipName": "nutritionProgram",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200702131055",
+  "entityTableName": "meal",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

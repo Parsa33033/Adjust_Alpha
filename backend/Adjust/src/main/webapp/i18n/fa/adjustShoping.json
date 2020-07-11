@@ -1,0 +1,26 @@
+{
+  "adjustApp": {
+    "adjustShoping": {
+      "home": {
+        "title": "Adjust Shopings",
+        "createLabel": "Create a new Adjust Shoping",
+        "createOrEditLabel": "Create or edit a Adjust Shoping",
+        "notFound": "No Adjust Shopings found"
+      },
+      "created": "A new Adjust Shoping is created with identifier {{ param }}",
+      "updated": "A Adjust Shoping is updated with identifier {{ param }}",
+      "deleted": "A Adjust Shoping is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Adjust Shoping {{ id }}?"
+      },
+      "detail": {
+        "title": "Adjust Shoping"
+      },
+      "name": "Name",
+      "description": "Description",
+      "token": "Token",
+      "price": "Price",
+      "image": "Image"
+    }
+  }
+}

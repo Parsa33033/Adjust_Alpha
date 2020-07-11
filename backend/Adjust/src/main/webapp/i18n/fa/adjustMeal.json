@@ -1,0 +1,36 @@
+{
+  "adjustApp": {
+    "adjustMeal": {
+      "home": {
+        "title": "Adjust Meals",
+        "createLabel": "Create a new Adjust Meal",
+        "createOrEditLabel": "Create or edit a Adjust Meal",
+        "notFound": "No Adjust Meals found"
+      },
+      "created": "A new Adjust Meal is created with identifier {{ param }}",
+      "updated": "A Adjust Meal is updated with identifier {{ param }}",
+      "deleted": "A Adjust Meal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Adjust Meal {{ id }}?"
+      },
+      "detail": {
+        "title": "Adjust Meal"
+      },
+      "name": "Name",
+      "number": "Number",
+      "lowFatDairyUnit": "Low Fat Dairy Unit",
+      "mediumFatDairyUnit": "Medium Fat Dairy Unit",
+      "highFatDairyUnit": "High Fat Dairy Unit",
+      "lowFatMeatUnit": "Low Fat Meat Unit",
+      "mediumFatMeatUnit": "Medium Fat Meat Unit",
+      "highFatMeatUnti": "High Fat Meat Unti",
+      "breadUnit": "Bread Unit",
+      "cerealUnit": "Cereal Unit",
+      "riceUnit": "Rice Unit",
+      "pastaUnit": "Pasta Unit",
+      "fruitUnit": "Fruit Unit",
+      "vegetableUnit": "Vegetable Unit",
+      "fatUnit": "Fat Unit"
+    }
+  }
+}

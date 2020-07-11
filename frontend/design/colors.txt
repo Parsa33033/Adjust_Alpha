@@ -1,0 +1,4 @@
+green #64dd17
+red #f50057
+yellow #ffd600
+orange #ffab40
