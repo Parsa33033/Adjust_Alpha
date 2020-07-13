@@ -89,6 +89,17 @@ public class AdjustTutorialResource {
     }
 
     /**
+     * {@code GET  /adjust-tutorials} : get all the adjustTutorials.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adjustTutorials in body.
+     */
+    @GetMapping("/client/app/adjust-tutorials")
+    public List<AdjustTutorialDTO> getAllAdjustTutorialsForClient() {
+        log.debug("REST request to get all AdjustTutorials");
+        return adjustTutorialService.findAll();
+    }
+
+    /**
      * {@code GET  /adjust-tutorials/:id} : get the "id" adjustTutorial.
      *
      * @param id the id of the adjustTutorialDTO to retrieve.

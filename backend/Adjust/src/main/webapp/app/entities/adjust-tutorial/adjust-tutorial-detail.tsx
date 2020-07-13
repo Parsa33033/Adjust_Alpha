@@ -38,6 +38,12 @@ export const AdjustTutorialDetail = (props: IAdjustTutorialDetailProps) => {
           </dt>
           <dd>{adjustTutorialEntity.description}</dd>
           <dt>
+            <span id="text">
+              <Translate contentKey="adjustApp.adjustTutorial.text">Text</Translate>
+            </span>
+          </dt>
+          <dd>{adjustTutorialEntity.text}</dd>
+          <dt>
             <span id="thumbnail">
               <Translate contentKey="adjustApp.adjustTutorial.thumbnail">Thumbnail</Translate>
             </span>
@@ -66,28 +72,9 @@ export const AdjustTutorialDetail = (props: IAdjustTutorialDetailProps) => {
           </dt>
           <dd>{adjustTutorialEntity.tokenPrice}</dd>
           <dt>
-            <span id="content">
-              <Translate contentKey="adjustApp.adjustTutorial.content">Content</Translate>
-            </span>
+            <Translate contentKey="adjustApp.adjustTutorial.video">Video</Translate>
           </dt>
-          <dd>
-            {adjustTutorialEntity.content ? (
-              <div>
-                {adjustTutorialEntity.contentContentType ? (
-                  <a onClick={openFile(adjustTutorialEntity.contentContentType, adjustTutorialEntity.content)}>
-                    <Translate contentKey="entity.action.open">Open</Translate>&nbsp;
-                  </a>
-                ) : null}
-                <span>
-                  {adjustTutorialEntity.contentContentType}, {byteSize(adjustTutorialEntity.content)}
-                </span>
-              </div>
-            ) : null}
-          </dd>
-          <dt>
-            <Translate contentKey="adjustApp.adjustTutorial.client">Client</Translate>
-          </dt>
-          <dd>{adjustTutorialEntity.clientId ? adjustTutorialEntity.clientId : ''}</dd>
+          <dd>{adjustTutorialEntity.videoId ? adjustTutorialEntity.videoId : ''}</dd>
         </dl>
         <Button tag={Link} to="/adjust-tutorial" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

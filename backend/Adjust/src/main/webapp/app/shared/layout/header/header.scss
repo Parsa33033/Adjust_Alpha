@@ -1,4 +1,4 @@
-$header-color: #fff;
+$header-color: #000;
 $header-color-secondary: #bbb;
 $header-color-hover: darken($header-color, 20%);
 
@@ -22,7 +22,7 @@ Developement Ribbon
   pointer-events: none;
   opacity: 0.75;
   a {
-    color: #fff;
+    color: #000 !important;
     display: block;
     font-weight: 400;
     margin: 1px 0;
@@ -38,7 +38,7 @@ Developement Ribbon
 Navbar styles
 ========================================================================== */
 .jh-navbar {
-  background-color: #353d47;
+  background-color: #fff;
   padding: 0.2em 1em;
   .profile-image {
     margin: -10px 0px;
@@ -63,6 +63,7 @@ Navbar styles
   a.nav-link {
     font-weight: 400;
     > span {
+      color: #000;
       margin-left: 5px;
     }
   }
@@ -71,7 +72,7 @@ Navbar styles
     font-size: 1.5em;
     padding: 10px;
     &:hover {
-      color: #fff;
+      color: #000;
     }
   }
 }
@@ -86,11 +87,11 @@ Navbar styles
     text-decoration: none;
   }
   .brand-icon {
-    height: 35px;
+    height: 55px;
     width: auto;
     display: inline-block;
     img {
-      height: 45px;
+      height: 65px;
     }
   }
 }

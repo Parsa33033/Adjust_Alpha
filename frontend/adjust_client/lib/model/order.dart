@@ -22,6 +22,10 @@ class Order {
 
   String address2;
 
+  bool done;
+
+  bool received;
+
   int cartId;
 
   Order(
@@ -36,5 +40,7 @@ class Order {
       this.city,
       this.address1,
       this.address2,
+      this.done,
+      this.received,
       this.cartId);
 }

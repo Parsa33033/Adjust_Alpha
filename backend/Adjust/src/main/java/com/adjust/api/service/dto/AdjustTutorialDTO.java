@@ -15,17 +15,16 @@ public class AdjustTutorialDTO implements Serializable {
     private String description;
 
     @Lob
+    private String text;
+
+    @Lob
     private byte[] thumbnail;
 
     private String thumbnailContentType;
     private Double tokenPrice;
 
-    @Lob
-    private byte[] content;
 
-    private String contentContentType;
-
-    private Long clientId;
+    private Long videoId;
     
     public Long getId() {
         return id;
@@ -49,6 +48,14 @@ public class AdjustTutorialDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public byte[] getThumbnail() {
@@ -75,28 +82,12 @@ public class AdjustTutorialDTO implements Serializable {
         this.tokenPrice = tokenPrice;
     }
 
-    public byte[] getContent() {
-        return content;
+    public Long getVideoId() {
+        return videoId;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public String getContentContentType() {
-        return contentContentType;
-    }
-
-    public void setContentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
-    }
-
-    public Long getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Long adjustClientId) {
-        this.clientId = adjustClientId;
+    public void setVideoId(Long adjustTutorialVideoId) {
+        this.videoId = adjustTutorialVideoId;
     }
 
     @Override
@@ -123,10 +114,10 @@ public class AdjustTutorialDTO implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
+            ", text='" + getText() + "'" +
             ", thumbnail='" + getThumbnail() + "'" +
             ", tokenPrice=" + getTokenPrice() +
-            ", content='" + getContent() + "'" +
-            ", clientId=" + getClientId() +
+            ", videoId=" + getVideoId() +
             "}";
     }
 }

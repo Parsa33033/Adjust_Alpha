@@ -6,32 +6,36 @@ import java.io.Serializable;
  * A DTO for the {@link com.adjust.api.domain.Order} entity.
  */
 public class OrderDTO implements Serializable {
+    
+    private Long id;
 
-    protected Long id;
+    private String username;
 
-    protected String username;
+    private String firstName;
 
-    protected String firstName;
+    private String lastName;
 
-    protected String lastName;
+    private String phoneNumber;
 
-    protected String phoneNumber;
+    private String email;
 
-    protected String email;
+    private String country;
 
-    protected String country;
+    private String state;
 
-    protected String state;
+    private String city;
 
-    protected String city;
+    private String address1;
 
-    protected String address1;
+    private String address2;
 
-    protected String address2;
+    private Boolean done;
+
+    private Boolean received;
 
 
     private Long cartId;
-
+    
     public Long getId() {
         return id;
     }
@@ -120,6 +124,22 @@ public class OrderDTO implements Serializable {
         this.address2 = address2;
     }
 
+    public Boolean isDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Boolean isReceived() {
+        return received;
+    }
+
+    public void setReceived(Boolean received) {
+        this.received = received;
+    }
+
     public Long getCartId() {
         return cartId;
     }
@@ -160,6 +180,8 @@ public class OrderDTO implements Serializable {
             ", city='" + getCity() + "'" +
             ", address1='" + getAddress1() + "'" +
             ", address2='" + getAddress2() + "'" +
+            ", done='" + isDone() + "'" +
+            ", received='" + isReceived() + "'" +
             ", cartId=" + getCartId() +
             "}";
     }

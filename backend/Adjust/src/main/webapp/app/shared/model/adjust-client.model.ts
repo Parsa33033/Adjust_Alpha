@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-import { IAdjustTutorial } from 'app/shared/model/adjust-tutorial.model';
+import { ITutorial } from 'app/shared/model/tutorial.model';
 import { IAdjustProgram } from 'app/shared/model/adjust-program.model';
 import { Gender } from 'app/shared/model/enumerations/gender.model';
 
@@ -15,7 +15,7 @@ export interface IAdjustClient {
   score?: number;
   imageContentType?: string;
   image?: any;
-  tutorials?: IAdjustTutorial[];
+  tutorials?: ITutorial[];
   programs?: IAdjustProgram[];
   conversationId?: number;
 }

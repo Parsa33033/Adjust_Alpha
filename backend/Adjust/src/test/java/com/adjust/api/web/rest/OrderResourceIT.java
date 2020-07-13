@@ -62,6 +62,12 @@ public class OrderResourceIT {
     private static final String DEFAULT_ADDRESS_2 = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS_2 = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DONE = false;
+    private static final Boolean UPDATED_DONE = true;
+
+    private static final Boolean DEFAULT_RECEIVED = false;
+    private static final Boolean UPDATED_RECEIVED = true;
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -96,7 +102,9 @@ public class OrderResourceIT {
             .state(DEFAULT_STATE)
             .city(DEFAULT_CITY)
             .address1(DEFAULT_ADDRESS_1)
-            .address2(DEFAULT_ADDRESS_2);
+            .address2(DEFAULT_ADDRESS_2)
+            .done(DEFAULT_DONE)
+            .received(DEFAULT_RECEIVED);
         return order;
     }
     /**
@@ -116,7 +124,9 @@ public class OrderResourceIT {
             .state(UPDATED_STATE)
             .city(UPDATED_CITY)
             .address1(UPDATED_ADDRESS_1)
-            .address2(UPDATED_ADDRESS_2);
+            .address2(UPDATED_ADDRESS_2)
+            .done(UPDATED_DONE)
+            .received(UPDATED_RECEIVED);
         return order;
     }
 
@@ -150,6 +160,8 @@ public class OrderResourceIT {
         assertThat(testOrder.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testOrder.getAddress1()).isEqualTo(DEFAULT_ADDRESS_1);
         assertThat(testOrder.getAddress2()).isEqualTo(DEFAULT_ADDRESS_2);
+        assertThat(testOrder.isDone()).isEqualTo(DEFAULT_DONE);
+        assertThat(testOrder.isReceived()).isEqualTo(DEFAULT_RECEIVED);
     }
 
     @Test
@@ -193,7 +205,9 @@ public class OrderResourceIT {
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
             .andExpect(jsonPath("$.[*].address1").value(hasItem(DEFAULT_ADDRESS_1)))
-            .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2)));
+            .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2)))
+            .andExpect(jsonPath("$.[*].done").value(hasItem(DEFAULT_DONE.booleanValue())))
+            .andExpect(jsonPath("$.[*].received").value(hasItem(DEFAULT_RECEIVED.booleanValue())));
     }
     
     @Test
@@ -216,7 +230,9 @@ public class OrderResourceIT {
             .andExpect(jsonPath("$.state").value(DEFAULT_STATE))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY))
             .andExpect(jsonPath("$.address1").value(DEFAULT_ADDRESS_1))
-            .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2));
+            .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2))
+            .andExpect(jsonPath("$.done").value(DEFAULT_DONE.booleanValue()))
+            .andExpect(jsonPath("$.received").value(DEFAULT_RECEIVED.booleanValue()));
     }
     @Test
     @Transactional
@@ -248,7 +264,9 @@ public class OrderResourceIT {
             .state(UPDATED_STATE)
             .city(UPDATED_CITY)
             .address1(UPDATED_ADDRESS_1)
-            .address2(UPDATED_ADDRESS_2);
+            .address2(UPDATED_ADDRESS_2)
+            .done(UPDATED_DONE)
+            .received(UPDATED_RECEIVED);
         OrderDTO orderDTO = orderMapper.toDto(updatedOrder);
 
         restOrderMockMvc.perform(put("/api/orders")
@@ -270,6 +288,8 @@ public class OrderResourceIT {
         assertThat(testOrder.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testOrder.getAddress1()).isEqualTo(UPDATED_ADDRESS_1);
         assertThat(testOrder.getAddress2()).isEqualTo(UPDATED_ADDRESS_2);
+        assertThat(testOrder.isDone()).isEqualTo(UPDATED_DONE);
+        assertThat(testOrder.isReceived()).isEqualTo(UPDATED_RECEIVED);
     }
 
     @Test

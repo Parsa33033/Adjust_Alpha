@@ -67,6 +67,12 @@ export const Order = (props: IOrderProps) => {
                   <Translate contentKey="adjustApp.order.address2">Address 2</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="adjustApp.order.done">Done</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="adjustApp.order.received">Received</Translate>
+                </th>
+                <th>
                   <Translate contentKey="adjustApp.order.cart">Cart</Translate>
                 </th>
                 <th />
@@ -90,6 +96,8 @@ export const Order = (props: IOrderProps) => {
                   <td>{order.city}</td>
                   <td>{order.address1}</td>
                   <td>{order.address2}</td>
+                  <td>{order.done ? 'true' : 'false'}</td>
+                  <td>{order.received ? 'true' : 'false'}</td>
                   <td>{order.cartId ? <Link to={`cart/${order.cartId}`}>{order.cartId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

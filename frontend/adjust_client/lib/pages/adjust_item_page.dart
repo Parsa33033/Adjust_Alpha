@@ -15,7 +15,11 @@ class AdjustItemPage extends StatelessWidget {
   Function onButtonPressed;
   bool isInfo;
   String buttonText;
-  AdjustItemPage({this.image, this.name, this.title, this.description, this.onButtonPressed, this.isInfo, this.buttonText});
+
+  Color primaryColor;
+  Color primaryColorLight;
+  String backgroundImagePath;
+  AdjustItemPage({this.image, this.name, this.title, this.description, this.onButtonPressed, this.isInfo, this.buttonText, this.primaryColor, this.primaryColorLight, this.backgroundImagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class AdjustItemPage extends StatelessWidget {
                       right: 0,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        child: Image.asset("assets/bg1.png"),
+                        child: Image.asset(this.backgroundImagePath),
                       ),
                     ),
                     Positioned(
@@ -67,7 +71,7 @@ class AdjustItemPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 6,
+              flex: 4,
               child: Container(
                 child: SingleChildScrollView(
                   child: Column(
@@ -89,54 +93,58 @@ class AdjustItemPage extends StatelessWidget {
                           child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: FONT),),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              child: AdjustRaisedButton(
-                                width: MediaQuery.of(context).size.width,
-                                height: 60,
-                                fontSize: 16,
-                                textDirection: TextDirection.rtl,
-                                primaryColor: GREEN,
-                                secondaryColor: GREEN,
-                                fontColor: WHITE,
-                                text: BACK,
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: this.isInfo ? Container() :
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              child: AdjustRaisedButton(
-                                width: MediaQuery.of(context).size.width,
-                                height: 60,
-                                fontSize: 16,
-                                textDirection: TextDirection.rtl,
-                                primaryColor: GREEN,
-                                secondaryColor: GREEN,
-                                fontColor: WHITE,
 
-                                text: buttonText,
-                                onPressed: () {
-                                  this.onButtonPressed();
-                                },
-                              ),
-                            ),
-                          )
-                        ],
-                      )
                     ],
                   ),
                 )
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: AdjustRaisedButton(
+                        width: MediaQuery.of(context).size.width,
+                        height: 60,
+                        fontSize: 16,
+                        textDirection: TextDirection.rtl,
+                        primaryColor: this.primaryColor,
+                        secondaryColor: this.primaryColor,
+                        fontColor: WHITE,
+                        text: BACK,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: this.isInfo ? Container() :
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: AdjustRaisedButton(
+                        width: MediaQuery.of(context).size.width,
+                        height: 60,
+                        fontSize: 16,
+                        textDirection: TextDirection.rtl,
+                        primaryColor: this.primaryColor,
+                        secondaryColor: this.primaryColor,
+                        fontColor: WHITE,
+
+                        text: buttonText,
+                        onPressed: () {
+                          this.onButtonPressed();
+                        },
+                      ),
+                    ),
+                  )
+                ],
               ),
             )
           ],
@@ -144,29 +152,4 @@ class AdjustItemPage extends StatelessWidget {
       ),
     );
   }
-}
-
-class BackgroundClip extends CustomClipper<Path> {
-  double r;
-  BackgroundClip(this.r);
-
-  @override
-  Path getClip(Size size) {
-    double height = size.height;
-    double width = size.width;
-    Path path = Path();
-    path.lineTo(0, height - r);
-    path.lineTo(0 + r, height);
-    path.quadraticBezierTo(0 + r + 20, height + r, 0 + 40 + r, height);
-    path.lineTo(width, height - 2 * r);
-    path.lineTo(width, 0);
-    path.lineTo(0, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
-  }
-
 }

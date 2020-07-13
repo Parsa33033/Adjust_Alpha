@@ -24,9 +24,12 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Text("سبد خرید", style: TextStyle(fontFamily: "Iransans", fontSize: 20, color: WHITE),),
+        title:  Align(
+          alignment: Alignment.centerRight,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Text("سبد خرید", style: TextStyle(fontFamily: "Iransans", fontSize: 20, color: WHITE),),
+          ),
         ),
         backgroundColor: GREEN,
         elevation: 4,
@@ -64,14 +67,14 @@ class CartPage extends StatelessWidget {
                         child: AdjustInfoButton(
                             width: 130,
                             height: 130,
-                            title: e == null ? "" : "هزینه: " + NumberUtility.changeDigit(e.price.round().toString() + " تومان", NumStrLanguage.Farsi ),
+                            title: e == null ? "" : NumberUtility.changeDigit(e.price.round().toString() + " ریال", NumStrLanguage.Farsi ),
                             description: "",
                             name: e == null ? "" : e.name,
                             fontSize: 14,
                             isVertical: false,
-                            primaryColor: WHITE,
-                            primaryColorLight: WHITE,
-                            secondaryColor: FONT,
+                            primaryColor: LIGHT_GREEN,
+                            primaryColorLight: GREEN,
+                            secondaryColor: WHITE,
                             image: image,
                             func: () async {
 
@@ -93,7 +96,7 @@ class CartPage extends StatelessWidget {
                             padding: EdgeInsets.all(10),
                             child: Directionality(
                               textDirection: TextDirection.rtl,
-                              child: Text(NumberUtility.changeDigit(amount.toString(), NumStrLanguage.Farsi) + " تومان", style: TextStyle(fontFamily: "Iransans", fontSize: 20, color: FONT),),
+                              child: Text(NumberUtility.changeDigit(amount.toString(), NumStrLanguage.Farsi) + " ریال", style: TextStyle(fontFamily: "Iransans", fontSize: 20, color: FONT),),
                             ),
                           ),
                         ),

@@ -10,7 +10,12 @@ export interface IOrder {
   city?: string;
   address1?: string;
   address2?: string;
+  done?: boolean;
+  received?: boolean;
   cartId?: number;
 }
 
-export const defaultValue: Readonly<IOrder> = {};
+export const defaultValue: Readonly<IOrder> = {
+  done: false,
+  received: false,
+};

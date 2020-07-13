@@ -326,15 +326,16 @@ class _OrderPageState extends State<OrderPage> {
                                   List<ShopingItemDTO> items = state
                                       .cartState.items
                                       .map((e) => ShopingItemDTO(
-                                      null,
-                                      e.name,
-                                      e.description,
-                                      e.token,
-                                      e.price,
-                                      e.image,
-                                      e.imageContentType,
-                                      e.orderable,
-                                      e.cartId)).toList();
+                                          null,
+                                          e.name,
+                                          e.description,
+                                          e.token,
+                                          e.price,
+                                          e.image,
+                                          e.imageContentType,
+                                          e.orderable,
+                                          e.cartId))
+                                      .toList();
                                   CartDTO cartDto = CartDTO(
                                       null,
                                       emailTextFieldController.text,
@@ -353,12 +354,49 @@ class _OrderPageState extends State<OrderPage> {
                                       cityTextFieldController.text,
                                       address1TextFieldController.text,
                                       address2TextFieldController.text,
+                                      false,
+                                      false,
                                       null,
                                       cartDto);
-                                  showAdjustDialog(context,
-                                      orderDTO.toJson().toString(), true, () {
-                                          order(context, orderDTO);
-                                      });
+                                  String text = orderDTO.firstName +
+                                      " " +
+                                      orderDTO.lastName +
+                                      "\n" +
+                                      "شماره تلفن: " +
+                                      orderDTO.phoneNumber +
+                                      "\n" +
+                                      orderDTO.city +
+                                      " - " +
+                                      orderDTO.address1 +
+                                      " - " +
+                                      orderDTO.address2 +
+                                      "\n";
+                                  state.cartState.items.forEach((element) {
+                                    text += "* " +
+                                        element.name +
+                                        " - " +
+                                        NumberUtility.changeDigit(
+                                            element.price.round().toString(),
+                                            NumStrLanguage.Farsi) +
+                                        " ریال" +
+                                        "\n";
+                                  });
+                                  showAdjustDialog(context, text, true,
+                                      () async {
+                                    int i = await order(context, orderDTO);
+                                    if (i == 1) {
+                                      state.cartState.items =
+                                          List<ShopingItem>();
+                                      StoreProvider.of<AppState>(context)
+                                          .dispatch(RemoveFromCartAction(
+                                              payload: state.cartState));
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
+                                    } else if (i == 0) {
+                                      showAdjustDialog(
+                                          context, FAILURE, false, null);
+                                    }
+                                  });
                                 }
                               }),
                         )

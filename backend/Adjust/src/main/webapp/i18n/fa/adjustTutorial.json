@@ -18,10 +18,10 @@
       },
       "title": "Title",
       "description": "Description",
+      "text": "Text",
       "thumbnail": "Thumbnail",
       "tokenPrice": "Token Price",
-      "content": "Content",
-      "client": "Client"
+      "video": "Video"
     }
   }
 }

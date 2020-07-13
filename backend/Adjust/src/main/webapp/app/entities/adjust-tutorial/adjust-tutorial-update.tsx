@@ -7,8 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IAdjustClient } from 'app/shared/model/adjust-client.model';
-import { getEntities as getAdjustClients } from 'app/entities/adjust-client/adjust-client.reducer';
+import { IAdjustTutorialVideo } from 'app/shared/model/adjust-tutorial-video.model';
+import { getEntities as getAdjustTutorialVideos } from 'app/entities/adjust-tutorial-video/adjust-tutorial-video.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './adjust-tutorial.reducer';
 import { IAdjustTutorial } from 'app/shared/model/adjust-tutorial.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -17,12 +17,12 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IAdjustTutorialUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const AdjustTutorialUpdate = (props: IAdjustTutorialUpdateProps) => {
-  const [clientId, setClientId] = useState('0');
+  const [videoId, setVideoId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { adjustTutorialEntity, adjustClients, loading, updating } = props;
+  const { adjustTutorialEntity, adjustTutorialVideos, loading, updating } = props;
 
-  const { thumbnail, thumbnailContentType, content, contentContentType } = adjustTutorialEntity;
+  const { text, thumbnail, thumbnailContentType } = adjustTutorialEntity;
 
   const handleClose = () => {
     props.history.push('/adjust-tutorial');
@@ -35,7 +35,7 @@ export const AdjustTutorialUpdate = (props: IAdjustTutorialUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getAdjustClients();
+    props.getAdjustTutorialVideos();
   }, []);
 
   const onBlobChange = (isAnImage, name) => event => {
@@ -103,6 +103,12 @@ export const AdjustTutorialUpdate = (props: IAdjustTutorialUpdateProps) => {
                 <AvField id="adjust-tutorial-description" type="text" name="description" />
               </AvGroup>
               <AvGroup>
+                <Label id="textLabel" for="adjust-tutorial-text">
+                  <Translate contentKey="adjustApp.adjustTutorial.text">Text</Translate>
+                </Label>
+                <AvInput id="adjust-tutorial-text" type="textarea" name="text" />
+              </AvGroup>
+              <AvGroup>
                 <AvGroup>
                   <Label id="thumbnailLabel" for="thumbnail">
                     <Translate contentKey="adjustApp.adjustTutorial.thumbnail">Thumbnail</Translate>
@@ -141,45 +147,13 @@ export const AdjustTutorialUpdate = (props: IAdjustTutorialUpdateProps) => {
                 <AvField id="adjust-tutorial-tokenPrice" type="string" className="form-control" name="tokenPrice" />
               </AvGroup>
               <AvGroup>
-                <AvGroup>
-                  <Label id="contentLabel" for="content">
-                    <Translate contentKey="adjustApp.adjustTutorial.content">Content</Translate>
-                  </Label>
-                  <br />
-                  {content ? (
-                    <div>
-                      {contentContentType ? (
-                        <a onClick={openFile(contentContentType, content)}>
-                          <Translate contentKey="entity.action.open">Open</Translate>
-                        </a>
-                      ) : null}
-                      <br />
-                      <Row>
-                        <Col md="11">
-                          <span>
-                            {contentContentType}, {byteSize(content)}
-                          </span>
-                        </Col>
-                        <Col md="1">
-                          <Button color="danger" onClick={clearBlob('content')}>
-                            <FontAwesomeIcon icon="times-circle" />
-                          </Button>
-                        </Col>
-                      </Row>
-                    </div>
-                  ) : null}
-                  <input id="file_content" type="file" onChange={onBlobChange(false, 'content')} />
-                  <AvInput type="hidden" name="content" value={content} />
-                </AvGroup>
-              </AvGroup>
-              <AvGroup>
-                <Label for="adjust-tutorial-client">
-                  <Translate contentKey="adjustApp.adjustTutorial.client">Client</Translate>
+                <Label for="adjust-tutorial-video">
+                  <Translate contentKey="adjustApp.adjustTutorial.video">Video</Translate>
                 </Label>
-                <AvInput id="adjust-tutorial-client" type="select" className="form-control" name="clientId">
+                <AvInput id="adjust-tutorial-video" type="select" className="form-control" name="videoId">
                   <option value="" key="0" />
-                  {adjustClients
-                    ? adjustClients.map(otherEntity => (
+                  {adjustTutorialVideos
+                    ? adjustTutorialVideos.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.id}
                         </option>
@@ -209,7 +183,7 @@ export const AdjustTutorialUpdate = (props: IAdjustTutorialUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  adjustClients: storeState.adjustClient.entities,
+  adjustTutorialVideos: storeState.adjustTutorialVideo.entities,
   adjustTutorialEntity: storeState.adjustTutorial.entity,
   loading: storeState.adjustTutorial.loading,
   updating: storeState.adjustTutorial.updating,
@@ -217,7 +191,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getAdjustClients,
+  getAdjustTutorialVideos,
   getEntity,
   updateEntity,
   setBlob,

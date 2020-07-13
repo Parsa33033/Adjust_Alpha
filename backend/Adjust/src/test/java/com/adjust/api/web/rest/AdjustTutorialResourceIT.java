@@ -39,6 +39,9 @@ public class AdjustTutorialResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TEXT = "AAAAAAAAAA";
+    private static final String UPDATED_TEXT = "BBBBBBBBBB";
+
     private static final byte[] DEFAULT_THUMBNAIL = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_THUMBNAIL = TestUtil.createByteArray(1, "1");
     private static final String DEFAULT_THUMBNAIL_CONTENT_TYPE = "image/jpg";
@@ -46,11 +49,6 @@ public class AdjustTutorialResourceIT {
 
     private static final Double DEFAULT_TOKEN_PRICE = 1D;
     private static final Double UPDATED_TOKEN_PRICE = 2D;
-
-    private static final byte[] DEFAULT_CONTENT = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_CONTENT = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_CONTENT_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_CONTENT_CONTENT_TYPE = "image/png";
 
     @Autowired
     private AdjustTutorialRepository adjustTutorialRepository;
@@ -79,11 +77,10 @@ public class AdjustTutorialResourceIT {
         AdjustTutorial adjustTutorial = new AdjustTutorial()
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
+            .text(DEFAULT_TEXT)
             .thumbnail(DEFAULT_THUMBNAIL)
             .thumbnailContentType(DEFAULT_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(DEFAULT_TOKEN_PRICE)
-            .content(DEFAULT_CONTENT)
-            .contentContentType(DEFAULT_CONTENT_CONTENT_TYPE);
+            .tokenPrice(DEFAULT_TOKEN_PRICE);
         return adjustTutorial;
     }
     /**
@@ -96,11 +93,10 @@ public class AdjustTutorialResourceIT {
         AdjustTutorial adjustTutorial = new AdjustTutorial()
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
+            .text(UPDATED_TEXT)
             .thumbnail(UPDATED_THUMBNAIL)
             .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(UPDATED_TOKEN_PRICE)
-            .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE);
+            .tokenPrice(UPDATED_TOKEN_PRICE);
         return adjustTutorial;
     }
 
@@ -126,11 +122,10 @@ public class AdjustTutorialResourceIT {
         AdjustTutorial testAdjustTutorial = adjustTutorialList.get(adjustTutorialList.size() - 1);
         assertThat(testAdjustTutorial.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testAdjustTutorial.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testAdjustTutorial.getText()).isEqualTo(DEFAULT_TEXT);
         assertThat(testAdjustTutorial.getThumbnail()).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testAdjustTutorial.getThumbnailContentType()).isEqualTo(DEFAULT_THUMBNAIL_CONTENT_TYPE);
         assertThat(testAdjustTutorial.getTokenPrice()).isEqualTo(DEFAULT_TOKEN_PRICE);
-        assertThat(testAdjustTutorial.getContent()).isEqualTo(DEFAULT_CONTENT);
-        assertThat(testAdjustTutorial.getContentContentType()).isEqualTo(DEFAULT_CONTENT_CONTENT_TYPE);
     }
 
     @Test
@@ -167,11 +162,10 @@ public class AdjustTutorialResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(adjustTutorial.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT.toString())))
             .andExpect(jsonPath("$.[*].thumbnailContentType").value(hasItem(DEFAULT_THUMBNAIL_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].thumbnail").value(hasItem(Base64Utils.encodeToString(DEFAULT_THUMBNAIL))))
-            .andExpect(jsonPath("$.[*].tokenPrice").value(hasItem(DEFAULT_TOKEN_PRICE.doubleValue())))
-            .andExpect(jsonPath("$.[*].contentContentType").value(hasItem(DEFAULT_CONTENT_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].content").value(hasItem(Base64Utils.encodeToString(DEFAULT_CONTENT))));
+            .andExpect(jsonPath("$.[*].tokenPrice").value(hasItem(DEFAULT_TOKEN_PRICE.doubleValue())));
     }
     
     @Test
@@ -187,11 +181,10 @@ public class AdjustTutorialResourceIT {
             .andExpect(jsonPath("$.id").value(adjustTutorial.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
+            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT.toString()))
             .andExpect(jsonPath("$.thumbnailContentType").value(DEFAULT_THUMBNAIL_CONTENT_TYPE))
             .andExpect(jsonPath("$.thumbnail").value(Base64Utils.encodeToString(DEFAULT_THUMBNAIL)))
-            .andExpect(jsonPath("$.tokenPrice").value(DEFAULT_TOKEN_PRICE.doubleValue()))
-            .andExpect(jsonPath("$.contentContentType").value(DEFAULT_CONTENT_CONTENT_TYPE))
-            .andExpect(jsonPath("$.content").value(Base64Utils.encodeToString(DEFAULT_CONTENT)));
+            .andExpect(jsonPath("$.tokenPrice").value(DEFAULT_TOKEN_PRICE.doubleValue()));
     }
     @Test
     @Transactional
@@ -216,11 +209,10 @@ public class AdjustTutorialResourceIT {
         updatedAdjustTutorial
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
+            .text(UPDATED_TEXT)
             .thumbnail(UPDATED_THUMBNAIL)
             .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(UPDATED_TOKEN_PRICE)
-            .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE);
+            .tokenPrice(UPDATED_TOKEN_PRICE);
         AdjustTutorialDTO adjustTutorialDTO = adjustTutorialMapper.toDto(updatedAdjustTutorial);
 
         restAdjustTutorialMockMvc.perform(put("/api/adjust-tutorials")
@@ -234,11 +226,10 @@ public class AdjustTutorialResourceIT {
         AdjustTutorial testAdjustTutorial = adjustTutorialList.get(adjustTutorialList.size() - 1);
         assertThat(testAdjustTutorial.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testAdjustTutorial.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testAdjustTutorial.getText()).isEqualTo(UPDATED_TEXT);
         assertThat(testAdjustTutorial.getThumbnail()).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testAdjustTutorial.getThumbnailContentType()).isEqualTo(UPDATED_THUMBNAIL_CONTENT_TYPE);
         assertThat(testAdjustTutorial.getTokenPrice()).isEqualTo(UPDATED_TOKEN_PRICE);
-        assertThat(testAdjustTutorial.getContent()).isEqualTo(UPDATED_CONTENT);
-        assertThat(testAdjustTutorial.getContentContentType()).isEqualTo(UPDATED_CONTENT_CONTENT_TYPE);
     }
 
     @Test

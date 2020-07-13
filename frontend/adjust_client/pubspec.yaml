@@ -44,6 +44,9 @@ dependencies:
   flutter_phoenix: ^0.1.0
   badges: ^1.1.1
   persian_number_utility: ^0.1.0
+  flick_video_player: ^0.1.1
+  video_player: ^0.10.11+2
+  cached_video_player: ^1.0.3
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -74,7 +77,8 @@ flutter:
    - nutrition_icon.png
    - tutorial_icon.png
    - workout_icon.png
-   - bg1.png
+   - bg_green.png
+   - bg_red.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

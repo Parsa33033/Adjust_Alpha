@@ -108,7 +108,6 @@ Future<int> order(BuildContext context, OrderDTO orderDTO) async {
   String content = jsonEncode(orderDTO.toJson());
   http.Response response = await http.post(ORDER_URL, body: content, headers: headers, encoding: Encoding.getByName("UTF-8"));
   if (response.statusCode == HttpStatus.ok) {
-    print(response.body);
     return 1;
   }
   return 0;

@@ -1,6 +1,7 @@
 import 'package:adjust_client/config/adjust_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 
 class AdjustInfoButton extends StatelessWidget {
   Color primaryColor;
@@ -9,6 +10,7 @@ class AdjustInfoButton extends StatelessWidget {
   bool isVertical;
   double height;
   double width;
+  String id;
   String name;
   String title;
   String description;
@@ -23,6 +25,7 @@ class AdjustInfoButton extends StatelessWidget {
       this.isVertical,
       this.height,
       this.width,
+      this.id,
       this.name,
       this.title,
       this.description,
@@ -56,16 +59,20 @@ class AdjustInfoButton extends StatelessWidget {
               Positioned(
                 right: 0,
                 bottom: 0,
-                height: this.height * 2 / 4,
-                width: this.width * 2 / 4,
-                child: ClipPath(
-                  clipper: Decoration(20),
-                  child: Container(
-                    decoration: BoxDecoration(color: primaryColor
-//                  gradient: LinearGradient(colors: [primaryColorLight, primaryColor, ], )
-                        ),
-                  ),
-                ),
+                height: this.height,
+                width: this.width,
+                child: CustomPaint(
+                  painter: Decoration(20, this.height, this.width, this.primaryColor, this.primaryColorLight),
+                )
+
+//                ClipPath(
+//                  clipper: ,
+//                  child: Container(
+//                    decoration: BoxDecoration(color: primaryColor
+////                  gradient: LinearGradient(colors: [primaryColorLight, primaryColor, ], )
+//                        ),
+//                  ),
+//                ),
               ),
               isVertical
                   ? Positioned(
@@ -148,25 +155,34 @@ class AdjustInfoButton extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Expanded(
-                              flex: 34,
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
-                              ),
+                              flex: 36,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
+                                ),
+                              )
                             ),
                             Expanded(
-                              flex: 33,
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
-                              ),
+                              flex: 35,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize - 2, color: secondaryColor)),
+                                ),
+                              )
                             ),
                             Expanded(
-                              flex: 33,
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
-                              ),
+                              flex: 29,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
+                                ),
+                              )
                             )
                           ],
                         ),
@@ -195,36 +211,49 @@ class AdjustInfoButton extends StatelessWidget {
   Widget getImage() {
     return Container(
       child: Hero(
-        tag: this.name,
+        tag: this.id,
         child: image,
       ),
     );
   }
 }
 
-class Decoration extends CustomClipper<Path> {
+class Decoration extends CustomPainter{
   double r;
-
-  Decoration(this.r);
+  double height;
+  double width;
+  Color primaryColor;
+  Color lightPrimaryColor;
+  Decoration(this.r, this.height, this.width, this.primaryColor, this.lightPrimaryColor);
 
   @override
-  Path getClip(Size size) {
-    double height = size.height;
-    double width = size.width;
+  void paint(Canvas canvas, Size size) {
+    // TODO: implement paint
+
+    Paint paint = Paint();
+    paint.shader = ui.Gradient.linear(Offset(0, 0), Offset(this.width, this.height), [HSLColor.fromColor(this.primaryColor).withLightness(0.8).toColor(), lightPrimaryColor]);
+
+    //    double height = size.height;
+//    double width = size.width;
     Path path = Path();
     path.moveTo(0, height);
     path.lineTo(width - r, height);
     path.quadraticBezierTo(width, height, width, height - r);
     path.lineTo(width, r);
 //    path.quadraticBezierTo(width, 0, width - r, 0);
-    path.lineTo(width, 0);
+    path.lineTo(width, 0 + r);
+    path.quadraticBezierTo(width, 0, width - r, 0);
+
     path.quadraticBezierTo(0, 0, 0, height - r);
     path.close();
-    return path;
+
+    canvas.drawPath(path, paint);
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
+  bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
+
+
 }

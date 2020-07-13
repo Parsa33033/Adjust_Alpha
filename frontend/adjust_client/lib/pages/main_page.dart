@@ -1,10 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:adjust_client/actions/shoping_action.dart';
+import 'package:adjust_client/actions/tutorial_action.dart';
 import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/config/adjust_colors.dart';
 import 'package:adjust_client/pages/menu_page.dart';
 import 'package:adjust_client/pages/shoping_page.dart';
+import 'package:adjust_client/pages/tutorial_page.dart';
+import 'package:adjust_client/pages/tutorial_video_page.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:adjust_client/states/client_state.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -172,7 +175,9 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: menuItem("آموزش", "assets/tutorial_icon.png", YELLOW, null),
+                  child: menuItem("آموزش", "assets/tutorial_icon.png", YELLOW, () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TutorialPage()));
+                  }),
                 )
               ],
             ),

@@ -9,13 +9,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link AdjustTutorial} and its DTO {@link AdjustTutorialDTO}.
  */
-@Mapper(componentModel = "spring", uses = {AdjustClientMapper.class})
+@Mapper(componentModel = "spring", uses = {AdjustTutorialVideoMapper.class})
 public interface AdjustTutorialMapper extends EntityMapper<AdjustTutorialDTO, AdjustTutorial> {
 
-    @Mapping(source = "client.id", target = "clientId")
+    @Mapping(source = "video.id", target = "videoId")
     AdjustTutorialDTO toDto(AdjustTutorial adjustTutorial);
 
-    @Mapping(source = "clientId", target = "client")
+    @Mapping(source = "videoId", target = "video")
     AdjustTutorial toEntity(AdjustTutorialDTO adjustTutorialDTO);
 
     default AdjustTutorial fromId(Long id) {

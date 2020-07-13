@@ -43,7 +43,7 @@
   "relationships": [
     {
       "relationshipType": "one-to-many",
-      "otherEntityName": "adjustTutorial",
+      "otherEntityName": "tutorial",
       "otherEntityRelationshipName": "client",
       "relationshipName": "tutorials"
     },

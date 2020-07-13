@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.adjust.api.domain.enumeration.Gender;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * A AdjustClient.
@@ -62,7 +61,7 @@ public class AdjustClient implements Serializable {
 
     @OneToMany(mappedBy = "client")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<AdjustTutorial> tutorials = new HashSet<>();
+    private Set<Tutorial> tutorials = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -211,29 +210,29 @@ public class AdjustClient implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public Set<AdjustTutorial> getTutorials() {
+    public Set<Tutorial> getTutorials() {
         return tutorials;
     }
 
-    public AdjustClient tutorials(Set<AdjustTutorial> adjustTutorials) {
-        this.tutorials = adjustTutorials;
+    public AdjustClient tutorials(Set<Tutorial> tutorials) {
+        this.tutorials = tutorials;
         return this;
     }
 
-    public AdjustClient addTutorials(AdjustTutorial adjustTutorial) {
-        this.tutorials.add(adjustTutorial);
-        adjustTutorial.setClient(this);
+    public AdjustClient addTutorials(Tutorial tutorial) {
+        this.tutorials.add(tutorial);
+        tutorial.setClient(this);
         return this;
     }
 
-    public AdjustClient removeTutorials(AdjustTutorial adjustTutorial) {
-        this.tutorials.remove(adjustTutorial);
-        adjustTutorial.setClient(null);
+    public AdjustClient removeTutorials(Tutorial tutorial) {
+        this.tutorials.remove(tutorial);
+        tutorial.setClient(null);
         return this;
     }
 
-    public void setTutorials(Set<AdjustTutorial> adjustTutorials) {
-        this.tutorials = adjustTutorials;
+    public void setTutorials(Set<Tutorial> tutorials) {
+        this.tutorials = tutorials;
     }
 
     public Set<AdjustProgram> getPrograms() {

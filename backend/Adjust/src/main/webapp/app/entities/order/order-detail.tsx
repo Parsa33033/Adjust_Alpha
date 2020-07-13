@@ -86,6 +86,18 @@ export const OrderDetail = (props: IOrderDetailProps) => {
           </dt>
           <dd>{orderEntity.address2}</dd>
           <dt>
+            <span id="done">
+              <Translate contentKey="adjustApp.order.done">Done</Translate>
+            </span>
+          </dt>
+          <dd>{orderEntity.done ? 'true' : 'false'}</dd>
+          <dt>
+            <span id="received">
+              <Translate contentKey="adjustApp.order.received">Received</Translate>
+            </span>
+          </dt>
+          <dd>{orderEntity.received ? 'true' : 'false'}</dd>
+          <dt>
             <Translate contentKey="adjustApp.order.cart">Cart</Translate>
           </dt>
           <dd>{orderEntity.cartId ? orderEntity.cartId : ''}</dd>

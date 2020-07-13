@@ -7,6 +7,7 @@ import 'package:adjust_client/pages/profile_page.dart';
 import 'package:adjust_client/reducers/authentication_reducer.dart';
 import 'package:adjust_client/reducers/client_reducer.dart';
 import 'package:adjust_client/reducers/shoping_item_reducer.dart';
+import 'package:adjust_client/reducers/tutorial_reducer.dart';
 import 'package:adjust_client/reducers/user_reducer.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-Store store;
+Store<AppState> store;
 
 void main() {
   final reducers = combineReducers<AppState>([
@@ -23,6 +24,7 @@ void main() {
     TypedReducer<AppState, dynamic>(authenticationReducer),
     TypedReducer<AppState, dynamic>(clientReducer),
     TypedReducer<AppState, dynamic>(shopingItemReducer),
+    TypedReducer<AppState, dynamic>(tutorialReducer),
   ]);
   store = Store<AppState>(reducers, initialState: appStateInit);
 
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
       store: store,
       child: MaterialApp(
         title: 'Adjust Client',
-        home: AppInit(),
+        home: AppInit()
       ),
     );
   }

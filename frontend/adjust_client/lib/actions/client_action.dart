@@ -43,7 +43,7 @@ Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
     ..putIfAbsent("Content-Type", () => "application/json");
 
   String content = jsonEncode(clientDTO.toJson());
-  print("client is updating with: ${content}");
+//  print("client is updating with: ${content}");
 
   http.Response response = await http.put(CLIENT_URL,
       headers: headers, body: content, encoding: Encoding.getByName("UTF-8"));
@@ -55,7 +55,7 @@ Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
       List<int> imageByte = List<int>.from(l);
       m["image"] = imageByte;
     }
-    print("client update response is: ${m}");
+//    print("client update response is: ${m}");
 
     ClientDTO client = ClientDTO.fromJson(m);
     setClientState(context, client);
@@ -94,3 +94,19 @@ Future<int> getClient(BuildContext context) async {
   return 0;
 }
 
+
+Future<int> getClientToken(BuildContext context) async {
+  String jwt = StoreProvider.of<AppState>(context).state.authenticationState.jwt;
+
+  Map<String, String> headers = Map<String, String>()
+    ..putIfAbsent("Authorization", () => "Bearer " + jwt);
+
+  http.Response response = await http.get(GET_CLIENT_TOKENS, headers: headers);
+  if (response.statusCode == HttpStatus.ok) {
+    double token = double.parse(response.body);
+    ClientState clientState = ClientState(null, null, null, null, null, null, null, token, null, null, null);
+    StoreProvider.of<AppState>(context).dispatch(UpdateClientAction(payload: clientState));
+    return 1;
+  }
+  return 0;
+}

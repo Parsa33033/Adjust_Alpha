@@ -15,3 +15,8 @@ final String CLIENT_TOKENS = BASE_URL + "/api/client/app/adjust-tokens";
 
 final String BUY_TOKEN = BASE_URL + "/api/client/app/buy-token";
 final String ORDER_URL = BASE_URL + "/api/client/app/adjust-shopings";
+final String TUTORIAL_URL = BASE_URL + "/api/client/app/adjust-tutorials";
+final String BUY_TUTORIAL_URL = BASE_URL + "/api/client/app/buy-tutorial";
+final String GET_CLIENT_TUTORIALS_URL = BASE_URL + "/api/client/app/get-tutorials";
+final String GET_CLIENT_TUTORIALS_VIDEO_URL = BASE_URL + "/api/client/app/get-tutorial-video";
+final String GET_CLIENT_TOKENS = BASE_URL + "/api/client/app/get-client-token";

@@ -140,6 +140,18 @@ export const OrderUpdate = (props: IOrderUpdateProps) => {
                 </Label>
                 <AvField id="order-address2" type="text" name="address2" />
               </AvGroup>
+              <AvGroup check>
+                <Label id="doneLabel">
+                  <AvInput id="order-done" type="checkbox" className="form-check-input" name="done" />
+                  <Translate contentKey="adjustApp.order.done">Done</Translate>
+                </Label>
+              </AvGroup>
+              <AvGroup check>
+                <Label id="receivedLabel">
+                  <AvInput id="order-received" type="checkbox" className="form-check-input" name="received" />
+                  <Translate contentKey="adjustApp.order.received">Received</Translate>
+                </Label>
+              </AvGroup>
               <AvGroup>
                 <Label for="order-cart">
                   <Translate contentKey="adjustApp.order.cart">Cart</Translate>

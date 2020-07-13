@@ -1,6 +1,5 @@
 package com.adjust.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,6 +28,10 @@ public class AdjustTutorial implements Serializable {
     private String description;
 
     @Lob
+    @Column(name = "text")
+    private String text;
+
+    @Lob
     @Column(name = "thumbnail")
     private byte[] thumbnail;
 
@@ -38,16 +41,9 @@ public class AdjustTutorial implements Serializable {
     @Column(name = "token_price")
     private Double tokenPrice;
 
-    @Lob
-    @Column(name = "content")
-    private byte[] content;
-
-    @Column(name = "content_content_type")
-    private String contentContentType;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "tutorials", allowSetters = true)
-    private AdjustClient client;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AdjustTutorialVideo video;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -82,6 +78,19 @@ public class AdjustTutorial implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public AdjustTutorial text(String text) {
+        this.text = text;
+        return this;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public byte[] getThumbnail() {
@@ -123,43 +132,17 @@ public class AdjustTutorial implements Serializable {
         this.tokenPrice = tokenPrice;
     }
 
-    public byte[] getContent() {
-        return content;
+    public AdjustTutorialVideo getVideo() {
+        return video;
     }
 
-    public AdjustTutorial content(byte[] content) {
-        this.content = content;
+    public AdjustTutorial video(AdjustTutorialVideo adjustTutorialVideo) {
+        this.video = adjustTutorialVideo;
         return this;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public String getContentContentType() {
-        return contentContentType;
-    }
-
-    public AdjustTutorial contentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
-        return this;
-    }
-
-    public void setContentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
-    }
-
-    public AdjustClient getClient() {
-        return client;
-    }
-
-    public AdjustTutorial client(AdjustClient adjustClient) {
-        this.client = adjustClient;
-        return this;
-    }
-
-    public void setClient(AdjustClient adjustClient) {
-        this.client = adjustClient;
+    public void setVideo(AdjustTutorialVideo adjustTutorialVideo) {
+        this.video = adjustTutorialVideo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -186,11 +169,10 @@ public class AdjustTutorial implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
+            ", text='" + getText() + "'" +
             ", thumbnail='" + getThumbnail() + "'" +
             ", thumbnailContentType='" + getThumbnailContentType() + "'" +
             ", tokenPrice=" + getTokenPrice() +
-            ", content='" + getContent() + "'" +
-            ", contentContentType='" + getContentContentType() + "'" +
             "}";
     }
 }

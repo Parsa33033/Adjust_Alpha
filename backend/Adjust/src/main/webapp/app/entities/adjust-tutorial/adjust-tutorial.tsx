@@ -43,16 +43,16 @@ export const AdjustTutorial = (props: IAdjustTutorialProps) => {
                   <Translate contentKey="adjustApp.adjustTutorial.description">Description</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="adjustApp.adjustTutorial.text">Text</Translate>
+                </th>
+                <th>
                   <Translate contentKey="adjustApp.adjustTutorial.thumbnail">Thumbnail</Translate>
                 </th>
                 <th>
                   <Translate contentKey="adjustApp.adjustTutorial.tokenPrice">Token Price</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="adjustApp.adjustTutorial.content">Content</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="adjustApp.adjustTutorial.client">Client</Translate>
+                  <Translate contentKey="adjustApp.adjustTutorial.video">Video</Translate>
                 </th>
                 <th />
               </tr>
@@ -67,6 +67,7 @@ export const AdjustTutorial = (props: IAdjustTutorialProps) => {
                   </td>
                   <td>{adjustTutorial.title}</td>
                   <td>{adjustTutorial.description}</td>
+                  <td>{adjustTutorial.text}</td>
                   <td>
                     {adjustTutorial.thumbnail ? (
                       <div>
@@ -87,22 +88,11 @@ export const AdjustTutorial = (props: IAdjustTutorialProps) => {
                   </td>
                   <td>{adjustTutorial.tokenPrice}</td>
                   <td>
-                    {adjustTutorial.content ? (
-                      <div>
-                        {adjustTutorial.contentContentType ? (
-                          <a onClick={openFile(adjustTutorial.contentContentType, adjustTutorial.content)}>
-                            <Translate contentKey="entity.action.open">Open</Translate>
-                            &nbsp;
-                          </a>
-                        ) : null}
-                        <span>
-                          {adjustTutorial.contentContentType}, {byteSize(adjustTutorial.content)}
-                        </span>
-                      </div>
-                    ) : null}
-                  </td>
-                  <td>
-                    {adjustTutorial.clientId ? <Link to={`adjust-client/${adjustTutorial.clientId}`}>{adjustTutorial.clientId}</Link> : ''}
+                    {adjustTutorial.videoId ? (
+                      <Link to={`adjust-tutorial-video/${adjustTutorial.videoId}`}>{adjustTutorial.videoId}</Link>
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

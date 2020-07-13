@@ -10,16 +10,20 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
     child: Dialog(
      child: Container(
        padding: EdgeInsets.all(20),
-       height: 400,
-       child: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-         children: <Widget>[
-           Directionality(
-             textDirection: TextDirection.rtl,
-             child: Text(text, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: FONT),),
-           ),
-           isChoice
-           ?
+//       height: 400,
+       child: SingleChildScrollView(
+         child: LimitedBox(
+           maxHeight: 400,
+           maxWidth: MediaQuery.of(context).size.width,
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             children: <Widget>[
+               Directionality(
+                 textDirection: TextDirection.rtl,
+                 child: Text(text, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: FONT),),
+               ),
+               isChoice
+                   ?
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                  children: <Widget>[
@@ -52,22 +56,25 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
                    )
                  ],
                )
-           :
+                   :
                Container(
-                 child: AdjustRaisedButton(
-                   textDirection: TextDirection.rtl,
-                   height: 40,
-                   width: 80,
-                   primaryColor: GREEN,
-                   secondaryColor: GREEN,
-                   text: OK,
-                   onPressed: () {
-                     Navigator.of(context, rootNavigator: true).pop("dialog");
-                   },
-                 )
-               )
-         ],
-       ),
+                   child: AdjustRaisedButton(
+                     textDirection: TextDirection.rtl,
+                     height: 40,
+                     width: 80,
+                     primaryColor: GREEN,
+                     secondaryColor: GREEN,
+                     text: OK,
+                     onPressed: () {
+                       Navigator.of(context, rootNavigator: true).pop("dialog");
+                     },
+                   )
+               ),
+
+             ],
+           ),
+         )
+       )
      ),
     )
   );

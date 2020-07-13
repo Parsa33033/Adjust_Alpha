@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/config/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/pages/profile_page.dart';
@@ -42,7 +43,7 @@ class MenuPage extends StatelessWidget {
               color: WHITE,
             ),
             menuItem(PROFILE, Icons.person, () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(image: image, isFromMainPage: true,)));}),
-            menuItem(LOGOUT, Icons.exit_to_app, () {logout();}),
+            menuItem(LOGOUT, Icons.exit_to_app, () {showAdjustDialog(context, SURE_TO_EXIT, true, () {logout();});}),
 
           ],
         ),

@@ -29,6 +29,9 @@
         "shopingItem": "Shoping Item",
         "adjustMove": "Adjust Move",
         "adjustMeal": "Adjust Meal",
+        "adjustTutorialVideo": "Adjust Tutorial Video",
+        "tutorial": "Tutorial",
+        "tutorialVideo": "Tutorial Video",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

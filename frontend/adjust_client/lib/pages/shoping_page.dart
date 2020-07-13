@@ -25,8 +25,12 @@ class ShopingPage extends StatelessWidget {
       builder: (BuildContext context, AppState state) {
         double width = MediaQuery.of(context).size.width;
         return Container(
+          decoration: BoxDecoration(
+            boxShadow: [BoxShadow(color: SHADOW, offset: Offset(4,4), spreadRadius: 2, blurRadius: 2)],
+            color: LIGHT_GREY
+          ),
             width: width,
-            margin: EdgeInsets.only(bottom: 30),
+            margin: EdgeInsets.only(bottom: 30, top: 10),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -59,6 +63,7 @@ class ShopingPage extends StatelessWidget {
                           return AdjustInfoButton(
                             width: 160,
                             height: 160,
+                            id: e.name,
                             title: e == null
                                 ? ""
                                 : NumberUtility.changeDigit(
@@ -72,7 +77,7 @@ class ShopingPage extends StatelessWidget {
                             fontSize: 14,
                             isVertical: true,
                             primaryColor: RED,
-                            primaryColorLight: ORANGE,
+                            primaryColorLight: LIGHT_RED,
                             secondaryColor: WHITE,
                             image: image,
                             func: () async {
@@ -89,6 +94,9 @@ class ShopingPage extends StatelessWidget {
                                       description: e.description,
                                       buttonText: "خرید",
                                       isInfo: false,
+                                      primaryColor: RED,
+                                      primaryColorLight: LIGHT_RED,
+                                      backgroundImagePath: "assets/bg_red.png",
                                       onButtonPressed: () async {
                                         await buyToken(context, id);
                                         Navigator.of(context).pushReplacement(
@@ -131,6 +139,7 @@ class ShopingPage extends StatelessWidget {
                           return AdjustInfoButton(
                             width: 160,
                             height: 160,
+                            id: e.name,
                             title: e == null
                                 ? ""
                                 : NumberUtility.changeDigit(
@@ -141,8 +150,8 @@ class ShopingPage extends StatelessWidget {
                             name: e == null ? "" : e.name,
                             fontSize: 14,
                             isVertical: true,
-                            primaryColor: GREEN,
-                            primaryColorLight: YELLOW,
+                            primaryColor: LIGHT_GREEN,
+                            primaryColorLight: GREEN,
                             secondaryColor: WHITE,
                             image: image,
                             func: () async {
@@ -159,6 +168,9 @@ class ShopingPage extends StatelessWidget {
                                       description: e.description,
                                       buttonText: "افزودن به سبد خرید",
                                       isInfo: false,
+                                      primaryColor: GREEN,
+                                      primaryColorLight: LIGHT_GREEN,
+                                      backgroundImagePath: "assets/bg_green.png",
                                       onButtonPressed: () async {
                                         ShopingItem item = ShopingItem(
                                             e.id,

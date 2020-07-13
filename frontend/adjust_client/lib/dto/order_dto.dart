@@ -7,6 +7,7 @@ part 'order_dto.g.dart';
 @JsonSerializable()
 class OrderDTO extends Order {
   CartDTO cart;
+
   OrderDTO(
       int id,
       String username,
@@ -19,10 +20,11 @@ class OrderDTO extends Order {
       String city,
       String address1,
       String address2,
-      int cartId,
-      this.cart)
+      bool done,
+      bool received,
+      int cartId, this.cart)
       : super(id, username, firstName, lastName, phoneNumber, email, country,
-            state, city, address1, address2, cartId);
+            state, city, address1, address2, done, received, cartId);
 
   factory OrderDTO.fromJson(Map<String, dynamic> json) =>
       _$OrderDTOFromJson(json);

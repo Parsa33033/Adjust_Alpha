@@ -13,6 +13,5 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 @Repository
 public interface AdjustClientRepository extends JpaRepository<AdjustClient, Long> {
-
     Optional<AdjustClient> findAdjustClientByUsername(String username);
 }

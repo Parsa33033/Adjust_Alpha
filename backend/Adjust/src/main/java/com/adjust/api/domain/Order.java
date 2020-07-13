@@ -51,6 +51,12 @@ public class Order implements Serializable {
     @Column(name = "address_2")
     private String address2;
 
+    @Column(name = "done")
+    private Boolean done;
+
+    @Column(name = "received")
+    private Boolean received;
+
     @OneToOne
     @JoinColumn(unique = true)
     private Cart cart;
@@ -194,6 +200,32 @@ public class Order implements Serializable {
         this.address2 = address2;
     }
 
+    public Boolean isDone() {
+        return done;
+    }
+
+    public Order done(Boolean done) {
+        this.done = done;
+        return this;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Boolean isReceived() {
+        return received;
+    }
+
+    public Order received(Boolean received) {
+        this.received = received;
+        return this;
+    }
+
+    public void setReceived(Boolean received) {
+        this.received = received;
+    }
+
     public Cart getCart() {
         return cart;
     }
@@ -239,6 +271,8 @@ public class Order implements Serializable {
             ", city='" + getCity() + "'" +
             ", address1='" + getAddress1() + "'" +
             ", address2='" + getAddress2() + "'" +
+            ", done='" + isDone() + "'" +
+            ", received='" + isReceived() + "'" +
             "}";
     }
 }

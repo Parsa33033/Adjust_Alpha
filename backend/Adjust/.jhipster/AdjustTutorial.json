@@ -10,6 +10,11 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "text",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
       "fieldName": "thumbnail",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
@@ -17,20 +22,16 @@
     {
       "fieldName": "tokenPrice",
       "fieldType": "Double"
-    },
-    {
-      "fieldName": "content",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any"
     }
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "adjustClient",
-      "otherEntityRelationshipName": "tutorials",
-      "relationshipName": "client",
-      "otherEntityField": "id"
+      "relationshipType": "one-to-one",
+      "otherEntityName": "adjustTutorialVideo",
+      "otherEntityRelationshipName": "tutorial",
+      "relationshipName": "video",
+      "otherEntityField": "id",
+      "ownerSide": true
     }
   ],
   "changelogDate": "20200702131355",

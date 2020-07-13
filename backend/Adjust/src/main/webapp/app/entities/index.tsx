@@ -26,6 +26,9 @@ import Order from './order';
 import ShopingItem from './shoping-item';
 import AdjustMove from './adjust-move';
 import AdjustMeal from './adjust-meal';
+import AdjustTutorialVideo from './adjust-tutorial-video';
+import Tutorial from './tutorial';
+import TutorialVideo from './tutorial-video';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -54,6 +57,9 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}shoping-item`} component={ShopingItem} />
       <ErrorBoundaryRoute path={`${match.url}adjust-move`} component={AdjustMove} />
       <ErrorBoundaryRoute path={`${match.url}adjust-meal`} component={AdjustMeal} />
+      <ErrorBoundaryRoute path={`${match.url}adjust-tutorial-video`} component={AdjustTutorialVideo} />
+      <ErrorBoundaryRoute path={`${match.url}tutorial`} component={Tutorial} />
+      <ErrorBoundaryRoute path={`${match.url}tutorial-video`} component={TutorialVideo} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

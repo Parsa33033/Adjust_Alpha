@@ -19,6 +19,8 @@ OrderDTO _$OrderDTOFromJson(Map<String, dynamic> json) {
     json['city'] as String,
     json['address1'] as String,
     json['address2'] as String,
+    json['done'] as bool,
+    json['received'] as bool,
     json['cartId'] as int,
     json['cart'] == null
         ? null
@@ -38,6 +40,8 @@ Map<String, dynamic> _$OrderDTOToJson(OrderDTO instance) => <String, dynamic>{
       'city': instance.city,
       'address1': instance.address1,
       'address2': instance.address2,
+      'done': instance.done,
+      'received': instance.received,
       'cartId': instance.cartId,
       'cart': instance.cart,
     };

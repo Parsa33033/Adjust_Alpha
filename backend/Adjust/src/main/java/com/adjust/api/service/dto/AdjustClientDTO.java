@@ -4,14 +4,10 @@ import java.time.LocalDate;
 import java.io.Serializable;
 import javax.persistence.Lob;
 import com.adjust.api.domain.enumeration.Gender;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * A DTO for the {@link com.adjust.api.domain.AdjustClient} entity.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdjustClientDTO implements Serializable {
     
     private Long id;

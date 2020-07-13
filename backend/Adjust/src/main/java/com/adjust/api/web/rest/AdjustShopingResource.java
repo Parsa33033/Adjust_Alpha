@@ -1,9 +1,11 @@
 package com.adjust.api.web.rest;
 
 import com.adjust.api.service.AdjustShopingService;
-import com.adjust.api.service.dto.DummyOrderDTO;
+import com.adjust.api.service.CartService;
+import com.adjust.api.service.OrderService;
+import com.adjust.api.service.ShopingItemService;
+import com.adjust.api.service.dto.*;
 import com.adjust.api.web.rest.errors.BadRequestAlertException;
-import com.adjust.api.service.dto.AdjustShopingDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -35,8 +37,15 @@ public class AdjustShopingResource {
 
     private final AdjustShopingService adjustShopingService;
 
-    public AdjustShopingResource(AdjustShopingService adjustShopingService) {
+    private final OrderService orderService;
+    private final CartService cartService;
+    private final ShopingItemService shopingItemService;
+
+    public AdjustShopingResource(AdjustShopingService adjustShopingService, OrderService orderService, CartService cartService, ShopingItemService shopingItemService) {
         this.adjustShopingService = adjustShopingService;
+        this.orderService = orderService;
+        this.cartService = cartService;
+        this.shopingItemService = shopingItemService;
     }
 
     /**
@@ -118,8 +127,15 @@ public class AdjustShopingResource {
     }
 
     @PostMapping("/client/app/adjust-shopings")
-    public ResponseEntity<DummyOrderDTO> order(@RequestBody DummyOrderDTO orderDTO) {
-        log.info("token for {} is {}", orderDTO.getCart().getItems().iterator().next().getName(), orderDTO.getCart().getItems().iterator().next().getToken());
-        return ResponseEntity.ok(orderDTO);
+    public ResponseEntity<DummyOrderDTO> order(@RequestBody DummyOrderDTO dummyOrderDTO) {
+        OrderDTO orderDTO = dummyOrderDTO;
+        DummyCartDTO dummyCartDTO = dummyOrderDTO.getCart();
+        List<DummyShopingItemDTO> dummyShopingItemDTOList = dummyCartDTO.getItems();
+        CartDTO cartDTO = cartService.save(dummyCartDTO);
+        Long cartId = cartDTO.getId();
+        orderDTO.setCartId(cartId);
+        orderService.save(orderDTO);
+        dummyShopingItemDTOList.forEach((ShopingItemDTO i) -> {i.setCartId(cartId);shopingItemService.save(i);});
+        return ResponseEntity.ok(dummyOrderDTO);
     }
 }

@@ -100,6 +100,18 @@ import adjustMove, {
 import adjustMeal, {
   AdjustMealState
 } from 'app/entities/adjust-meal/adjust-meal.reducer';
+// prettier-ignore
+import adjustTutorialVideo, {
+  AdjustTutorialVideoState
+} from 'app/entities/adjust-tutorial-video/adjust-tutorial-video.reducer';
+// prettier-ignore
+import tutorial, {
+  TutorialState
+} from 'app/entities/tutorial/tutorial.reducer';
+// prettier-ignore
+import tutorialVideo, {
+  TutorialVideoState
+} from 'app/entities/tutorial-video/tutorial-video.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -135,6 +147,9 @@ export interface IRootState {
   readonly shopingItem: ShopingItemState;
   readonly adjustMove: AdjustMoveState;
   readonly adjustMeal: AdjustMealState;
+  readonly adjustTutorialVideo: AdjustTutorialVideoState;
+  readonly tutorial: TutorialState;
+  readonly tutorialVideo: TutorialVideoState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -172,6 +187,9 @@ const rootReducer = combineReducers<IRootState>({
   shopingItem,
   adjustMove,
   adjustMeal,
+  adjustTutorialVideo,
+  tutorial,
+  tutorialVideo,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

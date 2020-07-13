@@ -22,6 +22,9 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="text" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
             <column name="thumbnail" type="longblob">
                 <constraints nullable="true" />
             </column>
@@ -31,14 +34,8 @@
             <column name="token_price" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="content" type="longblob">
-                <constraints nullable="true" />
-            </column>
-            <column name="content_content_type" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="client_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="video_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_adjust_tutorial_video_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -65,11 +62,10 @@
             <column name="id" type="numeric"/>
             <column name="title" type="string"/>
             <column name="description" type="string"/>
+            <column name="text" type="clob"/>
             <column name="thumbnail" type="blob"/>
             <column name="thumbnail_content_type" type="string"/>
             <column name="token_price" type="numeric"/>
-            <column name="content" type="blob"/>
-            <column name="content_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

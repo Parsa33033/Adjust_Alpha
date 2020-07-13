@@ -11,13 +11,13 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DummyOrderDTO extends OrderDTO implements Serializable {
 
-    private Cart cart;
+    private DummyCartDTO cart;
 
-    public Cart getCart() {
+    public DummyCartDTO getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(DummyCartDTO cart) {
         this.cart = cart;
     }
 }

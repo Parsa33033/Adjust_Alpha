@@ -47,6 +47,8 @@ entity Order {
     city String,
     address1 String,
     address2 String,
+    done Boolean,
+    received Boolean
 }
 
 relationship OneToOne {
@@ -230,16 +232,40 @@ relationship OneToMany {
 
 // tutorial
 
+entity Tutorial {
+	title String,
+    description String,
+    text TextBlob,
+    thumbnail ImageBlob,
+    tokenPrice Double,
+}
+
+entity TutorialVideo {
+	content AnyBlob
+}
+
 entity AdjustTutorial {
 	title String,
     description String,
+    text TextBlob,
     thumbnail ImageBlob,
     tokenPrice Double,
-    content AnyBlob
+}
+
+entity AdjustTutorialVideo {
+	content AnyBlob
+}
+
+relationship OneToOne {
+	Tutorial{video} to TutorialVideo{tutorial}
+}
+
+relationship OneToOne {
+	AdjustTutorial{video} to AdjustTutorialVideo{tutorial}
 }
 
 relationship OneToMany {
-	AdjustClient{tutorials} to AdjustTutorial{client}
+	AdjustClient{tutorials} to Tutorial{client}
 }
 
 

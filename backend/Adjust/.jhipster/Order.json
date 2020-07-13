@@ -40,6 +40,14 @@
     {
       "fieldName": "address2",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "done",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "received",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [

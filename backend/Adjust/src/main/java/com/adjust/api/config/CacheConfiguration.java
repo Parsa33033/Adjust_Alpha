@@ -79,6 +79,9 @@ public class CacheConfiguration {
             createCache(cm, com.adjust.api.domain.ShopingItem.class.getName());
             createCache(cm, com.adjust.api.domain.AdjustMove.class.getName());
             createCache(cm, com.adjust.api.domain.AdjustMeal.class.getName());
+            createCache(cm, com.adjust.api.domain.AdjustTutorialVideo.class.getName());
+            createCache(cm, com.adjust.api.domain.Tutorial.class.getName());
+            createCache(cm, com.adjust.api.domain.TutorialVideo.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
