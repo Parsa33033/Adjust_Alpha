@@ -16,6 +16,7 @@
       "detail": {
         "title": "Tutorial Video"
       },
+      "adjustTutorialVideoId": "Adjust Tutorial Video Id",
       "content": "Content",
       "tutorial": "Tutorial"
     }

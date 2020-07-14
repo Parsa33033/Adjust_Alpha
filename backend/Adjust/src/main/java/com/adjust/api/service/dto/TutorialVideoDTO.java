@@ -10,6 +10,8 @@ public class TutorialVideoDTO implements Serializable {
     
     private Long id;
 
+    private Long adjustTutorialVideoId;
+
     @Lob
     private byte[] content;
 
@@ -21,6 +23,14 @@ public class TutorialVideoDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getAdjustTutorialVideoId() {
+        return adjustTutorialVideoId;
+    }
+
+    public void setAdjustTutorialVideoId(Long adjustTutorialVideoId) {
+        this.adjustTutorialVideoId = adjustTutorialVideoId;
     }
 
     public byte[] getContent() {
@@ -61,6 +71,7 @@ public class TutorialVideoDTO implements Serializable {
     public String toString() {
         return "TutorialVideoDTO{" +
             "id=" + getId() +
+            ", adjustTutorialVideoId=" + getAdjustTutorialVideoId() +
             ", content='" + getContent() + "'" +
             "}";
     }

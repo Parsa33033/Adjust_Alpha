@@ -42,7 +42,6 @@ class _SignInState extends State<SignIn> {
     return Container(
         child: Form(
       child: SingleChildScrollView(
-//            padding: EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

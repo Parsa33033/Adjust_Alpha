@@ -6,6 +6,7 @@ export interface ITutorial {
   thumbnailContentType?: string;
   thumbnail?: any;
   tokenPrice?: number;
+  adjustTutorialId?: number;
   videoId?: number;
   clientId?: number;
 }

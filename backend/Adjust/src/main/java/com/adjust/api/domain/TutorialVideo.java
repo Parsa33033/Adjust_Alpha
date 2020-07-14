@@ -22,6 +22,9 @@ public class TutorialVideo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "adjust_tutorial_video_id")
+    private Long adjustTutorialVideoId;
+
     @Lob
     @Column(name = "content")
     private byte[] content;
@@ -40,6 +43,19 @@ public class TutorialVideo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getAdjustTutorialVideoId() {
+        return adjustTutorialVideoId;
+    }
+
+    public TutorialVideo adjustTutorialVideoId(Long adjustTutorialVideoId) {
+        this.adjustTutorialVideoId = adjustTutorialVideoId;
+        return this;
+    }
+
+    public void setAdjustTutorialVideoId(Long adjustTutorialVideoId) {
+        this.adjustTutorialVideoId = adjustTutorialVideoId;
     }
 
     public byte[] getContent() {
@@ -103,6 +119,7 @@ public class TutorialVideo implements Serializable {
     public String toString() {
         return "TutorialVideo{" +
             "id=" + getId() +
+            ", adjustTutorialVideoId=" + getAdjustTutorialVideoId() +
             ", content='" + getContent() + "'" +
             ", contentContentType='" + getContentContentType() + "'" +
             "}";

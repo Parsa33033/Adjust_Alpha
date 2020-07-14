@@ -202,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: InkWell(
                                 child: Icon(Icons.arrow_back, color: WHITE, size: 50,),
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MainPage()));
+                                  Navigator.of(context).pop();
                                 },
                               ),
                             )
@@ -297,7 +297,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: 0,
                               margin: 20),
                           AdjustTextField(
-                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
                               controller: firstNameTextFieldController,
                               hintText: FIRST_NAME,
                               enabled: true,
@@ -316,7 +317,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: 0,
                               margin: 20),
                           AdjustTextField(
-                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
                               controller: lastNameTextFieldController,
                               hintText: LAST_NAME,
                               enabled: true,
@@ -336,7 +338,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               margin: 20),
                           InkWell(
                             child: AdjustTextField(
-                                textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.right,
+                                textDirection: TextDirection.rtl,
                                 controller: birthDateConfirmTextFieldController,
                                 hintText: BIRTH,
                                 enabled: false,
@@ -378,7 +381,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                               value: genderValue == null ? null : GENDER_LIST[genderValue],
                               setValue: setGenderValue,
-                              textDirection: TextDirection.ltr,
+                              textDirection: TextDirection.rtl,
                               controller: birthDateConfirmTextFieldController,
                               hintText: GENDER,
                               enabled: true,
@@ -444,12 +447,20 @@ class _ProfilePageState extends State<ProfilePage> {
                                     int i =
                                         await updateClient(context, clientDTO);
                                     if (i == 1) {
-                                      Navigator.of(context, rootNavigator: true)
-                                          .pop("dialog");
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MainPage()));
+                                      if (this.widget.isFromMainPage) {
+                                        Navigator.of(context, rootNavigator: true)
+                                            .pop("dialog");
+                                        LayoutChangedNotification notification = LayoutChangedNotification();
+                                        notification.dispatch(context);
+                                        showAdjustDialog(context, SUCCESS, false, null);
+                                      } else {
+                                        Navigator.of(context, rootNavigator: true)
+                                            .pop("dialog");
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MainPage()));
+                                      }
                                     } else if (i == 0) {
                                       Navigator.of(context, rootNavigator: true)
                                           .pop("dialog");

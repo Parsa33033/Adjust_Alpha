@@ -52,6 +52,9 @@ export const Tutorial = (props: ITutorialProps) => {
                   <Translate contentKey="adjustApp.tutorial.tokenPrice">Token Price</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="adjustApp.tutorial.adjustTutorialId">Adjust Tutorial Id</Translate>
+                </th>
+                <th>
                   <Translate contentKey="adjustApp.tutorial.video">Video</Translate>
                 </th>
                 <th>
@@ -87,6 +90,7 @@ export const Tutorial = (props: ITutorialProps) => {
                     ) : null}
                   </td>
                   <td>{tutorial.tokenPrice}</td>
+                  <td>{tutorial.adjustTutorialId}</td>
                   <td>{tutorial.videoId ? <Link to={`tutorial-video/${tutorial.videoId}`}>{tutorial.videoId}</Link> : ''}</td>
                   <td>{tutorial.clientId ? <Link to={`adjust-client/${tutorial.clientId}`}>{tutorial.clientId}</Link> : ''}</td>
                   <td className="text-right">

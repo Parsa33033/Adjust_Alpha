@@ -26,6 +26,12 @@ export const TutorialVideoDetail = (props: ITutorialVideoDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
+            <span id="adjustTutorialVideoId">
+              <Translate contentKey="adjustApp.tutorialVideo.adjustTutorialVideoId">Adjust Tutorial Video Id</Translate>
+            </span>
+          </dt>
+          <dd>{tutorialVideoEntity.adjustTutorialVideoId}</dd>
+          <dt>
             <span id="content">
               <Translate contentKey="adjustApp.tutorialVideo.content">Content</Translate>
             </span>

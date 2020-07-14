@@ -37,6 +37,9 @@ export const TutorialVideo = (props: ITutorialVideoProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="adjustApp.tutorialVideo.adjustTutorialVideoId">Adjust Tutorial Video Id</Translate>
+                </th>
+                <th>
                   <Translate contentKey="adjustApp.tutorialVideo.content">Content</Translate>
                 </th>
                 <th />
@@ -50,6 +53,7 @@ export const TutorialVideo = (props: ITutorialVideoProps) => {
                       {tutorialVideo.id}
                     </Button>
                   </td>
+                  <td>{tutorialVideo.adjustTutorialVideoId}</td>
                   <td>
                     {tutorialVideo.content ? (
                       <div>

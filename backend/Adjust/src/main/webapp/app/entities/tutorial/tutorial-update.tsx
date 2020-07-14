@@ -151,6 +151,12 @@ export const TutorialUpdate = (props: ITutorialUpdateProps) => {
                 <AvField id="tutorial-tokenPrice" type="string" className="form-control" name="tokenPrice" />
               </AvGroup>
               <AvGroup>
+                <Label id="adjustTutorialIdLabel" for="tutorial-adjustTutorialId">
+                  <Translate contentKey="adjustApp.tutorial.adjustTutorialId">Adjust Tutorial Id</Translate>
+                </Label>
+                <AvField id="tutorial-adjustTutorialId" type="string" className="form-control" name="adjustTutorialId" />
+              </AvGroup>
+              <AvGroup>
                 <Label for="tutorial-video">
                   <Translate contentKey="adjustApp.tutorial.video">Video</Translate>
                 </Label>

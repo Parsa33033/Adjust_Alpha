@@ -193,19 +193,20 @@ public class AdjustClientResource {
         AdjustTutorialDTO adjustTutorialDTO = adjustTutorialService.findOne(videoId).get();
 
         if (adjustClientDTO.getToken() < adjustTutorialDTO.getTokenPrice()) {
-            throw new Exception("client does not have sufficient tokens!");
+            ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).body("client does not have enough token");
         }
 
         List<TutorialDTO> tutorialDTOList = tutorialRepository.findTutorialsByClient(adjustClientRepository.findAdjustClientByUsername(userLogin).get()).stream().map(tutorialMapper::toDto).collect(Collectors.toList());
 
         boolean clientHasTutorial = tutorialDTOList.stream().filter((e) -> e.getVideoId() == adjustTutorialDTO.getVideoId()).collect(Collectors.toList()).iterator().hasNext();
         if (clientHasTutorial) {
-            throw new Exception("client has tutorial already!");
+            ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("client has the tutorial already");
         }
 
         AdjustTutorialVideoDTO adjustTutorialVideoDTO = adjustTutorialVideoService.findOne(adjustTutorialDTO.getVideoId()).get();
 
         TutorialVideoDTO tutorialVideoDTO = new TutorialVideoDTO();
+        tutorialVideoDTO.setAdjustTutorialVideoId(adjustTutorialVideoDTO.getId());
         tutorialVideoDTO.setContent(adjustTutorialVideoDTO.getContent());
         tutorialVideoDTO.setContentContentType(adjustTutorialVideoDTO.getContentContentType());
 
@@ -219,6 +220,7 @@ public class AdjustClientResource {
         tutorialDTO.setThumbnailContentType(adjustTutorialDTO.getThumbnailContentType());
         tutorialDTO.setTitle(adjustTutorialDTO.getTitle());
         tutorialDTO.setTokenPrice(adjustTutorialDTO.getTokenPrice());
+        tutorialDTO.setAdjustTutorialId(adjustTutorialDTO.getId());
         tutorialDTO.setVideoId(tutorialVideoDTO.getId());
         tutorialDTO = tutorialService.save(tutorialDTO);
 
@@ -244,13 +246,15 @@ public class AdjustClientResource {
     public DeferredResult<ResponseEntity<ByteArrayResource>> getClientTutorialVideo(@RequestParam("video-id") Long videoId, @RequestParam("jwt") String jwt) throws Exception {
         String userLogin = ((User) tokenProvider.getAuthentication(jwt).getPrincipal()).getUsername();
         AdjustClientDTO adjustClientDTO = adjustClientRepository.findAdjustClientByUsername(userLogin).map(adjustClientMapper::toDto).get();
-        List<TutorialDTO> tutorialVideoDTOList = tutorialRepository.findTutorialsByClient(adjustClientMapper.toEntity(adjustClientDTO)).stream().map(tutorialMapper::toDto).collect(Collectors.toList());
-        tutorialVideoDTOList.stream().filter((e) -> )
-        TutorialVideo tutorialVideo = tutorialVideoMapper.toEntity(tutorialVideoDTO);
-        Tutorial tutorial = tutorialRepository.findTutorialByVideo(tutorialVideo).get();
-        if (adjustClientDTO.getId() != tutorial.getClient().getId()) {
+        AdjustTutorialDTO adjustTutorialDTO = adjustTutorialService.findOne(videoId).get();
+        AdjustClient adjustClient = adjustClientMapper.toEntity(adjustClientDTO);
+
+        Tutorial tutorial = tutorialRepository.findTutorialByClientAndAdjustTutorialId(adjustClient, videoId).get();
+        if (tutorial == null) {
             throw new Exception("client has not bought the tutorial");
         }
+        TutorialVideo tutorialVideo = tutorial.getVideo();
+
         byte[] videoByte = tutorialVideo.getContent();
         ByteArrayResource resource = new ByteArrayResource(videoByte);
         DeferredResult<ResponseEntity<ByteArrayResource>> dr = new DeferredResult<>();

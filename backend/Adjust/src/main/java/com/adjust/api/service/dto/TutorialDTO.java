@@ -23,6 +23,8 @@ public class TutorialDTO implements Serializable {
     private String thumbnailContentType;
     private Double tokenPrice;
 
+    private Long adjustTutorialId;
+
 
     private Long videoId;
 
@@ -84,6 +86,14 @@ public class TutorialDTO implements Serializable {
         this.tokenPrice = tokenPrice;
     }
 
+    public Long getAdjustTutorialId() {
+        return adjustTutorialId;
+    }
+
+    public void setAdjustTutorialId(Long adjustTutorialId) {
+        this.adjustTutorialId = adjustTutorialId;
+    }
+
     public Long getVideoId() {
         return videoId;
     }
@@ -127,6 +137,7 @@ public class TutorialDTO implements Serializable {
             ", text='" + getText() + "'" +
             ", thumbnail='" + getThumbnail() + "'" +
             ", tokenPrice=" + getTokenPrice() +
+            ", adjustTutorialId=" + getAdjustTutorialId() +
             ", videoId=" + getVideoId() +
             ", clientId=" + getClientId() +
             "}";

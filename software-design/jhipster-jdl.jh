@@ -238,10 +238,8 @@ entity Tutorial {
     text TextBlob,
     thumbnail ImageBlob,
     tokenPrice Double,
-}
-
-entity TutorialVideo {
-	content AnyBlob
+    adjustTutorialId Long,
+    
 }
 
 entity AdjustTutorial {
@@ -252,7 +250,13 @@ entity AdjustTutorial {
     tokenPrice Double,
 }
 
+
 entity AdjustTutorialVideo {
+	content AnyBlob
+}
+
+entity TutorialVideo {
+	adjustTutorialVideoId Long,
 	content AnyBlob
 }
 

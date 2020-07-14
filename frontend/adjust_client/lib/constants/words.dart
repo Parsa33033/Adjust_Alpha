@@ -27,7 +27,9 @@ final String FAILURE = "خطا در پردازش!";
 final String SET_TO_DEFAULT = "برگشت به حالت پیش فرض";
 final String CART_EMPTY = "سبد خرید شما خالی میباشد.";
 final String SURE_TO_EXIT = "با خروج از برنامه برای شروع مجدد باید ایمیل و رمز عبور خود را مجدداً وارد کنید. آیا مایل به خروج از برنامه میباشید؟";
-
+final String NOT_ENOUGHT_TOKEN = "مقدار توکن کافی نمیباشد";
+final String CLIENT_HAS_TUTORIAL = "شما این آموزش را دارید";
+final String SURE_WITH_DECISION = "آیا از انتخاب خود اطمینان دارید؟";
 
 final String BACK = "برگرد";
 final String OK = "تایید";

@@ -33,6 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class TutorialVideoResourceIT {
 
+    private static final Long DEFAULT_ADJUST_TUTORIAL_VIDEO_ID = 1L;
+    private static final Long UPDATED_ADJUST_TUTORIAL_VIDEO_ID = 2L;
+
     private static final byte[] DEFAULT_CONTENT = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_CONTENT = TestUtil.createByteArray(1, "1");
     private static final String DEFAULT_CONTENT_CONTENT_TYPE = "image/jpg";
@@ -63,6 +66,7 @@ public class TutorialVideoResourceIT {
      */
     public static TutorialVideo createEntity(EntityManager em) {
         TutorialVideo tutorialVideo = new TutorialVideo()
+            .adjustTutorialVideoId(DEFAULT_ADJUST_TUTORIAL_VIDEO_ID)
             .content(DEFAULT_CONTENT)
             .contentContentType(DEFAULT_CONTENT_CONTENT_TYPE);
         return tutorialVideo;
@@ -75,6 +79,7 @@ public class TutorialVideoResourceIT {
      */
     public static TutorialVideo createUpdatedEntity(EntityManager em) {
         TutorialVideo tutorialVideo = new TutorialVideo()
+            .adjustTutorialVideoId(UPDATED_ADJUST_TUTORIAL_VIDEO_ID)
             .content(UPDATED_CONTENT)
             .contentContentType(UPDATED_CONTENT_CONTENT_TYPE);
         return tutorialVideo;
@@ -100,6 +105,7 @@ public class TutorialVideoResourceIT {
         List<TutorialVideo> tutorialVideoList = tutorialVideoRepository.findAll();
         assertThat(tutorialVideoList).hasSize(databaseSizeBeforeCreate + 1);
         TutorialVideo testTutorialVideo = tutorialVideoList.get(tutorialVideoList.size() - 1);
+        assertThat(testTutorialVideo.getAdjustTutorialVideoId()).isEqualTo(DEFAULT_ADJUST_TUTORIAL_VIDEO_ID);
         assertThat(testTutorialVideo.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testTutorialVideo.getContentContentType()).isEqualTo(DEFAULT_CONTENT_CONTENT_TYPE);
     }
@@ -136,6 +142,7 @@ public class TutorialVideoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tutorialVideo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].adjustTutorialVideoId").value(hasItem(DEFAULT_ADJUST_TUTORIAL_VIDEO_ID.intValue())))
             .andExpect(jsonPath("$.[*].contentContentType").value(hasItem(DEFAULT_CONTENT_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].content").value(hasItem(Base64Utils.encodeToString(DEFAULT_CONTENT))));
     }
@@ -151,6 +158,7 @@ public class TutorialVideoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(tutorialVideo.getId().intValue()))
+            .andExpect(jsonPath("$.adjustTutorialVideoId").value(DEFAULT_ADJUST_TUTORIAL_VIDEO_ID.intValue()))
             .andExpect(jsonPath("$.contentContentType").value(DEFAULT_CONTENT_CONTENT_TYPE))
             .andExpect(jsonPath("$.content").value(Base64Utils.encodeToString(DEFAULT_CONTENT)));
     }
@@ -175,6 +183,7 @@ public class TutorialVideoResourceIT {
         // Disconnect from session so that the updates on updatedTutorialVideo are not directly saved in db
         em.detach(updatedTutorialVideo);
         updatedTutorialVideo
+            .adjustTutorialVideoId(UPDATED_ADJUST_TUTORIAL_VIDEO_ID)
             .content(UPDATED_CONTENT)
             .contentContentType(UPDATED_CONTENT_CONTENT_TYPE);
         TutorialVideoDTO tutorialVideoDTO = tutorialVideoMapper.toDto(updatedTutorialVideo);
@@ -188,6 +197,7 @@ public class TutorialVideoResourceIT {
         List<TutorialVideo> tutorialVideoList = tutorialVideoRepository.findAll();
         assertThat(tutorialVideoList).hasSize(databaseSizeBeforeUpdate);
         TutorialVideo testTutorialVideo = tutorialVideoList.get(tutorialVideoList.size() - 1);
+        assertThat(testTutorialVideo.getAdjustTutorialVideoId()).isEqualTo(UPDATED_ADJUST_TUTORIAL_VIDEO_ID);
         assertThat(testTutorialVideo.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testTutorialVideo.getContentContentType()).isEqualTo(UPDATED_CONTENT_CONTENT_TYPE);
     }

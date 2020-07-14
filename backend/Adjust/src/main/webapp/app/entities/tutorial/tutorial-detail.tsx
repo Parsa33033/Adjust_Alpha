@@ -72,6 +72,12 @@ export const TutorialDetail = (props: ITutorialDetailProps) => {
           </dt>
           <dd>{tutorialEntity.tokenPrice}</dd>
           <dt>
+            <span id="adjustTutorialId">
+              <Translate contentKey="adjustApp.tutorial.adjustTutorialId">Adjust Tutorial Id</Translate>
+            </span>
+          </dt>
+          <dd>{tutorialEntity.adjustTutorialId}</dd>
+          <dt>
             <Translate contentKey="adjustApp.tutorial.video">Video</Translate>
           </dt>
           <dd>{tutorialEntity.videoId ? tutorialEntity.videoId : ''}</dd>

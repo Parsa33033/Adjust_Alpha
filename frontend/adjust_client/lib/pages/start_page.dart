@@ -10,11 +10,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StartPage extends StatelessWidget{
-  
+
   @override
   Widget build(BuildContext context) {
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context, rootNavigator: true).pushReplacement(
+      Navigator.of(context).pushReplacement(
           PageRouteBuilder(transitionDuration: Duration(seconds: 2),pageBuilder: (BuildContext context, Animation<double> animation1, Animation<double> animation2) {
             return LoginPage();
           },

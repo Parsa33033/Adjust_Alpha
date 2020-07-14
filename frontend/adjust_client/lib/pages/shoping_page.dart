@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:adjust_client/actions/shoping_action.dart';
+import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_info_button.dart';
 import 'package:adjust_client/config/adjust_colors.dart';
+import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/cart_dto.dart';
 import 'package:adjust_client/dto/shoping_item_dto.dart';
 import 'package:adjust_client/model/cart.dart';
@@ -98,11 +100,13 @@ class ShopingPage extends StatelessWidget {
                                       primaryColorLight: LIGHT_RED,
                                       backgroundImagePath: "assets/bg_red.png",
                                       onButtonPressed: () async {
-                                        await buyToken(context, id);
-                                        Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MainPage()));
+                                        showAdjustDialog(context, SURE_WITH_DECISION, true, () async {
+                                          await buyToken(context, id);
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MainPage()));
+                                        });
                                       },
                                     );
                                   }));

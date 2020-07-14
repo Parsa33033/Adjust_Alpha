@@ -21,6 +21,7 @@
       "text": "Text",
       "thumbnail": "Thumbnail",
       "tokenPrice": "Token Price",
+      "adjustTutorialId": "Adjust Tutorial Id",
       "video": "Video",
       "client": "Client"
     }

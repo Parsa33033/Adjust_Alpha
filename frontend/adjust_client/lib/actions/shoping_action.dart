@@ -48,7 +48,6 @@ Future<int> getShopingItems(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     List<dynamic> content = jsonDecode(utf8.decode(response.bodyBytes));
     List<ShopingItem> shopingList = content.map((e) => ShopingItemDTO.fromJson(e)).toList();
-    print("shoping list is: ${shopingList}");
     Shoping shoping = Shoping(shopingList);
     setShopingState(context, shoping);
     return 1;
@@ -62,7 +61,6 @@ Future<int> getTokenItems(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     List<dynamic> content = jsonDecode(utf8.decode(response.bodyBytes));
     List<TokenItem> tokenList = content.map((e) => TokenItemDTO.fromJson(e)).toList();
-    print("token list is: ${tokenList}");
     Token token = Token(tokenList);
     setTokenState(context, token);
     return 1;

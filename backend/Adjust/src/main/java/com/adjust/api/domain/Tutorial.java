@@ -42,6 +42,9 @@ public class Tutorial implements Serializable {
     @Column(name = "token_price")
     private Double tokenPrice;
 
+    @Column(name = "adjust_tutorial_id")
+    private Long adjustTutorialId;
+
     @OneToOne
     @JoinColumn(unique = true)
     private TutorialVideo video;
@@ -137,6 +140,19 @@ public class Tutorial implements Serializable {
         this.tokenPrice = tokenPrice;
     }
 
+    public Long getAdjustTutorialId() {
+        return adjustTutorialId;
+    }
+
+    public Tutorial adjustTutorialId(Long adjustTutorialId) {
+        this.adjustTutorialId = adjustTutorialId;
+        return this;
+    }
+
+    public void setAdjustTutorialId(Long adjustTutorialId) {
+        this.adjustTutorialId = adjustTutorialId;
+    }
+
     public TutorialVideo getVideo() {
         return video;
     }
@@ -191,6 +207,7 @@ public class Tutorial implements Serializable {
             ", thumbnail='" + getThumbnail() + "'" +
             ", thumbnailContentType='" + getThumbnailContentType() + "'" +
             ", tokenPrice=" + getTokenPrice() +
+            ", adjustTutorialId=" + getAdjustTutorialId() +
             "}";
     }
 }

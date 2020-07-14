@@ -50,6 +50,9 @@ public class TutorialResourceIT {
     private static final Double DEFAULT_TOKEN_PRICE = 1D;
     private static final Double UPDATED_TOKEN_PRICE = 2D;
 
+    private static final Long DEFAULT_ADJUST_TUTORIAL_ID = 1L;
+    private static final Long UPDATED_ADJUST_TUTORIAL_ID = 2L;
+
     @Autowired
     private TutorialRepository tutorialRepository;
 
@@ -80,7 +83,8 @@ public class TutorialResourceIT {
             .text(DEFAULT_TEXT)
             .thumbnail(DEFAULT_THUMBNAIL)
             .thumbnailContentType(DEFAULT_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(DEFAULT_TOKEN_PRICE);
+            .tokenPrice(DEFAULT_TOKEN_PRICE)
+            .adjustTutorialId(DEFAULT_ADJUST_TUTORIAL_ID);
         return tutorial;
     }
     /**
@@ -96,7 +100,8 @@ public class TutorialResourceIT {
             .text(UPDATED_TEXT)
             .thumbnail(UPDATED_THUMBNAIL)
             .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(UPDATED_TOKEN_PRICE);
+            .tokenPrice(UPDATED_TOKEN_PRICE)
+            .adjustTutorialId(UPDATED_ADJUST_TUTORIAL_ID);
         return tutorial;
     }
 
@@ -126,6 +131,7 @@ public class TutorialResourceIT {
         assertThat(testTutorial.getThumbnail()).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testTutorial.getThumbnailContentType()).isEqualTo(DEFAULT_THUMBNAIL_CONTENT_TYPE);
         assertThat(testTutorial.getTokenPrice()).isEqualTo(DEFAULT_TOKEN_PRICE);
+        assertThat(testTutorial.getAdjustTutorialId()).isEqualTo(DEFAULT_ADJUST_TUTORIAL_ID);
     }
 
     @Test
@@ -165,7 +171,8 @@ public class TutorialResourceIT {
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT.toString())))
             .andExpect(jsonPath("$.[*].thumbnailContentType").value(hasItem(DEFAULT_THUMBNAIL_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].thumbnail").value(hasItem(Base64Utils.encodeToString(DEFAULT_THUMBNAIL))))
-            .andExpect(jsonPath("$.[*].tokenPrice").value(hasItem(DEFAULT_TOKEN_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].tokenPrice").value(hasItem(DEFAULT_TOKEN_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].adjustTutorialId").value(hasItem(DEFAULT_ADJUST_TUTORIAL_ID.intValue())));
     }
     
     @Test
@@ -184,7 +191,8 @@ public class TutorialResourceIT {
             .andExpect(jsonPath("$.text").value(DEFAULT_TEXT.toString()))
             .andExpect(jsonPath("$.thumbnailContentType").value(DEFAULT_THUMBNAIL_CONTENT_TYPE))
             .andExpect(jsonPath("$.thumbnail").value(Base64Utils.encodeToString(DEFAULT_THUMBNAIL)))
-            .andExpect(jsonPath("$.tokenPrice").value(DEFAULT_TOKEN_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.tokenPrice").value(DEFAULT_TOKEN_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.adjustTutorialId").value(DEFAULT_ADJUST_TUTORIAL_ID.intValue()));
     }
     @Test
     @Transactional
@@ -212,7 +220,8 @@ public class TutorialResourceIT {
             .text(UPDATED_TEXT)
             .thumbnail(UPDATED_THUMBNAIL)
             .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE)
-            .tokenPrice(UPDATED_TOKEN_PRICE);
+            .tokenPrice(UPDATED_TOKEN_PRICE)
+            .adjustTutorialId(UPDATED_ADJUST_TUTORIAL_ID);
         TutorialDTO tutorialDTO = tutorialMapper.toDto(updatedTutorial);
 
         restTutorialMockMvc.perform(put("/api/tutorials")
@@ -230,6 +239,7 @@ public class TutorialResourceIT {
         assertThat(testTutorial.getThumbnail()).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testTutorial.getThumbnailContentType()).isEqualTo(UPDATED_THUMBNAIL_CONTENT_TYPE);
         assertThat(testTutorial.getTokenPrice()).isEqualTo(UPDATED_TOKEN_PRICE);
+        assertThat(testTutorial.getAdjustTutorialId()).isEqualTo(UPDATED_ADJUST_TUTORIAL_ID);
     }
 
     @Test

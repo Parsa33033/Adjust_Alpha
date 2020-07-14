@@ -22,6 +22,10 @@
     {
       "fieldName": "tokenPrice",
       "fieldType": "Double"
+    },
+    {
+      "fieldName": "adjustTutorialId",
+      "fieldType": "Long"
     }
   ],
   "relationships": [

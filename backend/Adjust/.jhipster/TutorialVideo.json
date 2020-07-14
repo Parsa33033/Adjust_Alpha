@@ -2,6 +2,10 @@
   "name": "TutorialVideo",
   "fields": [
     {
+      "fieldName": "adjustTutorialVideoId",
+      "fieldType": "Long"
+    },
+    {
       "fieldName": "content",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "any"

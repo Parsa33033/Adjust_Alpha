@@ -108,7 +108,6 @@ class _TutorialVideoPageState extends State<TutorialVideoPage> {
   @override
   void dispose() {
     // TODO: implement dispose
-    _controller.dispose();
     flickManager.dispose();
     super.dispose();
   }

@@ -87,6 +87,12 @@ Future<int> buyTutorial(BuildContext context, int videoId) async {
 //    ClientTutorialsState clientTutorialsState = ClientTutorialsState(l);
 //    store.dispatch(GetClientTutorialsAction(payload: clientTutorialsState));
     return 1;
+  } else if (response.statusCode == 422) {
+    // client has the tutorial already
+    return 2;
+  } else if (response.statusCode == 424) {
+    // client does not have enough token
+    return 3;
   }
   return 0;
 }

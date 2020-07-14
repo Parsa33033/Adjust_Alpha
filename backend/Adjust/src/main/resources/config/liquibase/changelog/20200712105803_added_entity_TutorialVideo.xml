@@ -16,6 +16,9 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="adjust_tutorial_video_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="content" type="longblob">
                 <constraints nullable="true" />
             </column>
@@ -45,6 +48,7 @@
                   separator=";"
                   tableName="tutorial_video">
             <column name="id" type="numeric"/>
+            <column name="adjust_tutorial_video_id" type="numeric"/>
             <column name="content" type="blob"/>
             <column name="content_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

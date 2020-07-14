@@ -1,3 +1,4 @@
+
 import 'dart:typed_data';
 
 import 'package:adjust_client/actions/shoping_action.dart';
@@ -15,11 +16,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:persian_datetime_picker/utils/consts.dart';
 import 'package:redux/redux.dart';
 
 import '../main.dart';
 
+
 final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -47,17 +51,23 @@ class _MainPageState extends State<MainPage> {
     getTokenItems(context);
 
     _content = mainMenu();
-    ClientState clientState = store.state.clientState;
-    firstName = clientState.firstName;
-    lastName = clientState.lastName;
-    token = clientState.token;
-    score = clientState.score;
-    if (clientState.image == null) {
-      _image = Image.asset("assets/adjust_logo1.png");
-    } else {
-      Uint8List imageByte = Uint8List.fromList(clientState.image);
-      _image = Image.memory(imageByte);
-    }
+    setMainPageState();
+  }
+
+  void setMainPageState() {
+    setState(() {
+      ClientState clientState = store.state.clientState;
+      firstName = clientState.firstName;
+      lastName = clientState.lastName;
+      token = clientState.token;
+      score = clientState.score;
+      if (clientState.image == null) {
+        _image = Image.asset("assets/adjust_logo1.png");
+      } else {
+        Uint8List imageByte = Uint8List.fromList(clientState.image);
+        _image = Image.memory(imageByte);
+      }
+    });
   }
 
   @override
@@ -107,38 +117,45 @@ class _MainPageState extends State<MainPage> {
               }
             },
           ),
-          body: StoreConnector<AppState, AppState>(
-            converter: (Store store) => store.state,
-            builder: (BuildContext context, AppState state) {
-              return Container(
-                  color: LIGHT_GREY,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Expanded(
-                          flex: 25,
-                          child: Dashboard(firstName: firstName, lastName: lastName, token: token, score: score, image: _image,)
-                      ),
-                      Expanded(
-                          flex: 5,
-                          child: Container(
-                            padding: EdgeInsets.only(top: 20),
-                            child: Divider(
-                              color: SHADOW,
-                              endIndent: 20,
-                              indent: 20,
-                              thickness: 2,
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          flex: 70,
-                          child: _content
-                      ),
-                    ],
-                  ));
+          body: NotificationListener(
+            onNotification: (Notification notification) {
+              setMainPageState();
+              return true;
             },
-          )),
+            child: StoreConnector<AppState, AppState>(
+              converter: (Store store) => store.state,
+              builder: (BuildContext context, AppState state) {
+                return Container(
+                    color: LIGHT_GREY,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Expanded(
+                            flex: 25,
+                            child: Dashboard(firstName: firstName, lastName: lastName, token: token, score: score, image: _image,)
+                        ),
+                        Expanded(
+                            flex: 5,
+                            child: Container(
+                              padding: EdgeInsets.only(top: 20),
+                              child: Divider(
+                                color: SHADOW,
+                                endIndent: 20,
+                                indent: 20,
+                                thickness: 2,
+                              ),
+                            )
+                        ),
+                        Expanded(
+                            flex: 70,
+                            child: _content
+                        ),
+                      ],
+                    ));
+              },
+            ),
+          )
+      ),
     );
   }
 

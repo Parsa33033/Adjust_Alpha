@@ -91,6 +91,12 @@ export const TutorialVideoUpdate = (props: ITutorialVideoUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
+                <Label id="adjustTutorialVideoIdLabel" for="tutorial-video-adjustTutorialVideoId">
+                  <Translate contentKey="adjustApp.tutorialVideo.adjustTutorialVideoId">Adjust Tutorial Video Id</Translate>
+                </Label>
+                <AvField id="tutorial-video-adjustTutorialVideoId" type="string" className="form-control" name="adjustTutorialVideoId" />
+              </AvGroup>
+              <AvGroup>
                 <AvGroup>
                   <Label id="contentLabel" for="content">
                     <Translate contentKey="adjustApp.tutorialVideo.content">Content</Translate>

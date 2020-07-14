@@ -8,12 +8,14 @@ import 'package:adjust_client/actions/tutorial_action.dart';
 import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_info_button.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
+import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/components/preloader.dart';
 import 'package:adjust_client/config/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/shoping_item.dart';
 import 'package:adjust_client/model/tutorial.dart';
+import 'package:adjust_client/pages/main_page.dart';
 import 'package:adjust_client/pages/order_page.dart';
 import 'package:adjust_client/pages/tutorial_video_page.dart';
 import 'package:adjust_client/states/app_state.dart';
@@ -135,6 +137,8 @@ class _TutorialPageState extends State<TutorialPage> {
                                   if (i == 1) {
                                     i = await getClientToken(context);
                                     if (i == 1) {
+                                      LayoutChangedNotification notification = LayoutChangedNotification();
+                                      notification.dispatch(context);
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
@@ -144,6 +148,12 @@ class _TutorialPageState extends State<TutorialPage> {
                                     }
                                   } else if (i == 0) {
                                     Navigator.of(context).pop();
+                                  } else if (i == 2) {
+                                    // client has the tutorial already
+                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null);
+                                  } else if (i == 3) {
+                                    // client does not have enough token
+                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null);
                                   }
                                 });
                               }

@@ -94,7 +94,7 @@ public class AdjustTutorialResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adjustTutorials in body.
      */
     @GetMapping("/client/app/adjust-tutorials")
-    public List<AdjustTutorialDTO> getAllAdjustTutorialsForClient() {
+    public List<AdjustTutorialDTO> getAllAdjustTutorialsForClientApp() {
         log.debug("REST request to get all AdjustTutorials");
         return adjustTutorialService.findAll();
     }

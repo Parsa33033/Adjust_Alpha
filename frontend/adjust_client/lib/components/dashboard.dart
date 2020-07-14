@@ -15,6 +15,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:redux/redux.dart';
 
+
 class Dashboard extends StatefulWidget {
   String firstName;
   String lastName;
@@ -22,8 +23,8 @@ class Dashboard extends StatefulWidget {
   double score;
   Image image;
 
-  Dashboard(
-      {this.firstName, this.lastName, this.token, this.score, this.image});
+  Dashboard({this.firstName, this.lastName, this.token, this.score, this.image});
+
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -102,52 +103,63 @@ class _DashboardState extends State<Dashboard> {
                         Expanded(
                           flex: 6,
                           child: Container(
+                            padding: EdgeInsets.only(right: 7),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Expanded(
-                                  flex: 40,
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Text(
-                                      this.widget.firstName +
-                                          " " +
-                                          this.widget.lastName,
-                                      style: TextStyle(
-                                        fontFamily: "Iransans",
-                                        color: FONT,
-                                        fontSize: 16,
+                                  flex: 50,
+                                  child: FittedBox(
+                                    alignment: Alignment.center,
+                                    fit: BoxFit.contain,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Text(
+                                        this.widget.firstName +
+                                            " " +
+                                            this.widget.lastName,
+                                        style: TextStyle(
+                                          fontFamily: "Iransans",
+                                          color: FONT,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  )
                                 ),
                                 Expanded(
-                                  flex: 30,
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Text(
-                                      "امتیاز: " + NumberUtility.changeDigit(this.widget.score.round().toString(), NumStrLanguage.Farsi),
-                                      style: TextStyle(
-                                        fontFamily: "Iransans",
-                                        color: FONT,
-                                        fontSize: 16,
+                                  flex: 25,
+                                  child: FittedBox(
+                                    alignment: Alignment.center,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Text(
+                                        "امتیاز: " + NumberUtility.changeDigit(this.widget.score.round().toString(), NumStrLanguage.Farsi),
+                                        style: TextStyle(
+                                          fontFamily: "Iransans",
+                                          color: FONT,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  )
                                 ),
                                 Expanded(
-                                  flex: 30,
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Text(
-                                      "توکن: " + NumberUtility.changeDigit(this.widget.token.round().toString(), NumStrLanguage.Farsi),
-                                      style: TextStyle(
-                                        fontFamily: "Iransans",
-                                        color: FONT,
-                                        fontSize: 16,
+                                  flex: 25,
+                                  child: FittedBox(
+                                    alignment: Alignment.center,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Text(
+                                        "توکن: " + NumberUtility.changeDigit(this.widget.token.round().toString(), NumStrLanguage.Farsi),
+                                        style: TextStyle(
+                                          fontFamily: "Iransans",
+                                          color: FONT,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  )
                                 )
                               ],
                             ),
