@@ -89,17 +89,6 @@ public class AdjustTokensResource {
     }
 
     /**
-     * {@code GET  /adjust-tokens} : get all the adjustTokens for client app.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adjustTokens in body.
-     */
-    @GetMapping("/client/app/adjust-tokens")
-    public List<AdjustTokensDTO> getAllAdjustTokensForClientApp() {
-        log.debug("REST request to get all AdjustTokens");
-        return adjustTokensService.findAll();
-    }
-
-    /**
      * {@code GET  /adjust-tokens/:id} : get the "id" adjustTokens.
      *
      * @param id the id of the adjustTokensDTO to retrieve.

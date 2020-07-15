@@ -43,9 +43,6 @@ public class AccountResource {
         }
     }
 
-    @Value("${client.app.apiKey}")
-    private String apiKey;
-
     private final Logger log = LoggerFactory.getLogger(AccountResource.class);
 
     private final UserRepository userRepository;
@@ -54,17 +51,12 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    private final UserJWTController userJWTController;
 
-    private final AdjustClientService adjustClientService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, UserJWTController userJWTController, AdjustClientService adjustClientService) {
-
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
-        this.userJWTController = userJWTController;
-        this.adjustClientService = adjustClientService;
     }
 
     /**
@@ -84,47 +76,6 @@ public class AccountResource {
         managedUserVM.setLangKey("fa");
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword(), false, false);
         mailService.sendActivationEmail(user);
-    }
-
-    /**
-     * {@code POST  /register} : register the user.
-     *
-     * @param managedUserVM the managed user View Model.
-     * @throws InvalidPasswordException  {@code 400 (Bad Request)} if the password is incorrect.
-     * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
-     */
-    @PostMapping("/client/app/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UserJWTController.JWTToken> registerAccountByClientApp(@Valid @RequestBody ManagedUserVM managedUserVM, @RequestHeader("Authorization") String authorization) throws Exception {
-        if (!checkPasswordLength(managedUserVM.getPassword())) {
-            throw new InvalidPasswordException();
-        }
-
-        String clientApiKeyEncoded = authorization.substring(6);
-        log.info("client api key encoded: {}", clientApiKeyEncoded);
-
-        String apiKeyEncoded = new String(Base64.getEncoder().encode(apiKey.getBytes()), "UTF-8");
-        log.info("backend api key encoded: {}", apiKeyEncoded);
-        if (!clientApiKeyEncoded.equals(apiKeyEncoded)) {
-            throw new Exception("request does not come from client app");
-        }
-
-        managedUserVM.setLangKey("fa");
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword(), true, false);
-
-
-        AdjustClientDTO adjustClientDTO = new AdjustClientDTO();
-        adjustClientDTO.setUsername(user.getLogin());
-        adjustClientDTO.setToken(0.0);
-        adjustClientDTO.setScore(0.0);
-        adjustClientService.save(adjustClientDTO);
-
-        LoginVM loginVM = new LoginVM();
-        loginVM.setUsername(user.getLogin());
-        loginVM.setPassword(managedUserVM.getPassword());
-        loginVM.setRememberMe(true);
-        return userJWTController.authorize(loginVM);
     }
 
     /**

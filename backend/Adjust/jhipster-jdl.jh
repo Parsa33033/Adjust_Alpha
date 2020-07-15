@@ -130,6 +130,7 @@ entity Move {
     muscleType MuscleType
     equipment String,
     picture ImageBlob,
+    adjustMoveId Long,
 }
 
 entity AdjustMove {
@@ -183,25 +184,7 @@ entity Meal {
     pastaUnit Integer,
     fruitUnit Integer,
     vegetableUnit Integer,
-    fatUnit Integer
-}
-
-entity AdjustMeal {
-	name String,
-    number Integer,
-    lowFatDairyUnit Integer,
-    mediumFatDairyUnit Integer,
-    highFatDairyUnit Integer,
-    lowFatMeatUnit Integer,
-    mediumFatMeatUnit Integer,
-    highFatMeatUnti Integer,
-    breadUnit Integer,
-    cerealUnit Integer,
-    riceUnit Integer,
-    pastaUnit Integer,
-    fruitUnit Integer,
-    vegetableUnit Integer,
-    fatUnit Integer
+    fatUnit Integer,
 }
 
 //chat 

@@ -141,7 +141,7 @@ class _SignInState extends State<SignIn> {
                           MaterialPageRoute(builder: (context) => MainPage()));
                     } else if (i == 0) {
                       Navigator.of(context, rootNavigator: true).pop("dialog");
-                      showAdjustDialog(context, LOGIN_FAILED, false, null);
+                      showAdjustDialog(context, LOGIN_FAILED, false, null, null);
                     }
                   },
                 )
@@ -228,11 +228,11 @@ class _SignInState extends State<SignIn> {
                             if (i == 1) {
                               Navigator.of(context, rootNavigator: true).pop("dialog");
                               Navigator.of(context, rootNavigator: true).pop("dialog");
-                              showAdjustDialog(context, SUCCESS, false, null);
+                              showAdjustDialog(context, SUCCESS, false, null, null);
                             } else if (i == 0) {
                               Navigator.of(context, rootNavigator: true).pop("dialog");
                               Navigator.of(context, rootNavigator: true).pop("dialog");
-                              showAdjustDialog(context, FAILURE, false, null);
+                              showAdjustDialog(context, FAILURE, false, null, null);
                             }
                             
                           },

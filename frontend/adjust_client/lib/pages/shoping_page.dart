@@ -28,29 +28,30 @@ class ShopingPage extends StatelessWidget {
         double width = MediaQuery.of(context).size.width;
         return Container(
           decoration: BoxDecoration(
-            boxShadow: [BoxShadow(color: SHADOW, offset: Offset(4,4), spreadRadius: 2, blurRadius: 2)],
+//            boxShadow: [BoxShadow(color: SHADOW, offset: Offset(4,4), spreadRadius: 2, blurRadius: 2)],
             color: LIGHT_GREY
           ),
             width: width,
-            margin: EdgeInsets.only(bottom: 30, top: 10),
+//            margin: EdgeInsets.only(bottom: 30, top: 10),
             child: SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: 30, top: 10),
               child: Column(
                 children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.all(10),
-                      width: width,
-                      child: Center(
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Text(
-                            "توکن ها",
-                            style: TextStyle(
-                                fontFamily: "Iransans",
-                                fontSize: 18,
-                                color: FONT),
-                          ),
-                        ),
-                      )),
+//                  Container(
+//                      padding: EdgeInsets.all(10),
+//                      width: width,
+//                      child: Center(
+//                        child: Directionality(
+//                          textDirection: TextDirection.rtl,
+//                          child: Text(
+//                            "توکن ها",
+//                            style: TextStyle(
+//                                fontFamily: "Iransans",
+//                                fontSize: 18,
+//                                color: FONT),
+//                          ),
+//                        ),
+//                      )),
                   Container(
                     height: 200,
                     child: ListView(
@@ -106,7 +107,7 @@ class ShopingPage extends StatelessWidget {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       MainPage()));
-                                        });
+                                        }, RED);
                                       },
                                     );
                                   }));
@@ -114,21 +115,21 @@ class ShopingPage extends StatelessWidget {
                           );
                         }).toList()),
                   ),
-                  Container(
-                      padding: EdgeInsets.all(10),
-                      width: width,
-                      child: Center(
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Text(
-                            "فروشگاه",
-                            style: TextStyle(
-                                fontFamily: "Iransans",
-                                fontSize: 18,
-                                color: FONT),
-                          ),
-                        ),
-                      )),
+//                  Container(
+//                      padding: EdgeInsets.all(10),
+//                      width: width,
+//                      child: Center(
+//                        child: Directionality(
+//                          textDirection: TextDirection.rtl,
+//                          child: Text(
+//                            "فروشگاه",
+//                            style: TextStyle(
+//                                fontFamily: "Iransans",
+//                                fontSize: 18,
+//                                color: FONT),
+//                          ),
+//                        ),
+//                      )),
                   Container(
                     height: 200,
                     child: ListView(

@@ -165,7 +165,7 @@ class _SignUpState extends State<SignUp> {
                             Navigator.of(context, rootNavigator: true)
                                 .pop("dialog");
                             showAdjustDialog(
-                                context, REGISTRATION_FAILED, false, null);
+                                context, REGISTRATION_FAILED, false, null, null);
                           }
                         }
                       },

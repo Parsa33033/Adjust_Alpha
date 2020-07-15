@@ -88,16 +88,6 @@ public class AdjustShopingItemResource {
         return adjustShopingItemService.findAll();
     }
 
-    /**
-     * {@code GET  /adjust-shoping-items} : get all the adjustShopingItems for client app.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adjustShopingItems in body.
-     */
-    @GetMapping("/client/app/adjust-shoping-items")
-    public List<AdjustShopingItemDTO> getAllAdjustShopingItemsForClientApp() {
-        log.debug("REST request to get all AdjustShopingItems");
-        return adjustShopingItemService.findAll();
-    }
 
     /**
      * {@code GET  /adjust-shoping-items/:id} : get the "id" adjustShopingItem.

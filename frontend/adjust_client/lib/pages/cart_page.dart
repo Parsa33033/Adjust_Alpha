@@ -114,7 +114,7 @@ class CartPage extends StatelessWidget {
                               secondaryColor: GREEN,
                               onPressed: () {
                                 if (state.cartState.items.length <= 0) {
-                                  showAdjustDialog(context, CART_EMPTY, false, null);
+                                  showAdjustDialog(context, CART_EMPTY, false, null, null);
                                 } else {
                                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage()));
                                 }

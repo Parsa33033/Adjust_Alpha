@@ -43,7 +43,7 @@ class AdjustItemPage extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      bottom: -10,
+                      bottom: -20,
                       left: 20,
                       child: Container(
                         height: 200,

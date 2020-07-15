@@ -68,6 +68,12 @@ export const MoveDetail = (props: IMoveDetailProps) => {
               </div>
             ) : null}
           </dd>
+          <dt>
+            <span id="adjustMoveId">
+              <Translate contentKey="adjustApp.move.adjustMoveId">Adjust Move Id</Translate>
+            </span>
+          </dt>
+          <dd>{moveEntity.adjustMoveId}</dd>
         </dl>
         <Button tag={Link} to="/move" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

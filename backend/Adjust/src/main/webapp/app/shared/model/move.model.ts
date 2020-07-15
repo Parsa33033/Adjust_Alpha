@@ -8,6 +8,7 @@ export interface IMove {
   equipment?: string;
   pictureContentType?: string;
   picture?: any;
+  adjustMoveId?: number;
   exerciseId?: number;
 }
 

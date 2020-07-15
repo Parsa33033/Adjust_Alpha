@@ -4,7 +4,7 @@ import 'package:adjust_client/config/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:flutter/material.dart';
 
-void showAdjustDialog(BuildContext context, String text, bool isChoice, Function func) {
+void showAdjustDialog(BuildContext context, String text, bool isChoice, Function func, Color color) {
   showDialog(
     context: context,
     child: Dialog(
@@ -32,8 +32,8 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
                          textDirection: TextDirection.rtl,
                          height: 40,
                          width: 80,
-                         primaryColor: GREEN,
-                         secondaryColor: GREEN,
+                         primaryColor: color == null ? GREEN : color,
+                         secondaryColor: color == null ? GREEN : color,
                          text: CANCEL,
                          onPressed: () {
                            Navigator.of(context, rootNavigator: true).pop("dialog");
@@ -45,8 +45,8 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
                          textDirection: TextDirection.rtl,
                          height: 40,
                          width: 80,
-                         primaryColor: GREEN,
-                         secondaryColor: GREEN,
+                         primaryColor: color == null ? GREEN : color,
+                         secondaryColor: color == null ? GREEN : color,
                          text: OK,
                          onPressed: () {
                            Navigator.of(context, rootNavigator: true).pop("dialog");
@@ -62,8 +62,8 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
                      textDirection: TextDirection.rtl,
                      height: 40,
                      width: 80,
-                     primaryColor: GREEN,
-                     secondaryColor: GREEN,
+                     primaryColor: color == null ? GREEN : color,
+                     secondaryColor: color == null ? GREEN : color,
                      text: OK,
                      onPressed: () {
                        Navigator.of(context, rootNavigator: true).pop("dialog");

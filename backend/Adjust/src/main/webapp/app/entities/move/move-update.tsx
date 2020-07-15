@@ -167,6 +167,12 @@ export const MoveUpdate = (props: IMoveUpdateProps) => {
                   <AvInput type="hidden" name="picture" value={picture} />
                 </AvGroup>
               </AvGroup>
+              <AvGroup>
+                <Label id="adjustMoveIdLabel" for="move-adjustMoveId">
+                  <Translate contentKey="adjustApp.move.adjustMoveId">Adjust Move Id</Translate>
+                </Label>
+                <AvField id="move-adjustMoveId" type="string" className="form-control" name="adjustMoveId" />
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/move" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

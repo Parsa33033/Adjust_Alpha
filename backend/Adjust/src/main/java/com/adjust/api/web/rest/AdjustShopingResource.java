@@ -37,15 +37,10 @@ public class AdjustShopingResource {
 
     private final AdjustShopingService adjustShopingService;
 
-    private final OrderService orderService;
-    private final CartService cartService;
-    private final ShopingItemService shopingItemService;
 
-    public AdjustShopingResource(AdjustShopingService adjustShopingService, OrderService orderService, CartService cartService, ShopingItemService shopingItemService) {
+
+    public AdjustShopingResource(AdjustShopingService adjustShopingService) {
         this.adjustShopingService = adjustShopingService;
-        this.orderService = orderService;
-        this.cartService = cartService;
-        this.shopingItemService = shopingItemService;
     }
 
     /**
@@ -126,16 +121,5 @@ public class AdjustShopingResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
-    @PostMapping("/client/app/adjust-shopings")
-    public ResponseEntity<DummyOrderDTO> order(@RequestBody DummyOrderDTO dummyOrderDTO) {
-        OrderDTO orderDTO = dummyOrderDTO;
-        DummyCartDTO dummyCartDTO = dummyOrderDTO.getCart();
-        List<DummyShopingItemDTO> dummyShopingItemDTOList = dummyCartDTO.getItems();
-        CartDTO cartDTO = cartService.save(dummyCartDTO);
-        Long cartId = cartDTO.getId();
-        orderDTO.setCartId(cartId);
-        orderService.save(orderDTO);
-        dummyShopingItemDTOList.forEach((ShopingItemDTO i) -> {i.setCartId(cartId);shopingItemService.save(i);});
-        return ResponseEntity.ok(dummyOrderDTO);
-    }
+
 }

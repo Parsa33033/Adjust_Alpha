@@ -15,11 +15,13 @@ import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/shoping_item.dart';
 import 'package:adjust_client/model/tutorial.dart';
+import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/main_page.dart';
 import 'package:adjust_client/pages/order_page.dart';
 import 'package:adjust_client/pages/tutorial_video_page.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -123,7 +125,8 @@ class _TutorialPageState extends State<TutorialPage> {
                                     context,
                                     "مقدار توکن شما برای خرید درون برنامه این آموزش کافی نمیباشد!",
                                     false,
-                                    null);
+                                    null,
+                                    YELLOW);
                               } else {
                                 showAdjustDialog(
                                     context,
@@ -131,31 +134,30 @@ class _TutorialPageState extends State<TutorialPage> {
                                         NumberUtility.extractNumber(
                                             e.tokenPrice.round().toString(),
                                             NumStrLanguage.Farsi) +
-                                        " توکن جهت تماشای ویدیو و محتوای آموزشی، از شما کسر خواهد شد.",
+                                        " توکن جهت اتخاذ ویدیو و محتوای آموزشی، از شما کسر خواهد شد.",
                                     true, () async {
                                   int i = await buyTutorial(context, e.id);
                                   if (i == 1) {
                                     i = await getClientToken(context);
                                     if (i == 1) {
-                                      LayoutChangedNotification notification = LayoutChangedNotification();
-                                      notification.dispatch(context);
+                                      mainPageStreamController.add(1);
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   TutorialVideoPage(e)));
                                     } else if (i == 0){
-                                      showAdjustDialog(context, FAILURE, false, null);
+                                      showAdjustDialog(context, FAILURE, false, null, YELLOW);
                                     }
                                   } else if (i == 0) {
                                     Navigator.of(context).pop();
                                   } else if (i == 2) {
                                     // client has the tutorial already
-                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null);
+                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null, YELLOW);
                                   } else if (i == 3) {
                                     // client does not have enough token
-                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null);
+                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null, YELLOW);
                                   }
-                                });
+                                }, YELLOW);
                               }
 
                             }

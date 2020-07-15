@@ -23,6 +23,8 @@ public class MoveDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
+    private Long adjustMoveId;
+
     
     public Long getId() {
         return id;
@@ -80,6 +82,14 @@ public class MoveDTO implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
+    public Long getAdjustMoveId() {
+        return adjustMoveId;
+    }
+
+    public void setAdjustMoveId(Long adjustMoveId) {
+        this.adjustMoveId = adjustMoveId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,6 +117,7 @@ public class MoveDTO implements Serializable {
             ", muscleType='" + getMuscleType() + "'" +
             ", equipment='" + getEquipment() + "'" +
             ", picture='" + getPicture() + "'" +
+            ", adjustMoveId=" + getAdjustMoveId() +
             "}";
     }
 }

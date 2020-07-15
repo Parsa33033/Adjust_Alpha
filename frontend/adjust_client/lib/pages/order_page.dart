@@ -394,9 +394,9 @@ class _OrderPageState extends State<OrderPage> {
                                       Navigator.of(context).pop();
                                     } else if (i == 0) {
                                       showAdjustDialog(
-                                          context, FAILURE, false, null);
+                                          context, FAILURE, false, null, null);
                                     }
-                                  });
+                                  }, null);
                                 }
                               }),
                         )

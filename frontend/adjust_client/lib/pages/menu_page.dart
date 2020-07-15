@@ -43,7 +43,7 @@ class MenuPage extends StatelessWidget {
               color: WHITE,
             ),
             menuItem(PROFILE, Icons.person, () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(image: image, isFromMainPage: true,)));}),
-            menuItem(LOGOUT, Icons.exit_to_app, () {showAdjustDialog(context, SURE_TO_EXIT, true, () {logout();});}),
+            menuItem(LOGOUT, Icons.exit_to_app, () {showAdjustDialog(context, SURE_TO_EXIT, true, () {logout();}, null);}),
 
           ],
         ),

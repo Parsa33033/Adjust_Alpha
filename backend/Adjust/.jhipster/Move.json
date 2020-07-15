@@ -22,6 +22,10 @@
       "fieldName": "picture",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "adjustMoveId",
+      "fieldType": "Long"
     }
   ],
   "relationships": [

@@ -44,6 +44,9 @@ public class Move implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
+    @Column(name = "adjust_move_id")
+    private Long adjustMoveId;
+
     @OneToOne(mappedBy = "move")
     @JsonIgnore
     private Exercise exercise;
@@ -135,6 +138,19 @@ public class Move implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
+    public Long getAdjustMoveId() {
+        return adjustMoveId;
+    }
+
+    public Move adjustMoveId(Long adjustMoveId) {
+        this.adjustMoveId = adjustMoveId;
+        return this;
+    }
+
+    public void setAdjustMoveId(Long adjustMoveId) {
+        this.adjustMoveId = adjustMoveId;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }
@@ -176,6 +192,7 @@ public class Move implements Serializable {
             ", equipment='" + getEquipment() + "'" +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
+            ", adjustMoveId=" + getAdjustMoveId() +
             "}";
     }
 }

@@ -111,7 +111,7 @@ class _DashboardState extends State<Dashboard> {
                                   flex: 50,
                                   child: FittedBox(
                                     alignment: Alignment.center,
-                                    fit: BoxFit.contain,
+                                    fit: BoxFit.scaleDown,
                                     child: Directionality(
                                       textDirection: TextDirection.rtl,
                                       child: Text(
@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
                                         style: TextStyle(
                                           fontFamily: "Iransans",
                                           color: FONT,
-                                          fontSize: 16,
+                                          fontSize: 18,
                                         ),
                                       ),
                                     ),

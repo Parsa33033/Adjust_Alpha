@@ -51,6 +51,9 @@ export const Move = (props: IMoveProps) => {
                 <th>
                   <Translate contentKey="adjustApp.move.picture">Picture</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="adjustApp.move.adjustMoveId">Adjust Move Id</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -83,6 +86,7 @@ export const Move = (props: IMoveProps) => {
                       </div>
                     ) : null}
                   </td>
+                  <td>{move.adjustMoveId}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${move.id}`} color="info" size="sm">

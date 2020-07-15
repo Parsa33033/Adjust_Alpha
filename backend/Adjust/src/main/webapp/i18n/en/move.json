@@ -21,6 +21,7 @@
       "muscleType": "Muscle Type",
       "equipment": "Equipment",
       "picture": "Picture",
+      "adjustMoveId": "Adjust Move Id",
       "exercise": "Exercise"
     }
   }

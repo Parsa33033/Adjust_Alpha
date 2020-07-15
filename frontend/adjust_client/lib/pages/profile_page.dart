@@ -15,6 +15,7 @@ import 'package:adjust_client/dto/client_dto.dart';
 import 'package:adjust_client/dto/user_dto.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/client.dart';
+import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/start_page.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -142,6 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     int i = await updateClient(context, clientDTO);
                     if (i == 1) {
+                      mainPageStreamController.add(1);
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       List<int> imgList = state.clientState.image;
@@ -152,7 +154,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     } else if (i == 0) {
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
-                      showAdjustDialog(context, FAILURE, false, null);
+                      showAdjustDialog(context, FAILURE, false, null, null);
                     }
                   },
                 )))
@@ -416,7 +418,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   // set field back to default
                                   showAdjustDialog(context, SET_TO_DEFAULT, true, () {
                                     setAppState(state);
-                                  });
+                                  }, null);
                                 },
                               ),
                               AdjustRaisedButton(
@@ -428,45 +430,46 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: 90,
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
-                                    preloader(context);
-                                    ClientDTO clientDTO = ClientDTO(
-                                        null,
-                                        null,
-                                        firstNameTextFieldController.text,
-                                        lastNameTextFieldController.text,
-                                        getFormattedDateTime(
-                                            birthDateConfirmTextFieldController
-                                                .text),
-                                        null,
-                                        EnumToString.fromString(
-                                            Gender.values, genderValue),
-                                        null,
-                                        null,
-                                        null,
-                                        null);
-                                    int i =
-                                        await updateClient(context, clientDTO);
-                                    if (i == 1) {
-                                      if (this.widget.isFromMainPage) {
+                                    showAdjustDialog(context, SURE_WITH_DECISION, true, () async {
+                                      preloader(context);
+                                      ClientDTO clientDTO = ClientDTO(
+                                          null,
+                                          null,
+                                          firstNameTextFieldController.text,
+                                          lastNameTextFieldController.text,
+                                          getFormattedDateTime(
+                                              birthDateConfirmTextFieldController
+                                                  .text),
+                                          null,
+                                          EnumToString.fromString(
+                                              Gender.values, genderValue),
+                                          null,
+                                          null,
+                                          null,
+                                          null);
+                                      int i =
+                                          await updateClient(context, clientDTO);
+                                      if (i == 1) {
+                                        if (this.widget.isFromMainPage) {
+                                          Navigator.of(context, rootNavigator: true)
+                                              .pop("dialog");
+                                          mainPageStreamController.add(1);
+                                          showAdjustDialog(context, SUCCESS, false, null, null);
+                                        } else {
+                                          Navigator.of(context, rootNavigator: true)
+                                              .pop("dialog");
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MainPage()));
+                                        }
+                                      } else if (i == 0) {
                                         Navigator.of(context, rootNavigator: true)
                                             .pop("dialog");
-                                        LayoutChangedNotification notification = LayoutChangedNotification();
-                                        notification.dispatch(context);
-                                        showAdjustDialog(context, SUCCESS, false, null);
-                                      } else {
-                                        Navigator.of(context, rootNavigator: true)
-                                            .pop("dialog");
-                                        Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MainPage()));
+                                        showAdjustDialog(
+                                            context, FAILURE, false, null, null);
                                       }
-                                    } else if (i == 0) {
-                                      Navigator.of(context, rootNavigator: true)
-                                          .pop("dialog");
-                                      showAdjustDialog(
-                                          context, FAILURE, false, null);
-                                    }
+                                    }, null);
                                   }
                                 },
                               )

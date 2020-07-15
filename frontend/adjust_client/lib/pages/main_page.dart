@@ -1,10 +1,11 @@
-
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:adjust_client/actions/shoping_action.dart';
 import 'package:adjust_client/actions/tutorial_action.dart';
 import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/config/adjust_colors.dart';
+import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/menu_page.dart';
 import 'package:adjust_client/pages/shoping_page.dart';
 import 'package:adjust_client/pages/tutorial_page.dart';
@@ -21,8 +22,9 @@ import 'package:redux/redux.dart';
 
 import '../main.dart';
 
-
 final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+final StreamController<int> mainPageStreamController = StreamController<int>.broadcast();
+final Stream<int> mainPageStream = mainPageStreamController.stream;
 
 class MainPage extends StatefulWidget {
   @override
@@ -30,10 +32,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   Widget _content;
   GlobalKey _bottomNavigationKey = GlobalKey();
-
 
   String firstName;
   String lastName;
@@ -41,33 +41,43 @@ class _MainPageState extends State<MainPage> {
   double score;
   Image _image;
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    mainPageStream.asBroadcastStream().listen((event) {
+      setMainPageState(true);
+    });
 
     getShopingItems(context);
     getTokenItems(context);
 
     _content = mainMenu();
-    setMainPageState();
+    setMainPageState(false);
   }
 
-  void setMainPageState() {
-    setState(() {
-      ClientState clientState = store.state.clientState;
-      firstName = clientState.firstName;
-      lastName = clientState.lastName;
-      token = clientState.token;
-      score = clientState.score;
-      if (clientState.image == null) {
-        _image = Image.asset("assets/adjust_logo1.png");
-      } else {
-        Uint8List imageByte = Uint8List.fromList(clientState.image);
-        _image = Image.memory(imageByte);
-      }
-    });
+  void setMainPageState(bool fromNotification) {
+    ClientState clientState = store.state.clientState;
+    if (fromNotification) {
+      setState(() {
+        stateSetter(clientState);
+      });
+    } else {
+      stateSetter(clientState);
+    }
+  }
+
+  void stateSetter(ClientState clientState) {
+    firstName = clientState.firstName;
+    lastName = clientState.lastName;
+    token = clientState.token;
+    score = clientState.score;
+    if (clientState.image == null) {
+      _image = Image.asset("assets/adjust_logo1.png");
+    } else {
+      Uint8List imageByte = Uint8List.fromList(clientState.image);
+      _image = Image.memory(imageByte);
+    }
   }
 
   @override
@@ -80,7 +90,7 @@ class _MainPageState extends State<MainPage> {
       showShadow: false,
       angle: 0.0,
       backgroundColor: Colors.grey[300],
-      slideWidth: MediaQuery.of(context).size.width*(true ? -.45: 0.65),
+      slideWidth: MediaQuery.of(context).size.width * (true ? -.45 : 0.65),
     );
   }
 
@@ -95,16 +105,18 @@ class _MainPageState extends State<MainPage> {
             items: <Widget>[
               Icon(Icons.open_in_browser, size: 30),
               CircleAvatar(
-                  radius: 30,
-                  child: Image.asset("assets/adjust_logo1.png")
-              ),
+                  radius: 30, child: Image.asset("assets/adjust_logo1.png")),
               Icon(Icons.shopping_cart, size: 30),
             ],
             onTap: (index) {
               //Handle button tap
               if (index == 0) {
                 setState(() {
-                  _content = Container(child: Center(child: Text("0"),),);
+                  _content = Container(
+                    child: Center(
+                      child: Text("0"),
+                    ),
+                  );
                 });
               } else if (index == 1) {
                 setState(() {
@@ -117,44 +129,39 @@ class _MainPageState extends State<MainPage> {
               }
             },
           ),
-          body: NotificationListener(
-            onNotification: (Notification notification) {
-              setMainPageState();
-              return true;
+          body: StoreConnector<AppState, AppState>(
+            converter: (Store store) => store.state,
+            builder: (BuildContext context, AppState state) {
+              return Container(
+                  color: LIGHT_GREY,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Expanded(
+                          flex: 25,
+                          child: Dashboard(
+                            firstName: firstName,
+                            lastName: lastName,
+                            token: token,
+                            score: score,
+                            image: _image,
+                          )),
+                      Expanded(
+                          flex: 5,
+                          child: Container(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Divider(
+                              color: SHADOW,
+                              endIndent: 20,
+                              indent: 20,
+                              thickness: 2,
+                            ),
+                          )),
+                      Expanded(flex: 70, child: _content),
+                    ],
+                  ));
             },
-            child: StoreConnector<AppState, AppState>(
-              converter: (Store store) => store.state,
-              builder: (BuildContext context, AppState state) {
-                return Container(
-                    color: LIGHT_GREY,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Expanded(
-                            flex: 25,
-                            child: Dashboard(firstName: firstName, lastName: lastName, token: token, score: score, image: _image,)
-                        ),
-                        Expanded(
-                            flex: 5,
-                            child: Container(
-                              padding: EdgeInsets.only(top: 20),
-                              child: Divider(
-                                color: SHADOW,
-                                endIndent: 20,
-                                indent: 20,
-                                thickness: 2,
-                              ),
-                            )
-                        ),
-                        Expanded(
-                            flex: 70,
-                            child: _content
-                        ),
-                      ],
-                    ));
-              },
-            ),
-          )
+          ),
       ),
     );
   }
@@ -172,11 +179,13 @@ class _MainPageState extends State<MainPage> {
               children: <Widget>[
                 Expanded(
                   flex: 5,
-                  child: menuItem("برنامه ی تمرینی من", "assets/workout_icon.png", GREEN, null),
+                  child: menuItem("برنامه ی تمرینی من",
+                      "assets/workout_icon.png", GREEN, null),
                 ),
                 Expanded(
                   flex: 5,
-                  child: menuItem("برنامه ی تغذیه من", "assets/nutrition_icon.png", RED, null),
+                  child: menuItem("برنامه ی تغذیه من",
+                      "assets/nutrition_icon.png", RED, null),
                 )
               ],
             ),
@@ -188,12 +197,15 @@ class _MainPageState extends State<MainPage> {
               children: <Widget>[
                 Expanded(
                   flex: 5,
-                  child: menuItem("متخصص من", "assets/game_icon.png", ORANGE, null),
+                  child: menuItem(
+                      "متخصص من", "assets/game_icon.png", ORANGE, null),
                 ),
                 Expanded(
                   flex: 5,
-                  child: menuItem("آموزش", "assets/tutorial_icon.png", YELLOW, () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TutorialPage()));
+                  child:
+                      menuItem("آموزش", "assets/tutorial_icon.png", YELLOW, () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TutorialPage()));
                   }),
                 )
               ],
@@ -211,12 +223,13 @@ class _MainPageState extends State<MainPage> {
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: WHITE,
-          boxShadow: [BoxShadow(
-              color: SHADOW,
-              offset: Offset(2, 2),
-              spreadRadius: 5,
-              blurRadius: 5
-          )],
+          boxShadow: [
+            BoxShadow(
+                color: SHADOW,
+                offset: Offset(2, 2),
+                spreadRadius: 5,
+                blurRadius: 5)
+          ],
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
@@ -240,18 +253,22 @@ class _MainPageState extends State<MainPage> {
             Expanded(
               flex: 30,
               child: Container(
-                padding: EdgeInsets.all(7),
-                decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(5))
-                ),
-                child: Center(
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Text(text, style: TextStyle(fontFamily: "Iransans", fontSize: 14, color: WHITE),),
-                  ),
-                )
-              ),
+                  padding: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(5))),
+                  child: Center(
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                            fontFamily: "Iransans", fontSize: 14, color: WHITE),
+                      ),
+                    ),
+                  )),
             )
           ],
         ),
@@ -260,5 +277,11 @@ class _MainPageState extends State<MainPage> {
         func();
       },
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }

@@ -51,6 +51,9 @@ public class MoveResourceIT {
     private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
+    private static final Long DEFAULT_ADJUST_MOVE_ID = 1L;
+    private static final Long UPDATED_ADJUST_MOVE_ID = 2L;
+
     @Autowired
     private MoveRepository moveRepository;
 
@@ -81,7 +84,8 @@ public class MoveResourceIT {
             .muscleType(DEFAULT_MUSCLE_TYPE)
             .equipment(DEFAULT_EQUIPMENT)
             .picture(DEFAULT_PICTURE)
-            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE);
+            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
+            .adjustMoveId(DEFAULT_ADJUST_MOVE_ID);
         return move;
     }
     /**
@@ -97,7 +101,8 @@ public class MoveResourceIT {
             .muscleType(UPDATED_MUSCLE_TYPE)
             .equipment(UPDATED_EQUIPMENT)
             .picture(UPDATED_PICTURE)
-            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
+            .adjustMoveId(UPDATED_ADJUST_MOVE_ID);
         return move;
     }
 
@@ -127,6 +132,7 @@ public class MoveResourceIT {
         assertThat(testMove.getEquipment()).isEqualTo(DEFAULT_EQUIPMENT);
         assertThat(testMove.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testMove.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
+        assertThat(testMove.getAdjustMoveId()).isEqualTo(DEFAULT_ADJUST_MOVE_ID);
     }
 
     @Test
@@ -166,7 +172,8 @@ public class MoveResourceIT {
             .andExpect(jsonPath("$.[*].muscleType").value(hasItem(DEFAULT_MUSCLE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].equipment").value(hasItem(DEFAULT_EQUIPMENT)))
             .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))))
+            .andExpect(jsonPath("$.[*].adjustMoveId").value(hasItem(DEFAULT_ADJUST_MOVE_ID.intValue())));
     }
     
     @Test
@@ -185,7 +192,8 @@ public class MoveResourceIT {
             .andExpect(jsonPath("$.muscleType").value(DEFAULT_MUSCLE_TYPE.toString()))
             .andExpect(jsonPath("$.equipment").value(DEFAULT_EQUIPMENT))
             .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)));
+            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)))
+            .andExpect(jsonPath("$.adjustMoveId").value(DEFAULT_ADJUST_MOVE_ID.intValue()));
     }
     @Test
     @Transactional
@@ -213,7 +221,8 @@ public class MoveResourceIT {
             .muscleType(UPDATED_MUSCLE_TYPE)
             .equipment(UPDATED_EQUIPMENT)
             .picture(UPDATED_PICTURE)
-            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
+            .adjustMoveId(UPDATED_ADJUST_MOVE_ID);
         MoveDTO moveDTO = moveMapper.toDto(updatedMove);
 
         restMoveMockMvc.perform(put("/api/moves")
@@ -231,6 +240,7 @@ public class MoveResourceIT {
         assertThat(testMove.getEquipment()).isEqualTo(UPDATED_EQUIPMENT);
         assertThat(testMove.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testMove.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
+        assertThat(testMove.getAdjustMoveId()).isEqualTo(UPDATED_ADJUST_MOVE_ID);
     }
 
     @Test
