@@ -1,4 +1,4 @@
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
@@ -45,7 +45,7 @@ class AdjustInfoButton extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               boxShadow: [
                 BoxShadow(
-                  color: SHADOW,
+                  color: SHADOW_COLOR,
                   blurRadius: 5,
                   spreadRadius: 5,
                   offset: Offset(2, 2),
@@ -103,7 +103,7 @@ class AdjustInfoButton extends StatelessWidget {
                                         style: TextStyle(
                                             fontFamily: "Iransans",
                                             fontSize: this.fontSize,
-                                            color: WHITE),
+                                            color: WHITE_COLOR),
                                       ),
                                     ),
                                   ),
@@ -117,7 +117,7 @@ class AdjustInfoButton extends StatelessWidget {
                                         style: TextStyle(
                                             fontFamily: "Iransans",
                                             fontSize: this.fontSize - 1,
-                                            color: WHITE),
+                                            color: WHITE_COLOR),
                                       ),
                                     ),
                                   ),
@@ -131,7 +131,7 @@ class AdjustInfoButton extends StatelessWidget {
                                         style: TextStyle(
                                             fontFamily: "Iransans",
                                             fontSize: this.fontSize - 2,
-                                            color: WHITE),
+                                            color: WHITE_COLOR),
                                       ),
                                     ),
                                   ),

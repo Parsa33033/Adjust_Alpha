@@ -5,7 +5,7 @@ import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/adjust_text_field.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/cart_dto.dart';
 import 'package:adjust_client/dto/order_dto.dart';
@@ -86,7 +86,7 @@ class _OrderPageState extends State<OrderPage> {
                         bottom: 100,
                         left: 0,
                         child: Container(
-                          color: GREEN,
+                          color: GREEN_COLOR,
                         ),
                       ),
                       Positioned(
@@ -107,7 +107,7 @@ class _OrderPageState extends State<OrderPage> {
                             child: InkWell(
                               child: Icon(
                                 Icons.arrow_back,
-                                color: WHITE,
+                                color: WHITE_COLOR,
                                 size: 50,
                               ),
                               onTap: () {
@@ -135,10 +135,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: false,
                             icon: Icon(
                               Icons.email,
-                              color: GREEN,
+                              color: GREEN_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: GREEN,
+                            primaryColor: GREEN_COLOR,
                             validator: (String value) {
                               if (!isEmail(value)) {
                                 return WRONG_EMAIL;
@@ -155,10 +155,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: false,
                             icon: Icon(
                               Icons.person,
-                              color: RED,
+                              color: RED_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: RED,
+                            primaryColor: RED_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -175,10 +175,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: false,
                             icon: Icon(
                               Icons.person,
-                              color: ORANGE,
+                              color: ORANGE_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: ORANGE,
+                            primaryColor: ORANGE_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -195,10 +195,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: true,
                             icon: Icon(
                               Icons.phone,
-                              color: YELLOW,
+                              color: YELLOW_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: YELLOW,
+                            primaryColor: YELLOW_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -215,10 +215,10 @@ class _OrderPageState extends State<OrderPage> {
                           enabled: true,
                           icon: Icon(
                             Icons.location_on,
-                            color: SHADOW,
+                            color: SHADOW_COLOR,
                           ),
                           isPassword: false,
-                          primaryColor: SHADOW,
+                          primaryColor: SHADOW_COLOR,
                           validator: (String value) {
                             if (value == null || value == "") {
                               return EMPTY;
@@ -236,10 +236,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: true,
                             icon: Icon(
                               Icons.location_on,
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: SHADOW,
+                            primaryColor: SHADOW_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -256,10 +256,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: true,
                             icon: Icon(
                               Icons.location_on,
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: SHADOW,
+                            primaryColor: SHADOW_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -278,10 +278,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: true,
                             icon: Icon(
                               Icons.location_on,
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: SHADOW,
+                            primaryColor: SHADOW_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -300,10 +300,10 @@ class _OrderPageState extends State<OrderPage> {
                             enabled: true,
                             icon: Icon(
                               Icons.location_on,
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                             ),
                             isPassword: false,
-                            primaryColor: SHADOW,
+                            primaryColor: SHADOW_COLOR,
                             validator: (String value) {
                               if (value == null || value == "") {
                                 return EMPTY;
@@ -317,8 +317,8 @@ class _OrderPageState extends State<OrderPage> {
                           child: AdjustRaisedButton(
                               text: ORDER,
                               textDirection: TextDirection.rtl,
-                              primaryColor: GREEN,
-                              secondaryColor: GREEN,
+                              primaryColor: GREEN_COLOR,
+                              secondaryColor: GREEN_COLOR,
                               height: 50,
                               width: MediaQuery.of(context).size.width,
                               onPressed: () async {

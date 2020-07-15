@@ -3,7 +3,7 @@ import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/adjust_text_field.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/user_dto.dart';
 import 'package:adjust_client/pages/main_page.dart';
@@ -59,10 +59,10 @@ class _SignUpState extends State<SignUp> {
                     enabled: true,
                     icon: Icon(
                       Icons.email,
-                      color: GREEN,
+                      color: GREEN_COLOR,
                     ),
                     isPassword: false,
-                    primaryColor: GREEN,
+                    primaryColor: GREEN_COLOR,
                     validator: (String value) {
                       if (!isEmail(value)) {
                         return WRONG_EMAIL;
@@ -78,10 +78,10 @@ class _SignUpState extends State<SignUp> {
                     enabled: true,
                     icon: Icon(
                       Icons.lock,
-                      color: RED,
+                      color: RED_COLOR,
                     ),
                     isPassword: true,
-                    primaryColor: RED,
+                    primaryColor: RED_COLOR,
                     validator: (String value) {
                       if (isNull(value)) {
                         return EMPTY;
@@ -100,10 +100,10 @@ class _SignUpState extends State<SignUp> {
                     enabled: true,
                     icon: Icon(
                       Icons.lock,
-                      color: ORANGE,
+                      color: ORANGE_COLOR,
                     ),
                     isPassword: true,
-                    primaryColor: ORANGE,
+                    primaryColor: ORANGE_COLOR,
                     validator: (String value) {
                       if (value != passwordTextFieldController.text) {
                         return PASS_NOT_MATCH;
@@ -121,8 +121,8 @@ class _SignUpState extends State<SignUp> {
                     AdjustRaisedButton(
                       text: BACK,
                       textDirection: TextDirection.rtl,
-                      primaryColor: GREEN,
-                      secondaryColor: GREEN,
+                      primaryColor: GREEN_COLOR,
+                      secondaryColor: GREEN_COLOR,
                       height: 50,
                       width: 90,
                       onPressed: () {
@@ -132,8 +132,8 @@ class _SignUpState extends State<SignUp> {
                     AdjustRaisedButton(
                       text: REGISTER,
                       textDirection: TextDirection.rtl,
-                      primaryColor: GREEN,
-                      secondaryColor: GREEN,
+                      primaryColor: GREEN_COLOR,
+                      secondaryColor: GREEN_COLOR,
                       height: 50,
                       width: 90,
                       onPressed: () async {

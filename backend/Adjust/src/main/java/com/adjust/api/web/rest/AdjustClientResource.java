@@ -1,53 +1,21 @@
 package com.adjust.api.web.rest;
 
-import com.adjust.api.domain.*;
-import com.adjust.api.repository.AdjustClientRepository;
-import com.adjust.api.repository.AdjustTutorialRepository;
-import com.adjust.api.repository.TutorialRepository;
-import com.adjust.api.security.SecurityUtils;
-import com.adjust.api.security.jwt.JWTFilter;
-import com.adjust.api.security.jwt.TokenProvider;
-import com.adjust.api.service.*;
-import com.adjust.api.service.dto.*;
-import com.adjust.api.service.mapper.AdjustClientMapper;
-import com.adjust.api.service.mapper.AdjustTutorialMapper;
-import com.adjust.api.service.mapper.TutorialMapper;
-import com.adjust.api.service.mapper.TutorialVideoMapper;
+import com.adjust.api.service.AdjustClientService;
 import com.adjust.api.web.rest.errors.BadRequestAlertException;
+import com.adjust.api.service.dto.AdjustClientDTO;
 
-import com.sun.mail.iap.Response;
-import com.zaxxer.hikari.util.ClockSource;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import io.jsonwebtoken.JwtParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.support.ResourceRegion;
-import org.springframework.http.*;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.util.MimeType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.async.DeferredResult;
-import org.zalando.fauxpas.ThrowingConsumer;
-import org.zalando.fauxpas.ThrowingFunction;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.Duration;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
@@ -64,8 +32,8 @@ public class AdjustClientResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-
     private final AdjustClientService adjustClientService;
+
     public AdjustClientResource(AdjustClientService adjustClientService) {
         this.adjustClientService = adjustClientService;
     }
@@ -105,7 +73,7 @@ public class AdjustClientResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         AdjustClientDTO result = adjustClientService.save(adjustClientDTO);
-        return ResponseEntity.ok().header("charset", "UTF-8")
+        return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, adjustClientDTO.getId().toString()))
             .body(result);
     }
@@ -151,6 +119,4 @@ public class AdjustClientResource {
         adjustClientService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
-
-
 }

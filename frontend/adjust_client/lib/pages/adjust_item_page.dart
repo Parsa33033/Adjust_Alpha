@@ -1,7 +1,7 @@
 
 
 import 'package:adjust_client/components/adjust_raised_button.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class AdjustItemPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: Directionality(
                             textDirection: TextDirection.rtl,
-                            child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: 25, color: WHITE),),
+                            child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: 25, color: WHITE_COLOR),),
                           ),
                         )
                     ),
@@ -82,7 +82,7 @@ class AdjustItemPage extends StatelessWidget {
                         child: Center(
                           child: Directionality(
                             textDirection: TextDirection.rtl,
-                            child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: 25, color: FONT),),
+                            child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: 25, color: FONT_COLOR),),
                           ),
                         )
                       ),
@@ -90,7 +90,7 @@ class AdjustItemPage extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                         child: Directionality(
                           textDirection: TextDirection.rtl,
-                          child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: FONT),),
+                          child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: FONT_COLOR),),
                         ),
                       ),
 
@@ -115,7 +115,7 @@ class AdjustItemPage extends StatelessWidget {
                         textDirection: TextDirection.rtl,
                         primaryColor: this.primaryColor,
                         secondaryColor: this.primaryColor,
-                        fontColor: WHITE,
+                        fontColor: WHITE_COLOR,
                         text: BACK,
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -135,7 +135,7 @@ class AdjustItemPage extends StatelessWidget {
                         textDirection: TextDirection.rtl,
                         primaryColor: this.primaryColor,
                         secondaryColor: this.primaryColor,
-                        fontColor: WHITE,
+                        fontColor: WHITE_COLOR,
 
                         text: buttonText,
                         onPressed: () {

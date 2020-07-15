@@ -1,5 +1,5 @@
 
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -9,7 +9,7 @@ class LogoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          color: GREEN,
+          color: GREEN_COLOR,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

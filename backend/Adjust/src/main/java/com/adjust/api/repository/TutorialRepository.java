@@ -7,7 +7,6 @@ import com.adjust.api.domain.TutorialVideo;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 

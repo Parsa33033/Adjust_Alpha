@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:adjust_client/components/adjust_dialog.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +25,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: GREEN,
+        color: GREEN_COLOR,
         child: Column(
           children: <Widget>[
             Container(
@@ -40,7 +40,7 @@ class MenuPage extends StatelessWidget {
             Divider(
               height: 20,
               thickness: 2,
-              color: WHITE,
+              color: WHITE_COLOR,
             ),
             menuItem(PROFILE, Icons.person, () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(image: image, isFromMainPage: true,)));}),
             menuItem(LOGOUT, Icons.exit_to_app, () {showAdjustDialog(context, SURE_TO_EXIT, true, () {logout();}, null);}),
@@ -61,12 +61,12 @@ class MenuPage extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
-                  child: Text(text, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: WHITE),),
+                  child: Text(text, style: TextStyle(fontFamily: "Iransans", fontSize: 18, color: WHITE_COLOR),),
                 ),
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: Icon(icon, color: WHITE,),
+                child: Icon(icon, color: WHITE_COLOR,),
               )
             ],
           )

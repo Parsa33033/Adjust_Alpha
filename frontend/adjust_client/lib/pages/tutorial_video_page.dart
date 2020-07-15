@@ -1,4 +1,4 @@
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/urls.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/tutorial.dart';
@@ -51,11 +51,11 @@ class _TutorialVideoPageState extends State<TutorialVideoPage> {
               child: Text(
                 this.widget.tutorial.title,
                 style: TextStyle(
-                    fontFamily: "Iransans", fontSize: 20, color: FONT),
+                    fontFamily: "Iransans", fontSize: 20, color: FONT_COLOR),
               ),
             ),
           ),
-          backgroundColor: LIGHT_YELLOW,
+          backgroundColor: LIGHT_YELLOW_COLOR,
           elevation: 4,
           leading: InkWell(
             child: Icon(Icons.arrow_back),
@@ -83,7 +83,7 @@ class _TutorialVideoPageState extends State<TutorialVideoPage> {
                           style: TextStyle(
                               fontFamily: "Iransans",
                               fontSize: 18,
-                              color: FONT),
+                              color: FONT_COLOR),
                         )),
                   ),
                   Container(
@@ -95,7 +95,7 @@ class _TutorialVideoPageState extends State<TutorialVideoPage> {
                           style: TextStyle(
                               fontFamily: "Iransans",
                               fontSize: 16,
-                              color: FONT),
+                              color: FONT_COLOR),
                         )),
                   )
                 ],

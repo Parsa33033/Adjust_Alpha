@@ -10,7 +10,7 @@ import 'package:adjust_client/components/adjust_info_button.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/shoping_item.dart';
@@ -56,11 +56,11 @@ class _TutorialPageState extends State<TutorialPage> {
             child: Text(
               "ویدیوهای آموزشی",
               style:
-                  TextStyle(fontFamily: "Iransans", fontSize: 20, color: FONT),
+                  TextStyle(fontFamily: "Iransans", fontSize: 20, color: FONT_COLOR),
             ),
           ),
         ),
-        backgroundColor: LIGHT_YELLOW,
+        backgroundColor: LIGHT_YELLOW_COLOR,
         elevation: 4,
         leading: InkWell(
           child: Icon(Icons.arrow_back),
@@ -77,7 +77,7 @@ class _TutorialPageState extends State<TutorialPage> {
             amount += element.price;
           });
           return Container(
-            color: LIGHT_GREY,
+            color: LIGHT_GREY_COLOR,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -109,10 +109,10 @@ class _TutorialPageState extends State<TutorialPage> {
                           name: e == null ? "" : e.title,
                           fontSize: 14,
                           isVertical: false,
-                          primaryColor: isClientTutorial ? WHITE : YELLOW,
+                          primaryColor: isClientTutorial ? WHITE_COLOR : YELLOW_COLOR,
                           primaryColorLight:
-                              isClientTutorial ? WHITE : LIGHT_YELLOW,
-                          secondaryColor: isClientTutorial ? FONT : FONT,
+                              isClientTutorial ? WHITE_COLOR : LIGHT_YELLOW_COLOR,
+                          secondaryColor: isClientTutorial ? FONT_COLOR : FONT_COLOR,
                           image: image,
                           func: () async {
                             if (isClientTutorial) {
@@ -126,7 +126,7 @@ class _TutorialPageState extends State<TutorialPage> {
                                     "مقدار توکن شما برای خرید درون برنامه این آموزش کافی نمیباشد!",
                                     false,
                                     null,
-                                    YELLOW);
+                                    YELLOW_COLOR);
                               } else {
                                 showAdjustDialog(
                                     context,
@@ -146,18 +146,18 @@ class _TutorialPageState extends State<TutorialPage> {
                                               builder: (context) =>
                                                   TutorialVideoPage(e)));
                                     } else if (i == 0){
-                                      showAdjustDialog(context, FAILURE, false, null, YELLOW);
+                                      showAdjustDialog(context, FAILURE, false, null, YELLOW_COLOR);
                                     }
                                   } else if (i == 0) {
                                     Navigator.of(context).pop();
                                   } else if (i == 2) {
                                     // client has the tutorial already
-                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null, YELLOW);
+                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null, YELLOW_COLOR);
                                   } else if (i == 3) {
                                     // client does not have enough token
-                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null, YELLOW);
+                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null, YELLOW_COLOR);
                                   }
-                                }, YELLOW);
+                                }, YELLOW_COLOR);
                               }
 
                             }

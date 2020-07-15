@@ -1,6 +1,6 @@
 
 
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class AdjustRaisedButton extends StatelessWidget {
 
   AdjustRaisedButton({this.onPressed, this.primaryColor, this.secondaryColor,
       this.height, this.width, this.text, this.textDirection, this.fontColor, this.fontSize}) {
-    this.fontColor = this.fontColor == null ? fontColor = WHITE : this.fontColor;
+    this.fontColor = this.fontColor == null ? fontColor = WHITE_COLOR : this.fontColor;
     this.fontSize = this.fontSize == null ? fontSize = 18 : this.fontSize;
   }
 

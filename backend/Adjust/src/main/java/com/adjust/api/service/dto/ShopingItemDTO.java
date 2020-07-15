@@ -8,21 +8,21 @@ import javax.persistence.Lob;
  */
 public class ShopingItemDTO implements Serializable {
     
-    protected Long id;
+    private Long id;
 
-    protected String name;
+    private String name;
 
-    protected String description;
+    private String description;
 
-    protected Double token;
+    private Double token;
 
-    protected Double price;
+    private Double price;
 
     @Lob
-    protected byte[] image;
+    private byte[] image;
 
-    protected String imageContentType;
-    protected Boolean orderable;
+    private String imageContentType;
+    private Boolean orderable;
 
 
     private Long cartId;

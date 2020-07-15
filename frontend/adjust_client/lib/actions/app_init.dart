@@ -1,8 +1,5 @@
-
-
 import 'package:adjust_client/actions/authentication_action.dart';
 import 'package:adjust_client/actions/client_action.dart';
-import 'package:adjust_client/actions/shoping_action.dart';
 import 'package:adjust_client/actions/user_action.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:adjust_client/states/authentication_state.dart';

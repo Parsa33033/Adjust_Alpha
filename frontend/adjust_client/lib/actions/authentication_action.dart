@@ -3,11 +3,8 @@ import 'dart:io';
 
 import 'package:adjust_client/actions/user_action.dart';
 import 'package:adjust_client/actions/client_action.dart';
-import 'package:adjust_client/config/database.dart';
 import 'package:adjust_client/constants/urls.dart';
-import 'package:adjust_client/domains/user_domain.dart';
 import 'package:adjust_client/dto/login_dto.dart';
-import 'package:adjust_client/dto/user_dto.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:adjust_client/states/authentication_state.dart';
 import 'package:adjust_client/states/user_state.dart';
@@ -15,7 +12,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
 
 class LoginAction {
   UserState payload;
@@ -35,7 +31,6 @@ Future<int> userLogin(BuildContext context, LoginDTO loginDTO) async {
     ..putIfAbsent("Content-Type", () => "application/json");
 
   String content = jsonEncode(loginDTO.toJson());
-  print("user login with: ${content}");
 
   http.Response authResponse = await http.post(LOGIN_URL, headers: headers,
       body: content,

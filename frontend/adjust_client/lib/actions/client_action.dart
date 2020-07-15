@@ -2,21 +2,16 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:adjust_client/config/database.dart';
 import 'package:adjust_client/constants/urls.dart';
-import 'package:adjust_client/domains/client_domain.dart';
 import 'package:adjust_client/dto/client_dto.dart';
-import 'package:adjust_client/dto/user_dto.dart';
 import 'package:adjust_client/model/client.dart';
-import 'package:adjust_client/model/user.dart';
 import 'package:adjust_client/states/app_state.dart';
 import 'package:adjust_client/states/client_state.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
+
+import 'jwt.dart';
 
 class CreateClientAction {
   ClientState payload;
@@ -31,19 +26,14 @@ class UpdateClientAction {
 }
 
 Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
-  String jwt =
-      StoreProvider.of<AppState>(context).state.authenticationState.jwt;
-  if (jwt == null) {
-    FlutterSecureStorage storage = FlutterSecureStorage();
-    jwt = await storage.read(key: "jwt");
-  }
+  String jwt = await getJwt(context);
 
   Map<String, String> headers = Map<String, String>()
     ..putIfAbsent("Authorization", () => "Bearer " + jwt)
     ..putIfAbsent("Content-Type", () => "application/json");
 
   String content = jsonEncode(clientDTO.toJson());
-//  print("client is updating with: ${content}");
+
 
   http.Response response = await http.put(CLIENT_URL,
       headers: headers, body: content, encoding: Encoding.getByName("UTF-8"));
@@ -55,7 +45,6 @@ Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
       List<int> imageByte = List<int>.from(l);
       m["image"] = imageByte;
     }
-//    print("client update response is: ${m}");
 
     ClientDTO client = ClientDTO.fromJson(m);
     setClientState(context, client);
@@ -67,11 +56,7 @@ Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
 }
 
 Future<int> getClient(BuildContext context) async {
-  String jwt = StoreProvider.of<AppState>(context).state.authenticationState.jwt;
-  if (jwt == null) {
-    FlutterSecureStorage storage = FlutterSecureStorage();
-    jwt = await storage.read(key: "jwt");
-  }
+  String jwt = await getJwt(context);
 
   Map<String, String> headers = Map<String, String>()
     ..putIfAbsent("Authorization", () => "Bearer " + jwt);
@@ -94,18 +79,19 @@ Future<int> getClient(BuildContext context) async {
   return 0;
 }
 
-
 Future<int> getClientToken(BuildContext context) async {
-  String jwt = StoreProvider.of<AppState>(context).state.authenticationState.jwt;
+  String jwt = await getJwt(context);
 
   Map<String, String> headers = Map<String, String>()
     ..putIfAbsent("Authorization", () => "Bearer " + jwt);
 
-  http.Response response = await http.get(GET_CLIENT_TOKENS, headers: headers);
+  http.Response response = await http.get(GET_CLIENT_TOKENS_URL, headers: headers);
   if (response.statusCode == HttpStatus.ok) {
     double token = double.parse(response.body);
-    ClientState clientState = ClientState(null, null, null, null, null, null, null, token, null, null, null);
-    StoreProvider.of<AppState>(context).dispatch(UpdateClientAction(payload: clientState));
+    ClientState clientState = ClientState(
+        null, null, null, null, null, null, null, token, null, null, null);
+    StoreProvider.of<AppState>(context)
+        .dispatch(UpdateClientAction(payload: clientState));
     return 1;
   }
   return 0;

@@ -4,7 +4,7 @@ import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/adjust_text_field.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/login_dto.dart';
 import 'package:adjust_client/pages/main_page.dart';
@@ -52,10 +52,10 @@ class _SignInState extends State<SignIn> {
                 enabled: true,
                 icon: Icon(
                   Icons.email,
-                  color: GREEN,
+                  color: GREEN_COLOR,
                 ),
                 isPassword: false,
-                primaryColor: GREEN,
+                primaryColor: GREEN_COLOR,
                 validator: (String value) {
                   if (!isEmail(value)) {
                     return WRONG_EMAIL;
@@ -71,10 +71,10 @@ class _SignInState extends State<SignIn> {
                 enabled: true,
                 icon: Icon(
                   Icons.lock,
-                  color: RED,
+                  color: RED_COLOR,
                 ),
                 isPassword: true,
-                primaryColor: RED,
+                primaryColor: RED_COLOR,
                 validator: (String value) {
                   if (!isEmail(value)) {
                     return WRONG_EMAIL;
@@ -114,8 +114,8 @@ class _SignInState extends State<SignIn> {
                 AdjustRaisedButton(
                   text: BACK,
                   textDirection: TextDirection.rtl,
-                  primaryColor: GREEN,
-                  secondaryColor: GREEN,
+                  primaryColor: GREEN_COLOR,
+                  secondaryColor: GREEN_COLOR,
                   height: 50,
                   width: 90,
                   onPressed: () {
@@ -125,8 +125,8 @@ class _SignInState extends State<SignIn> {
                 AdjustRaisedButton(
                   text: LOGIN,
                   textDirection: TextDirection.rtl,
-                  primaryColor: GREEN,
-                  secondaryColor: GREEN,
+                  primaryColor: GREEN_COLOR,
+                  secondaryColor: GREEN_COLOR,
                   height: 50,
                   width: 90,
                   onPressed: () async {
@@ -185,10 +185,10 @@ class _SignInState extends State<SignIn> {
                     enabled: true,
                     icon: Icon(
                       Icons.email,
-                      color: GREEN,
+                      color: GREEN_COLOR,
                     ),
                     isPassword: false,
-                    primaryColor: GREEN,
+                    primaryColor: GREEN_COLOR,
                     validator: (String value) {
                       if (!isEmail(value)) {
                         return WRONG_EMAIL;
@@ -206,8 +206,8 @@ class _SignInState extends State<SignIn> {
                           textDirection: TextDirection.rtl,
                           height: 40,
                           width: 80,
-                          primaryColor: GREEN,
-                          secondaryColor: GREEN,
+                          primaryColor: GREEN_COLOR,
+                          secondaryColor: GREEN_COLOR,
                           text: CANCEL,
                           onPressed: () {
                             Navigator.of(context, rootNavigator: true).pop("dialog");
@@ -219,8 +219,8 @@ class _SignInState extends State<SignIn> {
                           textDirection: TextDirection.rtl,
                           height: 40,
                           width: 80,
-                          primaryColor: GREEN,
-                          secondaryColor: GREEN,
+                          primaryColor: GREEN_COLOR,
+                          secondaryColor: GREEN_COLOR,
                           text: OK,
                           onPressed: () async{
                             preloader(context);

@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:adjust_client/actions/shoping_action.dart';
 import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_info_button.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/cart_dto.dart';
 import 'package:adjust_client/dto/shoping_item_dto.dart';
@@ -29,7 +29,7 @@ class ShopingPage extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
 //            boxShadow: [BoxShadow(color: SHADOW, offset: Offset(4,4), spreadRadius: 2, blurRadius: 2)],
-            color: LIGHT_GREY
+            color: LIGHT_GREY_COLOR
           ),
             width: width,
 //            margin: EdgeInsets.only(bottom: 30, top: 10),
@@ -79,9 +79,9 @@ class ShopingPage extends StatelessWidget {
                                 NumStrLanguage.Farsi),
                             fontSize: 14,
                             isVertical: true,
-                            primaryColor: RED,
-                            primaryColorLight: LIGHT_RED,
-                            secondaryColor: WHITE,
+                            primaryColor: RED_COLOR,
+                            primaryColorLight: LIGHT_RED_COLOR,
+                            secondaryColor: WHITE_COLOR,
                             image: image,
                             func: () async {
                               int id = e.id;
@@ -97,8 +97,8 @@ class ShopingPage extends StatelessWidget {
                                       description: e.description,
                                       buttonText: "خرید",
                                       isInfo: false,
-                                      primaryColor: RED,
-                                      primaryColorLight: LIGHT_RED,
+                                      primaryColor: RED_COLOR,
+                                      primaryColorLight: LIGHT_RED_COLOR,
                                       backgroundImagePath: "assets/bg_red.png",
                                       onButtonPressed: () async {
                                         showAdjustDialog(context, SURE_WITH_DECISION, true, () async {
@@ -107,7 +107,7 @@ class ShopingPage extends StatelessWidget {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       MainPage()));
-                                        }, RED);
+                                        }, RED_COLOR);
                                       },
                                     );
                                   }));
@@ -155,9 +155,9 @@ class ShopingPage extends StatelessWidget {
                             name: e == null ? "" : e.name,
                             fontSize: 14,
                             isVertical: true,
-                            primaryColor: LIGHT_GREEN,
-                            primaryColorLight: GREEN,
-                            secondaryColor: WHITE,
+                            primaryColor: LIGHT_GREEN_COLOR,
+                            primaryColorLight: GREEN_COLOR,
+                            secondaryColor: WHITE_COLOR,
                             image: image,
                             func: () async {
                               int id = e.id;
@@ -173,8 +173,8 @@ class ShopingPage extends StatelessWidget {
                                       description: e.description,
                                       buttonText: "افزودن به سبد خرید",
                                       isInfo: false,
-                                      primaryColor: GREEN,
-                                      primaryColorLight: LIGHT_GREEN,
+                                      primaryColor: GREEN_COLOR,
+                                      primaryColorLight: LIGHT_GREEN_COLOR,
                                       backgroundImagePath: "assets/bg_green.png",
                                       onButtonPressed: () async {
                                         ShopingItem item = ShopingItem(

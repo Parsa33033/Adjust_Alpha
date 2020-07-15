@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/pages/cart_page.dart';
 import 'package:adjust_client/pages/main_page.dart';
@@ -53,13 +53,13 @@ class _DashboardState extends State<Dashboard> {
                   child: Container(
                     margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
-                      color: WHITE,
+                      color: WHITE_COLOR,
                       borderRadius: BorderRadius.only(
                           bottomRight: Radius.circular(5),
                           topRight: Radius.circular(5)),
                       boxShadow: [
                         BoxShadow(
-                            color: SHADOW,
+                            color: SHADOW_COLOR,
                             blurRadius: 5,
                             spreadRadius: 5,
                             offset: Offset(2, 2))
@@ -83,7 +83,7 @@ class _DashboardState extends State<Dashboard> {
                     padding: EdgeInsets.only(
                         left: 15, right: 15, bottom: 15, top: 20),
                     decoration: BoxDecoration(
-                      color: WHITE,
+                      color: WHITE_COLOR,
                       borderRadius: BorderRadius.only(
                           bottomRight: Radius.circular(5),
                           topRight: Radius.circular(5),
@@ -91,7 +91,7 @@ class _DashboardState extends State<Dashboard> {
                           topLeft: Radius.circular(5)),
                       boxShadow: [
                         BoxShadow(
-                            color: SHADOW,
+                            color: SHADOW_COLOR,
                             blurRadius: 5,
                             spreadRadius: 5,
                             offset: Offset(2, 2))
@@ -120,7 +120,7 @@ class _DashboardState extends State<Dashboard> {
                                             this.widget.lastName,
                                         style: TextStyle(
                                           fontFamily: "Iransans",
-                                          color: FONT,
+                                          color: FONT_COLOR,
                                           fontSize: 18,
                                         ),
                                       ),
@@ -137,7 +137,7 @@ class _DashboardState extends State<Dashboard> {
                                         "امتیاز: " + NumberUtility.changeDigit(this.widget.score.round().toString(), NumStrLanguage.Farsi),
                                         style: TextStyle(
                                           fontFamily: "Iransans",
-                                          color: FONT,
+                                          color: FONT_COLOR,
                                           fontSize: 16,
                                         ),
                                       ),
@@ -154,7 +154,7 @@ class _DashboardState extends State<Dashboard> {
                                         "توکن: " + NumberUtility.changeDigit(this.widget.token.round().toString(), NumStrLanguage.Farsi),
                                         style: TextStyle(
                                           fontFamily: "Iransans",
-                                          color: FONT,
+                                          color: FONT_COLOR,
                                           fontSize: 16,
                                         ),
                                       ),
@@ -187,13 +187,13 @@ class _DashboardState extends State<Dashboard> {
                     child: Container(
                       margin: EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
-                        color: WHITE,
+                        color: WHITE_COLOR,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(5),
                             topLeft: Radius.circular(5)),
                         boxShadow: [
                           BoxShadow(
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                               blurRadius: 5,
                               spreadRadius: 5,
                               offset: Offset(2, 2))

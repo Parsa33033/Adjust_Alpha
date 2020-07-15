@@ -88,7 +88,6 @@ public class AdjustShopingItemResource {
         return adjustShopingItemService.findAll();
     }
 
-
     /**
      * {@code GET  /adjust-shoping-items/:id} : get the "id" adjustShopingItem.
      *

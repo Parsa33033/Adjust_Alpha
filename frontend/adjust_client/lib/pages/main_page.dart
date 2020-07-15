@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:adjust_client/actions/shoping_action.dart';
 import 'package:adjust_client/actions/tutorial_action.dart';
 import 'package:adjust_client/components/dashboard.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/menu_page.dart';
 import 'package:adjust_client/pages/shoping_page.dart';
@@ -99,8 +99,8 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
           bottomNavigationBar: CurvedNavigationBar(
             key: _bottomNavigationKey,
-            backgroundColor: LIGHT_GREY,
-            color: GREEN,
+            backgroundColor: LIGHT_GREY_COLOR,
+            color: GREEN_COLOR,
             index: 1,
             items: <Widget>[
               Icon(Icons.open_in_browser, size: 30),
@@ -133,7 +133,7 @@ class _MainPageState extends State<MainPage> {
             converter: (Store store) => store.state,
             builder: (BuildContext context, AppState state) {
               return Container(
-                  color: LIGHT_GREY,
+                  color: LIGHT_GREY_COLOR,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -151,7 +151,7 @@ class _MainPageState extends State<MainPage> {
                           child: Container(
                             padding: EdgeInsets.only(top: 20),
                             child: Divider(
-                              color: SHADOW,
+                              color: SHADOW_COLOR,
                               endIndent: 20,
                               indent: 20,
                               thickness: 2,
@@ -180,12 +180,12 @@ class _MainPageState extends State<MainPage> {
                 Expanded(
                   flex: 5,
                   child: menuItem("برنامه ی تمرینی من",
-                      "assets/workout_icon.png", GREEN, null),
+                      "assets/workout_icon.png", GREEN_COLOR, null),
                 ),
                 Expanded(
                   flex: 5,
                   child: menuItem("برنامه ی تغذیه من",
-                      "assets/nutrition_icon.png", RED, null),
+                      "assets/nutrition_icon.png", RED_COLOR, null),
                 )
               ],
             ),
@@ -198,12 +198,12 @@ class _MainPageState extends State<MainPage> {
                 Expanded(
                   flex: 5,
                   child: menuItem(
-                      "متخصص من", "assets/game_icon.png", ORANGE, null),
+                      "متخصص من", "assets/game_icon.png", ORANGE_COLOR, null),
                 ),
                 Expanded(
                   flex: 5,
                   child:
-                      menuItem("آموزش", "assets/tutorial_icon.png", YELLOW, () {
+                      menuItem("آموزش", "assets/tutorial_icon.png", YELLOW_COLOR, () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => TutorialPage()));
                   }),
@@ -222,10 +222,10 @@ class _MainPageState extends State<MainPage> {
         padding: EdgeInsets.only(top: 15),
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: WHITE,
+          color: WHITE_COLOR,
           boxShadow: [
             BoxShadow(
-                color: SHADOW,
+                color: SHADOW_COLOR,
                 offset: Offset(2, 2),
                 spreadRadius: 5,
                 blurRadius: 5)
@@ -265,7 +265,7 @@ class _MainPageState extends State<MainPage> {
                       child: Text(
                         text,
                         style: TextStyle(
-                            fontFamily: "Iransans", fontSize: 14, color: WHITE),
+                            fontFamily: "Iransans", fontSize: 14, color: WHITE_COLOR),
                       ),
                     ),
                   )),

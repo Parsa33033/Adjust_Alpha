@@ -1,4 +1,4 @@
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,9 +89,9 @@ class _AdjustDropDownFieldState extends State<AdjustDropDownField> {
               labelText: widget.hintText,
               prefixIcon: widget.icon,
               hintStyle: TextStyle(
-                fontFamily: "Iransans", fontSize: 16, color: FONT,),
+                fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR,),
               labelStyle: TextStyle(
-                  fontFamily: "Iransans", fontSize: 16, color: FONT),
+                  fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR),
               enabled: true,
               isDense: false
           ),
@@ -103,7 +103,7 @@ class _AdjustDropDownFieldState extends State<AdjustDropDownField> {
               DropdownMenuItem<String>(value: e.toString(), child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Text(e, style: TextStyle(
-                  fontFamily: "Iransans", fontSize: 16, color: FONT,),),
+                  fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR,),),
               ),)).toList(),
           value: this.widget.value,
           onChanged: (String val) {

@@ -1,6 +1,6 @@
 
 
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -81,11 +81,11 @@ class AdjustTextField extends StatelessWidget {
             ),
             labelText: hintText,
             prefixIcon: icon,
-            hintStyle: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT),
-            labelStyle: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT),
+            hintStyle: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR),
+            labelStyle: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR),
             enabled: true,
           ),
-          style: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT),
+          style: TextStyle(fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR),
           enabled: this.enabled,
           obscureText: this.isPassword,
           controller: controller,

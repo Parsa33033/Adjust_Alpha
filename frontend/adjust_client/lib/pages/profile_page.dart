@@ -8,7 +8,7 @@ import 'package:adjust_client/components/adjust_dropdown_field.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/adjust_text_field.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'package:adjust_client/config/adjust_colors.dart';
+import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/config/localization.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/client_dto.dart';
@@ -87,8 +87,13 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  Future getImage() async {
-    File imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
+  Future getImage(bool fromCamera) async {
+    File imageFile;
+    if (fromCamera) {
+      imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
+    } else {
+      imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    }
     setState(() {
       _image = imageFile;
     });
@@ -119,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 60,
                       width: 60,
                       decoration: BoxDecoration(
-                        color: GREEN,
+                        color: GREEN_COLOR,
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
                       child: Center(
@@ -130,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: TextStyle(
                               fontFamily: "Iransans",
                               fontSize: 14,
-                              color: WHITE),
+                              color: WHITE_COLOR),
                         ),
                       ))),
                   onTap: () async {
@@ -146,12 +151,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainPageStreamController.add(1);
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
+                      Navigator.of(context, rootNavigator: true).pop("dialog");
                       List<int> imgList = state.clientState.image;
                       Uint8List imgByte = Uint8List.fromList(imgList);
                       setState(() {
                         avatarImage = Image.memory(imgByte);
                       });
                     } else if (i == 0) {
+                      Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       showAdjustDialog(context, FAILURE, false, null, null);
@@ -192,7 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           bottom: 115,
                           left: 0,
                           child: Container(
-                            color: GREEN,
+                            color: GREEN_COLOR,
                           ),
                         ),
                         this.widget.isFromMainPage ? Positioned(
@@ -202,7 +209,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 50,
                               width: 50,
                               child: InkWell(
-                                child: Icon(Icons.arrow_back, color: WHITE, size: 50,),
+                                child: Icon(Icons.arrow_back, color: WHITE_COLOR, size: 50,),
                                 onTap: () {
                                   Navigator.of(context).pop();
                                 },
@@ -238,12 +245,69 @@ class _ProfilePageState extends State<ProfilePage> {
                                           radius: 60.0,
                                         ),
                                         onTap: () async {
-                                          await getImage();
-                                          showDialog(
-                                              context: context,
-                                              child: _buildCropImage(
-                                                  await _image.readAsBytes(),
-                                                  state));
+                                          showDialog(context: context,
+                                            child: Container(
+                                              height: 400,
+                                              child: SingleChildScrollView(
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    Container(
+                                                      padding: EdgeInsets.all(20),
+                                                      child: CircleAvatar(
+                                                        backgroundColor: Colors.grey[100],
+                                                        backgroundImage: avatarImage.image,
+                                                        radius: 150.0,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding: EdgeInsets.all(20),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: <Widget>[
+                                                          AdjustRaisedButton(
+                                                            text: "گالری",
+                                                            height: 40,
+                                                            width: 90,
+                                                            textDirection: TextDirection.rtl,
+                                                            primaryColor: GREEN_COLOR,
+                                                            secondaryColor: GREEN_COLOR,
+                                                            fontSize: 18,
+                                                            fontColor: WHITE_COLOR,
+                                                            onPressed: () async {
+                                                              await getImage(false);
+                                                              showDialog(
+                                                                  context: context,
+                                                                  child: _buildCropImage(
+                                                                      await _image.readAsBytes(),
+                                                                      state));
+                                                            },
+                                                          ),
+                                                          AdjustRaisedButton(
+                                                            text: "دوربین",
+                                                            height: 40,
+                                                            width: 90,
+                                                            textDirection: TextDirection.rtl,
+                                                            primaryColor: GREEN_COLOR,
+                                                            secondaryColor: GREEN_COLOR,
+                                                            fontSize: 18,
+                                                            fontColor: WHITE_COLOR,
+                                                            onPressed: () async {
+                                                              await getImage(true);
+                                                              showDialog(
+                                                                  context: context,
+                                                                  child: _buildCropImage(
+                                                                      await _image.readAsBytes(),
+                                                                      state));
+                                                            },
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          );
                                         },
                                       )),
                                 ),
@@ -257,7 +321,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: TextStyle(
                                         fontFamily: "Iransans",
                                         fontSize: 16,
-                                        color: FONT),
+                                        color: FONT_COLOR),
                                   ),
                                 ),
                               )
@@ -286,10 +350,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               enabled: false,
                               icon: Icon(
                                 Icons.email,
-                                color: GREY,
+                                color: GREY_COLOR,
                               ),
                               isPassword: false,
-                              primaryColor: GREY,
+                              primaryColor: GREY_COLOR,
                               validator: (String value) {
                                 if (!isEmail(value)) {
                                   return WRONG_EMAIL;
@@ -306,7 +370,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               enabled: true,
                               icon: Icon(
                                 Icons.person,
-                                color: GREEN,
+                                color: GREEN_COLOR,
                               ),
                               validator: (String val) {
                                 if (val == null || val == "") {
@@ -315,7 +379,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   return null;
                               },
                               isPassword: false,
-                              primaryColor: GREEN,
+                              primaryColor: GREEN_COLOR,
                               padding: 0,
                               margin: 20),
                           AdjustTextField(
@@ -326,7 +390,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               enabled: true,
                               icon: Icon(
                                 Icons.person,
-                                color: RED,
+                                color: RED_COLOR,
                               ),
                               validator: (String val) {
                                 if (val == null || val == "") {
@@ -335,7 +399,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   return null;
                               },
                               isPassword: false,
-                              primaryColor: RED,
+                              primaryColor: RED_COLOR,
                               padding: 0,
                               margin: 20),
                           InkWell(
@@ -347,7 +411,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 enabled: false,
                                 icon: Icon(
                                   Icons.calendar_today,
-                                  color: ORANGE,
+                                  color: ORANGE_COLOR,
                                 ),
                                 validator: (String val) {
                                   if (val == null || val == "") {
@@ -356,7 +420,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     return null;
                                 },
                                 isPassword: false,
-                                primaryColor: ORANGE,
+                                primaryColor: ORANGE_COLOR,
                                 padding: 0,
                                 margin: 20),
                             onTap: () {
@@ -389,7 +453,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               enabled: true,
                               icon: Icon(
                                 Icons.perm_identity,
-                                color: YELLOW,
+                                color: YELLOW_COLOR,
                               ),
                               validator: (String val) {
                                 if (val == null || val == "") {
@@ -398,7 +462,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   return null;
                               },
                               isPassword: false,
-                              primaryColor: YELLOW,
+                              primaryColor: YELLOW_COLOR,
                               padding: 0,
                               margin: 20),
                           SizedBox(
@@ -410,8 +474,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               AdjustRaisedButton(
                                 text: DEFAULT,
                                 textDirection: TextDirection.rtl,
-                                primaryColor: GREEN,
-                                secondaryColor: GREEN,
+                                primaryColor: GREEN_COLOR,
+                                secondaryColor: GREEN_COLOR,
                                 height: 50,
                                 width: 90,
                                 onPressed: () {
@@ -424,8 +488,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               AdjustRaisedButton(
                                 text: UPDATE,
                                 textDirection: TextDirection.rtl,
-                                primaryColor: GREEN,
-                                secondaryColor: GREEN,
+                                primaryColor: GREEN_COLOR,
+                                secondaryColor: GREEN_COLOR,
                                 height: 50,
                                 width: 90,
                                 onPressed: () async {

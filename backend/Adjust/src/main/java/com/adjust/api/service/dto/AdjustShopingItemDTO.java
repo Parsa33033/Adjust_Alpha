@@ -24,6 +24,7 @@ public class AdjustShopingItemDTO implements Serializable {
     private String imageContentType;
     private Boolean orderable;
 
+    
     public Long getId() {
         return id;
     }

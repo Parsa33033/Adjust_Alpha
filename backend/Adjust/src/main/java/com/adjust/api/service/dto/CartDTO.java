@@ -7,13 +7,13 @@ import java.io.Serializable;
  */
 public class CartDTO implements Serializable {
     
-    protected Long id;
+    private Long id;
 
-    protected String username;
+    private String username;
 
-    protected String firstName;
+    private String firstName;
 
-    protected String lastName;
+    private String lastName;
 
     
     public Long getId() {
