@@ -11,7 +11,7 @@ class TokenItem {
   double token;
   double price;
 
-  String image;
+  List<int> image;
   String imageContentType;
 
   bool orderable;

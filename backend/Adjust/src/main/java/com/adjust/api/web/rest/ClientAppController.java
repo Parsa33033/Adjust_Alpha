@@ -189,8 +189,8 @@ public class ClientAppController {
         AdjustClientDTO adjustClientDTOUpdatee = adjustClientRepository.findAdjustClientByUsername(userLogin).map(adjustClientMapper::toDto).get();
         adjustClientDTO.setScore(null);
         adjustClientDTO.setToken(null);
-        if (adjustClientDTO.getBirthDate() != null)
-            adjustClientDTO.setBirthDate(adjustClientDTO.getBirthDate().plusDays(1));
+//        if (adjustClientDTO.getBirthDate() != null)
+//            adjustClientDTO.setBirthDate(adjustClientDTO.getBirthDate().plusDays(1));
         AdjustClientDTO adjustClientDTOUpdated = (AdjustClientDTO) ClassUpdater.updateClass(adjustClientDTO, adjustClientDTOUpdatee);
         log.debug("REST request to update AdjustClient : {}", adjustClientDTOUpdated);
         if (adjustClientDTOUpdated.getId() == null) {

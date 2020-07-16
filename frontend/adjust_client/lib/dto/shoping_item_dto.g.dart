@@ -13,7 +13,7 @@ ShopingItemDTO _$ShopingItemDTOFromJson(Map<String, dynamic> json) {
     json['description'] as String,
     (json['token'] as num)?.toDouble(),
     (json['price'] as num)?.toDouble(),
-    json['image'] as String,
+    (json['image'] as List)?.map((e) => e as int)?.toList(),
     json['imageContentType'] as String,
     json['orderable'] as bool,
     json['cartId'] as int,

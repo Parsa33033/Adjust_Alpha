@@ -25,7 +25,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:redux/redux.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 import 'package:simple_image_crop/simple_image_crop.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -74,12 +76,13 @@ class _ProfilePageState extends State<ProfilePage> {
       emailTextEditingController.text = state.userState.email;
       firstNameTextFieldController.text = state.clientState.firstName;
       lastNameTextFieldController.text = state.clientState.lastName;
+      Jalali jalali = Jalali.fromDateTime(state.clientState.birthDate);
       birthDateConfirmTextFieldController.text =
-          state.clientState.birthDate.year.toString() +
+          NumberUtility.changeDigit(jalali.year.toString(), NumStrLanguage.Farsi) +
               "/" +
-              state.clientState.birthDate.month.toString() +
+              NumberUtility.changeDigit(jalali.month.toString(), NumStrLanguage.Farsi) +
               "/" +
-              state.clientState.birthDate.day.toString();
+              NumberUtility.changeDigit(jalali.day.toString(), NumStrLanguage.Farsi);
       genderValue = state.clientState.gender == null? null : EnumToString.parse(state.clientState.gender);
       if (this.widget.image != null) {
         avatarImage = this.widget.image;
@@ -448,6 +451,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               value: genderValue == null ? null : GENDER_LIST[genderValue],
                               setValue: setGenderValue,
                               textDirection: TextDirection.rtl,
+                              alignment: Alignment.centerRight,
                               controller: birthDateConfirmTextFieldController,
                               hintText: GENDER,
                               enabled: true,
@@ -501,7 +505,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           null,
                                           firstNameTextFieldController.text,
                                           lastNameTextFieldController.text,
-                                          getFormattedDateTime(
+                                          jalaliToGeorgianDateTime(
                                               birthDateConfirmTextFieldController
                                                   .text),
                                           null,

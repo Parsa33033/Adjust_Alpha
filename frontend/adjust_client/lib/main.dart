@@ -61,6 +61,10 @@ class AppInit extends StatelessWidget {
             int i = snapshot.data;
             if (i == 1) {
               return MainPage();
+            } else if (i == 0){
+              return StartPage();
+            } else if (i == 2) {
+              return ProfilePage(isFromMainPage: false,);
             } else {
               return StartPage();
             }

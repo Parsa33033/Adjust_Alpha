@@ -11,7 +11,7 @@ class ShopingItemDTO extends ShopingItem {
       String description,
       double token,
       double price,
-      String image,
+      List<int> image,
       String imageContentType,
       bool orderable,
       int cartId)

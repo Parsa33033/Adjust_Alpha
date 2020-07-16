@@ -18,6 +18,7 @@ class AdjustDropDownField extends StatefulWidget {
   List items;
   String value;
   TextAlign textAlign;
+  Alignment alignment;
   Function(String) setValue;
 
   AdjustDropDownField({
@@ -35,6 +36,7 @@ class AdjustDropDownField extends StatefulWidget {
     this.items,
     this.value,
     this.textAlign,
+    this.alignment,
     this.setValue});
 
   @override
@@ -100,11 +102,14 @@ class _AdjustDropDownFieldState extends State<AdjustDropDownField> {
           },
           isExpanded: true,
           items: this.widget.items.map((e) =>
-              DropdownMenuItem<String>(value: e.toString(), child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Text(e, style: TextStyle(
-                  fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR,),),
-              ),)).toList(),
+              DropdownMenuItem<String>(value: e.toString(), child: Align(
+                alignment: this.widget.alignment,
+                child: Directionality(
+                  textDirection: this.widget.textDirection,
+                  child: Text(e, style: TextStyle(
+                    fontFamily: "Iransans", fontSize: 16, color: FONT_COLOR,),),
+                ),
+              ))).toList(),
           value: this.widget.value,
           onChanged: (String val) {
             String keyMap;

@@ -58,7 +58,7 @@ class ShopingPage extends StatelessWidget {
 //                      padding: EdgeInsets.all(10),
                         scrollDirection: Axis.horizontal,
                         children: state.tokenState.items.map((e) {
-                          List i = base64Decode(e.image);
+                          List i = Uint8List.fromList(e.image);
                           List<int> imageByte = List<int>.from(i);
                           Image image =
                               Image.memory(Uint8List.fromList(imageByte));
@@ -136,7 +136,7 @@ class ShopingPage extends StatelessWidget {
 //                      padding: EdgeInsets.all(20),
                         scrollDirection: Axis.horizontal,
                         children: state.shopingState.items.map((e) {
-                          List i = base64Decode(e.image);
+                          List i = Uint8List.fromList(e.image);
                           List<int> imageByte = List<int>.from(i);
                           Image image =
                               Image.memory(Uint8List.fromList(imageByte));

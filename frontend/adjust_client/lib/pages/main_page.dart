@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:adjust_client/actions/shoping_action.dart';
 import 'package:adjust_client/actions/tutorial_action.dart';
 import 'package:adjust_client/components/dashboard.dart';
+import 'package:adjust_client/components/preloader.dart';
 import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
 import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/menu_page.dart';
@@ -41,6 +42,7 @@ class _MainPageState extends State<MainPage> {
   double score;
   Image _image;
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -49,11 +51,15 @@ class _MainPageState extends State<MainPage> {
       setMainPageState(true);
     });
 
-    getShopingItems(context);
-    getTokenItems(context);
+    fetchDependencies();
 
     _content = mainMenu();
     setMainPageState(false);
+  }
+
+  void fetchDependencies() async {
+    await getShopingItems(context);
+    await getTokenItems(context);
   }
 
   void setMainPageState(bool fromNotification) {

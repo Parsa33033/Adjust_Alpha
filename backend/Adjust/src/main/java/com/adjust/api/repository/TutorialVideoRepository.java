@@ -14,6 +14,5 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 @Repository
 public interface TutorialVideoRepository extends JpaRepository<TutorialVideo, Long> {
-
     Optional<TutorialVideo> findTutorialVideoByTutorial(Tutorial tutorial);
 }

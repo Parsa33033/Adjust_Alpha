@@ -61,7 +61,7 @@ class CartPage extends StatelessWidget {
                       itemCount: state.cartState.items.length,
                       itemBuilder: (BuildContext context, int pos) {
                         ShopingItem e = state.cartState.items[pos];
-                        Uint8List imageByte = base64Decode(e.image);
+                        Uint8List imageByte = Uint8List.fromList(e.image);
                         Image image = Image.memory(imageByte);
                         return Dismissible(
                           key: Key(e.name),
