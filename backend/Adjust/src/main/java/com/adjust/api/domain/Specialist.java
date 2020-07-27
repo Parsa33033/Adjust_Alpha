@@ -43,6 +43,15 @@ public class Specialist implements Serializable {
     @Column(name = "gender")
     private Gender gender;
 
+    @Column(name = "degree")
+    private String degree;
+
+    @Column(name = "field")
+    private String field;
+
+    @Column(name = "resume")
+    private String resume;
+
     @Column(name = "stars")
     private Double stars;
 
@@ -136,6 +145,45 @@ public class Specialist implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public Specialist degree(String degree) {
+        this.degree = degree;
+        return this;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public Specialist field(String field) {
+        this.field = field;
+        return this;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public Specialist resume(String resume) {
+        this.resume = resume;
+        return this;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
     public Double getStars() {
@@ -255,6 +303,9 @@ public class Specialist implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", birth='" + getBirth() + "'" +
             ", gender='" + getGender() + "'" +
+            ", degree='" + getDegree() + "'" +
+            ", field='" + getField() + "'" +
+            ", resume='" + getResume() + "'" +
             ", stars=" + getStars() +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + getImageContentType() + "'" +

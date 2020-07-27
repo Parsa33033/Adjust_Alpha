@@ -16,6 +16,7 @@ class AdjustInfoButton extends StatelessWidget {
   String description;
   double fontSize;
   Image image;
+  bool imageIsCircular;
   Function func;
 
   AdjustInfoButton(
@@ -31,7 +32,10 @@ class AdjustInfoButton extends StatelessWidget {
       this.description,
       this.fontSize,
       this.image,
-      this.func});
+      this.imageIsCircular,
+      this.func}) {
+    this.imageIsCircular = this.imageIsCircular == null ? false : this.imageIsCircular;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +50,8 @@ class AdjustInfoButton extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: SHADOW_COLOR,
-                  blurRadius: 5,
-                  spreadRadius: 5,
+                  blurRadius: 2,
+                  spreadRadius: 2,
                   offset: Offset(2, 2),
                 )
               ],
@@ -64,15 +68,6 @@ class AdjustInfoButton extends StatelessWidget {
                 child: CustomPaint(
                   painter: Decoration(20, this.height, this.width, this.primaryColor, this.primaryColorLight),
                 )
-
-//                ClipPath(
-//                  clipper: ,
-//                  child: Container(
-//                    decoration: BoxDecoration(color: primaryColor
-////                  gradient: LinearGradient(colors: [primaryColorLight, primaryColor, ], )
-//                        ),
-//                  ),
-//                ),
               ),
               isVertical
                   ? Positioned(
@@ -84,7 +79,7 @@ class AdjustInfoButton extends StatelessWidget {
                               right: 10,
                               height: this.height * 3 / 5,
                               width: this.width * 3 / 5,
-                              child: getImage(),
+                              child: this.imageIsCircular ? getCircularImage() : getImage(),
                             ),
                             Positioned(
                               top: 10,
@@ -155,34 +150,34 @@ class AdjustInfoButton extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Expanded(
-                              flex: 36,
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
-                                ),
-                              )
+                                flex: 36,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(this.name, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
+                                  ),
+                                )
                             ),
                             Expanded(
-                              flex: 35,
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize - 2, color: secondaryColor)),
-                                ),
-                              )
+                                flex: 35,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(this.title, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize - 2, color: secondaryColor)),
+                                  ),
+                                )
                             ),
                             Expanded(
-                              flex: 29,
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
-                                ),
-                              )
+                                flex: 29,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(this.description, style: TextStyle(fontFamily: "Iransans", fontSize: fontSize, color: secondaryColor)),
+                                  ),
+                                )
                             )
                           ],
                         ),
@@ -194,7 +189,7 @@ class AdjustInfoButton extends StatelessWidget {
                         width: this.width * 3/4,
                         height: this.height * 3/4,
                         padding: EdgeInsets.all(10),
-                        child: image,
+                        child: this.imageIsCircular ? getCircularImage() : getImage(),
                       ),
                     )
                   ],
@@ -216,6 +211,17 @@ class AdjustInfoButton extends StatelessWidget {
       ),
     );
   }
+
+  Widget getCircularImage() {
+    return Container(
+      child: Hero(
+        tag: this.id,
+        child: CircleAvatar(
+          backgroundImage: image.image,
+        ),
+      ),
+    );
+  }
 }
 
 class Decoration extends CustomPainter{
@@ -233,14 +239,11 @@ class Decoration extends CustomPainter{
     Paint paint = Paint();
     paint.shader = ui.Gradient.linear(Offset(0, 0), Offset(this.width, this.height), [HSLColor.fromColor(this.primaryColor).withLightness(0.8).toColor(), lightPrimaryColor]);
 
-    //    double height = size.height;
-//    double width = size.width;
     Path path = Path();
     path.moveTo(0, height);
     path.lineTo(width - r, height);
     path.quadraticBezierTo(width, height, width, height - r);
     path.lineTo(width, r);
-//    path.quadraticBezierTo(width, 0, width - r, 0);
     path.lineTo(width, 0 + r);
     path.quadraticBezierTo(width, 0, width - r, 0);
 

@@ -22,6 +22,12 @@ public class SpecialistDTO implements Serializable {
 
     private Gender gender;
 
+    private String degree;
+
+    private String field;
+
+    private String resume;
+
     private Double stars;
 
     @Lob
@@ -77,6 +83,30 @@ public class SpecialistDTO implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
     public Double getStars() {
@@ -138,6 +168,9 @@ public class SpecialistDTO implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", birth='" + getBirth() + "'" +
             ", gender='" + getGender() + "'" +
+            ", degree='" + getDegree() + "'" +
+            ", field='" + getField() + "'" +
+            ", resume='" + getResume() + "'" +
             ", stars=" + getStars() +
             ", image='" + getImage() + "'" +
             ", busy='" + isBusy() + "'" +

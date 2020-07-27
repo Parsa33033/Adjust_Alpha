@@ -1,7 +1,9 @@
 import 'package:adjust_client/states/authentication_state.dart';
 import 'package:adjust_client/states/cart_state.dart';
 import 'package:adjust_client/states/client_state.dart';
+import 'package:adjust_client/states/program_state.dart';
 import 'package:adjust_client/states/shoping_state.dart';
+import 'package:adjust_client/states/specialist_state.dart';
 import 'package:adjust_client/states/token_state.dart';
 import 'package:adjust_client/states/tutorial_state.dart';
 import 'package:adjust_client/states/user_state.dart';
@@ -15,7 +17,10 @@ AppState appStateInit = AppState(
     cartState: cartStateInit,
     tutorialState: tutorialStateInit,
     tutorialListState: tutorialListStateInit,
-    clientTutorialsState: clientTutorialsStateInit);
+    clientTutorialsState: clientTutorialsStateInit,
+    programListState: programListStateInit,
+    specialistListState: specialistListStateInit
+    );
 
 class AppState {
   UserState userState;
@@ -27,6 +32,8 @@ class AppState {
   TutorialState tutorialState;
   TutorialListState tutorialListState;
   ClientTutorialsState clientTutorialsState;
+  ProgramListState programListState;
+  SpecialistListState specialistListState;
 
   AppState(
       {this.userState,
@@ -37,5 +44,7 @@ class AppState {
       this.cartState,
       this.tutorialState,
       this.tutorialListState,
-      this.clientTutorialsState});
+      this.clientTutorialsState,
+      this.programListState,
+      this.specialistListState});
 }

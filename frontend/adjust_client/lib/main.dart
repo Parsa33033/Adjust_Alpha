@@ -6,7 +6,9 @@ import 'package:adjust_client/pages/main_page.dart';
 import 'package:adjust_client/pages/profile_page.dart';
 import 'package:adjust_client/reducers/authentication_reducer.dart';
 import 'package:adjust_client/reducers/client_reducer.dart';
+import 'package:adjust_client/reducers/program_reducer.dart';
 import 'package:adjust_client/reducers/shoping_item_reducer.dart';
+import 'package:adjust_client/reducers/specialist_reducer.dart';
 import 'package:adjust_client/reducers/tutorial_reducer.dart';
 import 'package:adjust_client/reducers/user_reducer.dart';
 import 'package:adjust_client/states/app_state.dart';
@@ -25,6 +27,8 @@ void main() {
     TypedReducer<AppState, dynamic>(clientReducer),
     TypedReducer<AppState, dynamic>(shopingItemReducer),
     TypedReducer<AppState, dynamic>(tutorialReducer),
+    TypedReducer<AppState, dynamic>(programReducer),
+    TypedReducer<AppState, dynamic>(specialistReducer),
   ]);
   store = Store<AppState>(reducers, initialState: appStateInit);
 

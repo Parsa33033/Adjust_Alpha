@@ -19,7 +19,7 @@ ClientDTO _$ClientDTOFromJson(Map<String, dynamic> json) {
     _$enumDecodeNullable(_$GenderEnumMap, json['gender']),
     (json['token'] as num)?.toDouble(),
     (json['score'] as num)?.toDouble(),
-    (json['image'] as List)?.map((e) => e as int)?.toList(),
+    json['image'] as String,
     json['imageContentType'] as String,
   );
 }

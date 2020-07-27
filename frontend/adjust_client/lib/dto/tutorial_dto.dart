@@ -8,6 +8,7 @@ class TutorialListDTO {
   List<TutorialDTO> items;
 
   TutorialListDTO(this.items);
+
 }
 
 @JsonSerializable()
@@ -17,7 +18,7 @@ class TutorialDTO extends Tutorial {
       String title,
       String description,
       String text,
-      List<int> thumbnail,
+      String thumbnail,
       String thumbnailContentType,
       double tokenPrice,
       int videoId,

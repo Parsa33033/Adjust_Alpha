@@ -20,12 +20,12 @@
     {
       "fieldName": "bodyCompositionFile",
       "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any"
+      "fieldTypeBlobContent": "image"
     },
     {
       "fieldName": "bloodTestFile",
       "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any"
+      "fieldTypeBlobContent": "image"
     }
   ],
   "relationships": [

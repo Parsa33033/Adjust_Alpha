@@ -124,7 +124,10 @@ export const BodyCompositionUpdate = (props: IBodyCompositionUpdateProps) => {
                     <div>
                       {bodyCompositionFileContentType ? (
                         <a onClick={openFile(bodyCompositionFileContentType, bodyCompositionFile)}>
-                          <Translate contentKey="entity.action.open">Open</Translate>
+                          <img
+                            src={`data:${bodyCompositionFileContentType};base64,${bodyCompositionFile}`}
+                            style={{ maxHeight: '100px' }}
+                          />
                         </a>
                       ) : null}
                       <br />
@@ -142,7 +145,7 @@ export const BodyCompositionUpdate = (props: IBodyCompositionUpdateProps) => {
                       </Row>
                     </div>
                   ) : null}
-                  <input id="file_bodyCompositionFile" type="file" onChange={onBlobChange(false, 'bodyCompositionFile')} />
+                  <input id="file_bodyCompositionFile" type="file" onChange={onBlobChange(true, 'bodyCompositionFile')} accept="image/*" />
                   <AvInput type="hidden" name="bodyCompositionFile" value={bodyCompositionFile} />
                 </AvGroup>
               </AvGroup>
@@ -156,7 +159,7 @@ export const BodyCompositionUpdate = (props: IBodyCompositionUpdateProps) => {
                     <div>
                       {bloodTestFileContentType ? (
                         <a onClick={openFile(bloodTestFileContentType, bloodTestFile)}>
-                          <Translate contentKey="entity.action.open">Open</Translate>
+                          <img src={`data:${bloodTestFileContentType};base64,${bloodTestFile}`} style={{ maxHeight: '100px' }} />
                         </a>
                       ) : null}
                       <br />
@@ -174,7 +177,7 @@ export const BodyCompositionUpdate = (props: IBodyCompositionUpdateProps) => {
                       </Row>
                     </div>
                   ) : null}
-                  <input id="file_bloodTestFile" type="file" onChange={onBlobChange(false, 'bloodTestFile')} />
+                  <input id="file_bloodTestFile" type="file" onChange={onBlobChange(true, 'bloodTestFile')} accept="image/*" />
                   <AvInput type="hidden" name="bloodTestFile" value={bloodTestFile} />
                 </AvGroup>
               </AvGroup>

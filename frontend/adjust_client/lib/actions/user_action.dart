@@ -40,28 +40,6 @@ Future<int> registerUser(BuildContext context, ManagedUserDTO userDTO) async {
     FlutterSecureStorage storage = FlutterSecureStorage();
     await storage.write(key: "jwt", value: jwt);
 
-    //save userDTO in database as UserDomain
-    Database db = Database();
-    SqfliteAdapter adapter = await db.get();
-    UserDomainBean userDomainBean = UserDomainBean(adapter);
-    userDomainBean.createTable(ifNotExists: true);
-
-    UserDomain userDomain = UserDomain(
-        id: "1",
-        email: userDTO.login,
-        login: userDTO.login,
-        firstName: "",
-        lastName: "",
-        imageUrl: "",
-        langKey: "fa");
-
-    final tempUser = await userDomainBean.find("1");
-    if (tempUser == null) {
-      await userDomainBean.insert(userDomain);
-    } else {
-      await userDomainBean.remove("1");
-      await userDomainBean.insert(userDomain);
-    }
 
     String login = userDTO.login;
     String email = userDTO.email;

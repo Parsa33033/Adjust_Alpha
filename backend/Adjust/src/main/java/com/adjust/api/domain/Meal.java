@@ -43,8 +43,8 @@ public class Meal implements Serializable {
     @Column(name = "medium_fat_meat_unit")
     private Integer mediumFatMeatUnit;
 
-    @Column(name = "high_fat_meat_unti")
-    private Integer highFatMeatUnti;
+    @Column(name = "high_fat_meat_unit")
+    private Integer highFatMeatUnit;
 
     @Column(name = "bread_unit")
     private Integer breadUnit;
@@ -171,17 +171,17 @@ public class Meal implements Serializable {
         this.mediumFatMeatUnit = mediumFatMeatUnit;
     }
 
-    public Integer getHighFatMeatUnti() {
-        return highFatMeatUnti;
+    public Integer getHighFatMeatUnit() {
+        return highFatMeatUnit;
     }
 
-    public Meal highFatMeatUnti(Integer highFatMeatUnti) {
-        this.highFatMeatUnti = highFatMeatUnti;
+    public Meal highFatMeatUnit(Integer highFatMeatUnit) {
+        this.highFatMeatUnit = highFatMeatUnit;
         return this;
     }
 
-    public void setHighFatMeatUnti(Integer highFatMeatUnti) {
-        this.highFatMeatUnti = highFatMeatUnti;
+    public void setHighFatMeatUnit(Integer highFatMeatUnit) {
+        this.highFatMeatUnit = highFatMeatUnit;
     }
 
     public Integer getBreadUnit() {
@@ -317,7 +317,7 @@ public class Meal implements Serializable {
             ", highFatDairyUnit=" + getHighFatDairyUnit() +
             ", lowFatMeatUnit=" + getLowFatMeatUnit() +
             ", mediumFatMeatUnit=" + getMediumFatMeatUnit() +
-            ", highFatMeatUnti=" + getHighFatMeatUnti() +
+            ", highFatMeatUnit=" + getHighFatMeatUnit() +
             ", breadUnit=" + getBreadUnit() +
             ", cerealUnit=" + getCerealUnit() +
             ", riceUnit=" + getRiceUnit() +

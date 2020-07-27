@@ -9,7 +9,7 @@ class Client {
   Gender gender;
   double token;
   double score;
-  List<int> image;
+  String image;
   String imageContentType;
 
   Client(

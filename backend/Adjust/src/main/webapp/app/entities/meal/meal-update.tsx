@@ -123,10 +123,10 @@ export const MealUpdate = (props: IMealUpdateProps) => {
                 <AvField id="meal-mediumFatMeatUnit" type="string" className="form-control" name="mediumFatMeatUnit" />
               </AvGroup>
               <AvGroup>
-                <Label id="highFatMeatUntiLabel" for="meal-highFatMeatUnti">
-                  <Translate contentKey="adjustApp.meal.highFatMeatUnti">High Fat Meat Unti</Translate>
+                <Label id="highFatMeatUnitLabel" for="meal-highFatMeatUnit">
+                  <Translate contentKey="adjustApp.meal.highFatMeatUnit">High Fat Meat Unit</Translate>
                 </Label>
-                <AvField id="meal-highFatMeatUnti" type="string" className="form-control" name="highFatMeatUnti" />
+                <AvField id="meal-highFatMeatUnit" type="string" className="form-control" name="highFatMeatUnit" />
               </AvGroup>
               <AvGroup>
                 <Label id="breadUnitLabel" for="meal-breadUnit">

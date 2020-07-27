@@ -1,4 +1,4 @@
-id;name;number;low_fat_dairy_unit;medium_fat_dairy_unit;high_fat_dairy_unit;low_fat_meat_unit;medium_fat_meat_unit;high_fat_meat_unti;bread_unit;cereal_unit;rice_unit;pasta_unit;fruit_unit;vegetable_unit;fat_unit
+id;name;number;low_fat_dairy_unit;medium_fat_dairy_unit;high_fat_dairy_unit;low_fat_meat_unit;medium_fat_meat_unit;high_fat_meat_unit;bread_unit;cereal_unit;rice_unit;pasta_unit;fruit_unit;vegetable_unit;fat_unit
 1;SAS SMS input;16767;69055;99913;23395;18515;79549;4503;23833;20269;78833;66725;50040;46913;63808
 2;Avon;91558;52215;13203;16940;67784;61329;15011;91636;3199;32667;99500;30010;14506;23516
 3;Money Market Account;81590;14037;37593;18218;20296;73609;13631;55037;77008;44714;58145;50141;89767;37390

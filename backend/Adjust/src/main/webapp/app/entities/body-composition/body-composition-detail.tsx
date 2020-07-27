@@ -63,7 +63,10 @@ export const BodyCompositionDetail = (props: IBodyCompositionDetailProps) => {
               <div>
                 {bodyCompositionEntity.bodyCompositionFileContentType ? (
                   <a onClick={openFile(bodyCompositionEntity.bodyCompositionFileContentType, bodyCompositionEntity.bodyCompositionFile)}>
-                    <Translate contentKey="entity.action.open">Open</Translate>&nbsp;
+                    <img
+                      src={`data:${bodyCompositionEntity.bodyCompositionFileContentType};base64,${bodyCompositionEntity.bodyCompositionFile}`}
+                      style={{ maxHeight: '30px' }}
+                    />
                   </a>
                 ) : null}
                 <span>
@@ -82,7 +85,10 @@ export const BodyCompositionDetail = (props: IBodyCompositionDetailProps) => {
               <div>
                 {bodyCompositionEntity.bloodTestFileContentType ? (
                   <a onClick={openFile(bodyCompositionEntity.bloodTestFileContentType, bodyCompositionEntity.bloodTestFile)}>
-                    <Translate contentKey="entity.action.open">Open</Translate>&nbsp;
+                    <img
+                      src={`data:${bodyCompositionEntity.bloodTestFileContentType};base64,${bodyCompositionEntity.bloodTestFile}`}
+                      style={{ maxHeight: '30px' }}
+                    />
                   </a>
                 ) : null}
                 <span>

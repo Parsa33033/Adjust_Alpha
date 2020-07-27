@@ -37,7 +37,7 @@
             <column name="medium_fat_meat_unit" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="high_fat_meat_unti" type="integer">
+            <column name="high_fat_meat_unit" type="integer">
                 <constraints nullable="true" />
             </column>
             <column name="bread_unit" type="integer">
@@ -94,7 +94,7 @@
             <column name="high_fat_dairy_unit" type="numeric"/>
             <column name="low_fat_meat_unit" type="numeric"/>
             <column name="medium_fat_meat_unit" type="numeric"/>
-            <column name="high_fat_meat_unti" type="numeric"/>
+            <column name="high_fat_meat_unit" type="numeric"/>
             <column name="bread_unit" type="numeric"/>
             <column name="cereal_unit" type="numeric"/>
             <column name="rice_unit" type="numeric"/>

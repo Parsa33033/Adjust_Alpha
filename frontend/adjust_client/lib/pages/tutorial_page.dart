@@ -10,7 +10,7 @@ import 'package:adjust_client/components/adjust_info_button.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
+import 'package:adjust_client/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/main.dart';
 import 'package:adjust_client/model/shoping_item.dart';
@@ -37,13 +37,8 @@ class _TutorialPageState extends State<TutorialPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    loadTutorials();
   }
 
-  void loadTutorials() async {
-    int j = await getClientTutorials(context);
-    int i = await getTutorials(context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +51,11 @@ class _TutorialPageState extends State<TutorialPage> {
             child: Text(
               "ویدیوهای آموزشی",
               style:
-                  TextStyle(fontFamily: "Iransans", fontSize: 20, color: FONT_COLOR),
+                  TextStyle(fontFamily: "Iransans", fontSize: 20, color: WHITE_COLOR),
             ),
           ),
         ),
-        backgroundColor: LIGHT_YELLOW_COLOR,
+        backgroundColor: ORANGE_COLOR,
         elevation: 4,
         leading: InkWell(
           child: Icon(Icons.arrow_back),
@@ -72,10 +67,6 @@ class _TutorialPageState extends State<TutorialPage> {
       body: StoreConnector<AppState, AppState>(
         converter: (Store store) => store.state,
         builder: (BuildContext context, AppState state) {
-          double amount = 0;
-          state.cartState.items.forEach((element) {
-            amount += element.price;
-          });
           return Container(
             color: LIGHT_GREY_COLOR,
             child: Column(
@@ -86,7 +77,7 @@ class _TutorialPageState extends State<TutorialPage> {
                       itemCount: state.tutorialListState.items.length,
                       itemBuilder: (BuildContext context, int pos) {
                         Tutorial e = state.tutorialListState.items[pos];
-                        Uint8List imageByte = Uint8List.fromList(e.thumbnail);
+                        Uint8List imageByte = Uint8List.fromList(base64Decode(e.thumbnail));
                         Image image = Image.memory(imageByte);
                         bool isClientTutorial = false;
                         state.clientTutorialsState.items.forEach((element) {
@@ -96,6 +87,7 @@ class _TutorialPageState extends State<TutorialPage> {
                           }
                         });
                         return AdjustInfoButton(
+                          id: e.id.toString(),
                           width: 150,
                           height: 150,
                           title: e == null ? "" : e.description,
@@ -109,10 +101,10 @@ class _TutorialPageState extends State<TutorialPage> {
                           name: e == null ? "" : e.title,
                           fontSize: 14,
                           isVertical: false,
-                          primaryColor: isClientTutorial ? WHITE_COLOR : YELLOW_COLOR,
+                          primaryColor: isClientTutorial ? ORANGE_COLOR : ORANGE_COLOR,
                           primaryColorLight:
-                              isClientTutorial ? WHITE_COLOR : LIGHT_YELLOW_COLOR,
-                          secondaryColor: isClientTutorial ? FONT_COLOR : FONT_COLOR,
+                              isClientTutorial ? ORANGE_COLOR : ORANGE_COLOR,
+                          secondaryColor: isClientTutorial ? WHITE_COLOR : WHITE_COLOR,
                           image: image,
                           func: () async {
                             if (isClientTutorial) {
@@ -126,7 +118,7 @@ class _TutorialPageState extends State<TutorialPage> {
                                     "مقدار توکن شما برای خرید درون برنامه این آموزش کافی نمیباشد!",
                                     false,
                                     null,
-                                    YELLOW_COLOR);
+                                    ORANGE_COLOR);
                               } else {
                                 showAdjustDialog(
                                     context,
@@ -146,18 +138,18 @@ class _TutorialPageState extends State<TutorialPage> {
                                               builder: (context) =>
                                                   TutorialVideoPage(e)));
                                     } else if (i == 0){
-                                      showAdjustDialog(context, FAILURE, false, null, YELLOW_COLOR);
+                                      showAdjustDialog(context, FAILURE, false, null, ORANGE_COLOR);
                                     }
                                   } else if (i == 0) {
                                     Navigator.of(context).pop();
                                   } else if (i == 2) {
                                     // client has the tutorial already
-                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null, YELLOW_COLOR);
+                                    showAdjustDialog(context, CLIENT_HAS_TUTORIAL, false, null, ORANGE_COLOR);
                                   } else if (i == 3) {
                                     // client does not have enough token
-                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null, YELLOW_COLOR);
+                                    showAdjustDialog(context, NOT_ENOUGHT_TOKEN, false, null, ORANGE_COLOR);
                                   }
-                                }, YELLOW_COLOR);
+                                }, ORANGE_COLOR);
                               }
 
                             }

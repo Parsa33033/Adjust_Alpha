@@ -31,6 +31,15 @@
             <column name="gender" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="degree" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="field" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="resume" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="stars" type="double">
                 <constraints nullable="true" />
             </column>
@@ -71,6 +80,9 @@
             <column name="last_name" type="string"/>
             <column name="birth" type="date"/>
             <column name="gender" type="string"/>
+            <column name="degree" type="string"/>
+            <column name="field" type="string"/>
+            <column name="resume" type="string"/>
             <column name="stars" type="numeric"/>
             <column name="image" type="blob"/>
             <column name="image_content_type" type="string"/>

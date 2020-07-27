@@ -58,7 +58,7 @@ export const Meal = (props: IMealProps) => {
                   <Translate contentKey="adjustApp.meal.mediumFatMeatUnit">Medium Fat Meat Unit</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="adjustApp.meal.highFatMeatUnti">High Fat Meat Unti</Translate>
+                  <Translate contentKey="adjustApp.meal.highFatMeatUnit">High Fat Meat Unit</Translate>
                 </th>
                 <th>
                   <Translate contentKey="adjustApp.meal.breadUnit">Bread Unit</Translate>
@@ -102,7 +102,7 @@ export const Meal = (props: IMealProps) => {
                   <td>{meal.highFatDairyUnit}</td>
                   <td>{meal.lowFatMeatUnit}</td>
                   <td>{meal.mediumFatMeatUnit}</td>
-                  <td>{meal.highFatMeatUnti}</td>
+                  <td>{meal.highFatMeatUnit}</td>
                   <td>{meal.breadUnit}</td>
                   <td>{meal.cerealUnit}</td>
                   <td>{meal.riceUnit}</td>

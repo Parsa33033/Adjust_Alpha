@@ -68,11 +68,11 @@ export const MealDetail = (props: IMealDetailProps) => {
           </dt>
           <dd>{mealEntity.mediumFatMeatUnit}</dd>
           <dt>
-            <span id="highFatMeatUnti">
-              <Translate contentKey="adjustApp.meal.highFatMeatUnti">High Fat Meat Unti</Translate>
+            <span id="highFatMeatUnit">
+              <Translate contentKey="adjustApp.meal.highFatMeatUnit">High Fat Meat Unit</Translate>
             </span>
           </dt>
-          <dd>{mealEntity.highFatMeatUnti}</dd>
+          <dd>{mealEntity.highFatMeatUnit}</dd>
           <dt>
             <span id="breadUnit">
               <Translate contentKey="adjustApp.meal.breadUnit">Bread Unit</Translate>

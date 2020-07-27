@@ -17,16 +17,16 @@ Future<String> getJwt(BuildContext context) async {
       }
       return jwt;
     } catch(e) {
-      jwt = await getJwtByStore();
+      jwt = await _getJwtByStore();
       return jwt;
     }
   } else {
-    jwt = await getJwtByStore();
+    jwt = await _getJwtByStore();
     return jwt;
   }
 }
 
-Future<String> getJwtByStore() async {
+Future<String> _getJwtByStore() async {
   String jwt;
   try {
     jwt = store.state.authenticationState.jwt;

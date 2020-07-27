@@ -40,15 +40,9 @@ Future<int> updateClient(BuildContext context, ClientDTO clientDTO) async {
   if (response.statusCode == HttpStatus.ok) {
     Map<String, dynamic> m = jsonDecode(utf8.decode(response.bodyBytes));
 
-    if (m["image"] != null) {
-      List l = List.of(base64Decode(m["image"]));
-      List<int> imageByte = List<int>.from(l);
-      m["image"] = imageByte;
-    }
 
     ClientDTO client = ClientDTO.fromJson(m);
     setClientState(context, client);
-//    await setClientDomain(context, client);
 
     return 1;
   }
@@ -64,16 +58,10 @@ Future<int> getClient(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     Map<String, dynamic> m = jsonDecode(utf8.decode(response.bodyBytes));
 
-    if (m["image"] != null) {
-      List l = List.of(base64Decode(m["image"]));
-      List<int> imageByte = List<int>.from(l);
-      m["image"] = imageByte;
-    }
-
     ClientDTO clientDTO = ClientDTO.fromJson(m);
     Client client = clientDTO;
     setClientState(context, client);
-//    await setClientDomain(context, client);
+
     return 1;
   }
   return 0;

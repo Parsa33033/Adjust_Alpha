@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:adjust_client/actions/shoping_action.dart';
@@ -5,7 +6,7 @@ import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/adjust_raised_button.dart';
 import 'package:adjust_client/components/adjust_text_field.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
+import 'package:adjust_client/constants/adjust_colors.dart';
 import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/dto/cart_dto.dart';
 import 'package:adjust_client/dto/order_dto.dart';
@@ -326,7 +327,7 @@ class _OrderPageState extends State<OrderPage> {
                                   List<ShopingItemDTO> items = state
                                       .cartState.items
                                       .map((e) => ShopingItemDTO(
-                                          null,
+                                          e.id,
                                           e.name,
                                           e.description,
                                           e.token,

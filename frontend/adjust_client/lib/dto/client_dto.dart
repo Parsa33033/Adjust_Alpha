@@ -16,7 +16,7 @@ class ClientDTO extends Client {
       Gender gender,
       double token,
       double score,
-      List<int> image,
+      String image,
       String imageContentType)
       : super(id, username, firstName, lastName, birthDate, age, gender, token,
             score, image, imageContentType);

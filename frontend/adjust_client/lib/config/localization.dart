@@ -14,3 +14,12 @@ Jalali georgianToJalali(DateTime dateTime) {
   Jalali jalali = Jalali.fromDateTime(dateTime);
   return jalali;
 }
+
+String jalaliToString (Jalali jalali) {
+  int year = jalali.year;
+  int month = jalali.month;
+  int day = jalali.day;
+  String dateString = "${year}/${month}/${day}";
+  return dateString;
+}
+

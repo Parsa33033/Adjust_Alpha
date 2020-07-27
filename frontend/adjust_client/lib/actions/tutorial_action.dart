@@ -40,7 +40,6 @@ Future<int> getTutorials(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     List l = jsonDecode(utf8.decode(response.bodyBytes));
     List<TutorialDTO> items = l.map((e) {
-      e["thumbnail"] = base64Decode(e["thumbnail"]);
       TutorialDTO tutorialDTO = TutorialDTO.fromJson(e);
       return tutorialDTO;
     }).toList();
@@ -88,7 +87,6 @@ Future<int> getClientTutorials(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     List l = jsonDecode(utf8.decode(response.bodyBytes));
     List<TutorialDTO> items = l.map((e) {
-      e["thumbnail"] = base64Decode(e["thumbnail"]);
       return TutorialDTO.fromJson(e);
     }).toList();
     ClientTutorialsState tutorialListState = ClientTutorialsState(items);

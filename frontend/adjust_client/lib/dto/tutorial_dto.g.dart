@@ -26,7 +26,7 @@ TutorialDTO _$TutorialDTOFromJson(Map<String, dynamic> json) {
     json['title'] as String,
     json['description'] as String,
     json['text'] as String,
-    (json['thumbnail'] as List)?.map((e) => e as int)?.toList(),
+    json['thumbnail'] as String,
     json['thumbnailContentType'] as String,
     (json['tokenPrice'] as num)?.toDouble(),
     json['videoId'] as int,

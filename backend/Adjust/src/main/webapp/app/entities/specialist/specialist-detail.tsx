@@ -58,6 +58,24 @@ export const SpecialistDetail = (props: ISpecialistDetailProps) => {
           </dt>
           <dd>{specialistEntity.gender}</dd>
           <dt>
+            <span id="degree">
+              <Translate contentKey="adjustApp.specialist.degree">Degree</Translate>
+            </span>
+          </dt>
+          <dd>{specialistEntity.degree}</dd>
+          <dt>
+            <span id="field">
+              <Translate contentKey="adjustApp.specialist.field">Field</Translate>
+            </span>
+          </dt>
+          <dd>{specialistEntity.field}</dd>
+          <dt>
+            <span id="resume">
+              <Translate contentKey="adjustApp.specialist.resume">Resume</Translate>
+            </span>
+          </dt>
+          <dd>{specialistEntity.resume}</dd>
+          <dt>
             <span id="stars">
               <Translate contentKey="adjustApp.specialist.stars">Stars</Translate>
             </span>

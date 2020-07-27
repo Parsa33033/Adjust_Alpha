@@ -130,6 +130,24 @@ export const SpecialistUpdate = (props: ISpecialistUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
+                <Label id="degreeLabel" for="specialist-degree">
+                  <Translate contentKey="adjustApp.specialist.degree">Degree</Translate>
+                </Label>
+                <AvField id="specialist-degree" type="text" name="degree" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="fieldLabel" for="specialist-field">
+                  <Translate contentKey="adjustApp.specialist.field">Field</Translate>
+                </Label>
+                <AvField id="specialist-field" type="text" name="field" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="resumeLabel" for="specialist-resume">
+                  <Translate contentKey="adjustApp.specialist.resume">Resume</Translate>
+                </Label>
+                <AvField id="specialist-resume" type="text" name="resume" />
+              </AvGroup>
+              <AvGroup>
                 <Label id="starsLabel" for="specialist-stars">
                   <Translate contentKey="adjustApp.specialist.stars">Stars</Translate>
                 </Label>

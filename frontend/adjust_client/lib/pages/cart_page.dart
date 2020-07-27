@@ -61,7 +61,7 @@ class CartPage extends StatelessWidget {
                       itemCount: state.cartState.items.length,
                       itemBuilder: (BuildContext context, int pos) {
                         ShopingItem e = state.cartState.items[pos];
-                        Uint8List imageByte = Uint8List.fromList(e.image);
+                        Uint8List imageByte = Uint8List.fromList(base64Decode(e.image));
                         Image image = Image.memory(imageByte);
                         return Dismissible(
                           key: Key(e.name),
@@ -71,6 +71,7 @@ class CartPage extends StatelessWidget {
                                 RemoveFromCartAction(payload: state.cartState));
                           },
                           child: AdjustInfoButton(
+                            id: e.id.toString(),
                             width: 130,
                             height: 130,
                             title: e == null

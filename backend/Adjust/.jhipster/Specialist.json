@@ -23,6 +23,18 @@
       "fieldValues": "MALE,FEMALE"
     },
     {
+      "fieldName": "degree",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "field",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resume",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "stars",
       "fieldType": "Double"
     },

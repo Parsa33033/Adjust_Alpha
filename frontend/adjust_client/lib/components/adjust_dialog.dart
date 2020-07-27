@@ -10,7 +10,7 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
     child: Dialog(
      child: Container(
        padding: EdgeInsets.all(20),
-//       height: 400,
+       height: 400,
        child: SingleChildScrollView(
          child: LimitedBox(
            maxHeight: 400,
@@ -24,37 +24,40 @@ void showAdjustDialog(BuildContext context, String text, bool isChoice, Function
                ),
                isChoice
                    ?
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                 children: <Widget>[
-                   Container(
-                       child: AdjustRaisedButton(
-                         textDirection: TextDirection.rtl,
-                         height: 40,
-                         width: 80,
-                         primaryColor: color == null ? GREEN_COLOR : color,
-                         secondaryColor: color == null ? GREEN_COLOR : color,
-                         text: CANCEL,
-                         onPressed: () {
-                           Navigator.of(context, rootNavigator: true).pop("dialog");
-                         },
-                       )
-                   ),
-                   Container(
-                       child: AdjustRaisedButton(
-                         textDirection: TextDirection.rtl,
-                         height: 40,
-                         width: 80,
-                         primaryColor: color == null ? GREEN_COLOR : color,
-                         secondaryColor: color == null ? GREEN_COLOR : color,
-                         text: OK,
-                         onPressed: () {
-                           Navigator.of(context, rootNavigator: true).pop("dialog");
-                           func();
-                         },
-                       )
-                   )
-                 ],
+               Container(
+                 height: 50,
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                   children: <Widget>[
+                     Container(
+                         child: AdjustRaisedButton(
+                           textDirection: TextDirection.rtl,
+                           height: 40,
+                           width: 80,
+                           primaryColor: color == null ? GREEN_COLOR : color,
+                           secondaryColor: color == null ? GREEN_COLOR : color,
+                           text: CANCEL,
+                           onPressed: () {
+                             Navigator.of(context, rootNavigator: true).pop("dialog");
+                           },
+                         )
+                     ),
+                     Container(
+                         child: AdjustRaisedButton(
+                           textDirection: TextDirection.rtl,
+                           height: 40,
+                           width: 80,
+                           primaryColor: color == null ? GREEN_COLOR : color,
+                           secondaryColor: color == null ? GREEN_COLOR : color,
+                           text: OK,
+                           onPressed: () {
+                             Navigator.of(context, rootNavigator: true).pop("dialog");
+                             func();
+                           },
+                         )
+                     )
+                   ],
+                 ),
                )
                    :
                Container(

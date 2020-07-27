@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
@@ -147,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         .cropCompleted(_image, pictureQuality: 512);
                     Uint8List image = await imageFile.readAsBytes();
                     ClientDTO clientDTO = ClientDTO(null, null, null, null,
-                        null, null, null, null, null, image, "image/jpeg");
+                        null, null, null, null, null, base64Encode(image), "image/jpeg");
 
                     int i = await updateClient(context, clientDTO);
                     if (i == 1) {
@@ -155,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
                       Navigator.of(context, rootNavigator: true).pop("dialog");
-                      List<int> imgList = state.clientState.image;
+                      List<int> imgList = base64Decode(state.clientState.image);
                       Uint8List imgByte = Uint8List.fromList(imgList);
                       setState(() {
                         avatarImage = Image.memory(imgByte);
@@ -436,7 +437,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     disable: true,
                                     onSelect: (date) {
                                       birthDateConfirmTextFieldController.text =
-                                          date;
+                                          NumberUtility.changeDigit(date, NumStrLanguage.Farsi);
                                     },
                                   );
                                 },
@@ -506,8 +507,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                           firstNameTextFieldController.text,
                                           lastNameTextFieldController.text,
                                           jalaliToGeorgianDateTime(
-                                              birthDateConfirmTextFieldController
-                                                  .text),
+                                              NumberUtility.changeDigit(birthDateConfirmTextFieldController
+                                                  .text, NumStrLanguage.English)),
                                           null,
                                           EnumToString.fromString(
                                               Gender.values, genderValue),

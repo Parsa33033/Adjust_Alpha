@@ -7,7 +7,7 @@ export interface IMeal {
   highFatDairyUnit?: number;
   lowFatMeatUnit?: number;
   mediumFatMeatUnit?: number;
-  highFatMeatUnti?: number;
+  highFatMeatUnit?: number;
   breadUnit?: number;
   cerealUnit?: number;
   riceUnit?: number;

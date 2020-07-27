@@ -13,7 +13,7 @@ class ShopingItem {
   double token;
   double price;
 
-  List<int> image;
+  String image;
   String imageContentType;
 
   bool orderable;

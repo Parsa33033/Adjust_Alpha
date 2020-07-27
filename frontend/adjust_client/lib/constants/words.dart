@@ -56,3 +56,8 @@ final String CITY = "شهر";
 final String ADDRESS = "آدرس";
 
 final String ORDER = "سفارش";
+
+final String HEIGHT = "قد";
+final String WEIGHT = "وزن";
+final String WRIST = "دور مچ";
+

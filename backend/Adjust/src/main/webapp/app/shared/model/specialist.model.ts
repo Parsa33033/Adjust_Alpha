@@ -9,6 +9,9 @@ export interface ISpecialist {
   lastName?: string;
   birth?: string;
   gender?: Gender;
+  degree?: string;
+  field?: string;
+  resume?: string;
   stars?: number;
   imageContentType?: string;
   image?: any;

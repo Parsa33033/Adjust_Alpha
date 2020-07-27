@@ -51,6 +51,15 @@ public class SpecialistResourceIT {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
+    private static final String DEFAULT_DEGREE = "AAAAAAAAAA";
+    private static final String UPDATED_DEGREE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FIELD = "AAAAAAAAAA";
+    private static final String UPDATED_FIELD = "BBBBBBBBBB";
+
+    private static final String DEFAULT_RESUME = "AAAAAAAAAA";
+    private static final String UPDATED_RESUME = "BBBBBBBBBB";
+
     private static final Double DEFAULT_STARS = 1D;
     private static final Double UPDATED_STARS = 2D;
 
@@ -92,6 +101,9 @@ public class SpecialistResourceIT {
             .lastName(DEFAULT_LAST_NAME)
             .birth(DEFAULT_BIRTH)
             .gender(DEFAULT_GENDER)
+            .degree(DEFAULT_DEGREE)
+            .field(DEFAULT_FIELD)
+            .resume(DEFAULT_RESUME)
             .stars(DEFAULT_STARS)
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
@@ -111,6 +123,9 @@ public class SpecialistResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .birth(UPDATED_BIRTH)
             .gender(UPDATED_GENDER)
+            .degree(UPDATED_DEGREE)
+            .field(UPDATED_FIELD)
+            .resume(UPDATED_RESUME)
             .stars(UPDATED_STARS)
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
@@ -143,6 +158,9 @@ public class SpecialistResourceIT {
         assertThat(testSpecialist.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testSpecialist.getBirth()).isEqualTo(DEFAULT_BIRTH);
         assertThat(testSpecialist.getGender()).isEqualTo(DEFAULT_GENDER);
+        assertThat(testSpecialist.getDegree()).isEqualTo(DEFAULT_DEGREE);
+        assertThat(testSpecialist.getField()).isEqualTo(DEFAULT_FIELD);
+        assertThat(testSpecialist.getResume()).isEqualTo(DEFAULT_RESUME);
         assertThat(testSpecialist.getStars()).isEqualTo(DEFAULT_STARS);
         assertThat(testSpecialist.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testSpecialist.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
@@ -186,6 +204,9 @@ public class SpecialistResourceIT {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].birth").value(hasItem(DEFAULT_BIRTH.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
+            .andExpect(jsonPath("$.[*].degree").value(hasItem(DEFAULT_DEGREE)))
+            .andExpect(jsonPath("$.[*].field").value(hasItem(DEFAULT_FIELD)))
+            .andExpect(jsonPath("$.[*].resume").value(hasItem(DEFAULT_RESUME)))
             .andExpect(jsonPath("$.[*].stars").value(hasItem(DEFAULT_STARS.doubleValue())))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
@@ -208,6 +229,9 @@ public class SpecialistResourceIT {
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.birth").value(DEFAULT_BIRTH.toString()))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
+            .andExpect(jsonPath("$.degree").value(DEFAULT_DEGREE))
+            .andExpect(jsonPath("$.field").value(DEFAULT_FIELD))
+            .andExpect(jsonPath("$.resume").value(DEFAULT_RESUME))
             .andExpect(jsonPath("$.stars").value(DEFAULT_STARS.doubleValue()))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
@@ -239,6 +263,9 @@ public class SpecialistResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .birth(UPDATED_BIRTH)
             .gender(UPDATED_GENDER)
+            .degree(UPDATED_DEGREE)
+            .field(UPDATED_FIELD)
+            .resume(UPDATED_RESUME)
             .stars(UPDATED_STARS)
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
@@ -259,6 +286,9 @@ public class SpecialistResourceIT {
         assertThat(testSpecialist.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testSpecialist.getBirth()).isEqualTo(UPDATED_BIRTH);
         assertThat(testSpecialist.getGender()).isEqualTo(UPDATED_GENDER);
+        assertThat(testSpecialist.getDegree()).isEqualTo(UPDATED_DEGREE);
+        assertThat(testSpecialist.getField()).isEqualTo(UPDATED_FIELD);
+        assertThat(testSpecialist.getResume()).isEqualTo(UPDATED_RESUME);
         assertThat(testSpecialist.getStars()).isEqualTo(UPDATED_STARS);
         assertThat(testSpecialist.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testSpecialist.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);

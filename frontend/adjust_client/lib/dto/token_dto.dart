@@ -7,7 +7,7 @@ part 'token_dto.g.dart';
 @JsonSerializable()
 class TokenItemDTO extends TokenItem {
   TokenItemDTO(int id, String name, String description, double token,
-      double price, List<int> image, String imageContentType, bool orderable)
+      double price, String image, String imageContentType, bool orderable)
       : super(id, name, description, token, price, image, imageContentType,
       orderable);
 

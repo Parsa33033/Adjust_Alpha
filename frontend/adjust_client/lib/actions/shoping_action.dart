@@ -50,12 +50,8 @@ Future<int> getShopingItems(BuildContext context) async {
   );
   if (response.statusCode == HttpStatus.ok) {
     List m = jsonDecode(utf8.decode(response.bodyBytes));
-    List content = m.map((e) {
-      e["image"] = base64Decode(e["image"]);
-      return e;
-    }).toList();
     List<ShopingItem> shopingList =
-        content.map((e) => ShopingItemDTO.fromJson(e)).toList();
+      m.map((e) => ShopingItemDTO.fromJson(e)).toList();
     Shoping shoping = Shoping(shopingList);
     setShopingState(context, shoping);
     return 1;
@@ -70,7 +66,6 @@ Future<int> getTokenItems(BuildContext context) async {
   if (response.statusCode == HttpStatus.ok) {
     List m = jsonDecode(utf8.decode(response.bodyBytes));
     List content = m.map((e) {
-      e["image"] = base64Decode(e["image"]);
       return e;
     }).toList();
 

@@ -53,8 +53,8 @@ public class MealResourceIT {
     private static final Integer DEFAULT_MEDIUM_FAT_MEAT_UNIT = 1;
     private static final Integer UPDATED_MEDIUM_FAT_MEAT_UNIT = 2;
 
-    private static final Integer DEFAULT_HIGH_FAT_MEAT_UNTI = 1;
-    private static final Integer UPDATED_HIGH_FAT_MEAT_UNTI = 2;
+    private static final Integer DEFAULT_HIGH_FAT_MEAT_UNIT = 1;
+    private static final Integer UPDATED_HIGH_FAT_MEAT_UNIT = 2;
 
     private static final Integer DEFAULT_BREAD_UNIT = 1;
     private static final Integer UPDATED_BREAD_UNIT = 2;
@@ -109,7 +109,7 @@ public class MealResourceIT {
             .highFatDairyUnit(DEFAULT_HIGH_FAT_DAIRY_UNIT)
             .lowFatMeatUnit(DEFAULT_LOW_FAT_MEAT_UNIT)
             .mediumFatMeatUnit(DEFAULT_MEDIUM_FAT_MEAT_UNIT)
-            .highFatMeatUnti(DEFAULT_HIGH_FAT_MEAT_UNTI)
+            .highFatMeatUnit(DEFAULT_HIGH_FAT_MEAT_UNIT)
             .breadUnit(DEFAULT_BREAD_UNIT)
             .cerealUnit(DEFAULT_CEREAL_UNIT)
             .riceUnit(DEFAULT_RICE_UNIT)
@@ -134,7 +134,7 @@ public class MealResourceIT {
             .highFatDairyUnit(UPDATED_HIGH_FAT_DAIRY_UNIT)
             .lowFatMeatUnit(UPDATED_LOW_FAT_MEAT_UNIT)
             .mediumFatMeatUnit(UPDATED_MEDIUM_FAT_MEAT_UNIT)
-            .highFatMeatUnti(UPDATED_HIGH_FAT_MEAT_UNTI)
+            .highFatMeatUnit(UPDATED_HIGH_FAT_MEAT_UNIT)
             .breadUnit(UPDATED_BREAD_UNIT)
             .cerealUnit(UPDATED_CEREAL_UNIT)
             .riceUnit(UPDATED_RICE_UNIT)
@@ -172,7 +172,7 @@ public class MealResourceIT {
         assertThat(testMeal.getHighFatDairyUnit()).isEqualTo(DEFAULT_HIGH_FAT_DAIRY_UNIT);
         assertThat(testMeal.getLowFatMeatUnit()).isEqualTo(DEFAULT_LOW_FAT_MEAT_UNIT);
         assertThat(testMeal.getMediumFatMeatUnit()).isEqualTo(DEFAULT_MEDIUM_FAT_MEAT_UNIT);
-        assertThat(testMeal.getHighFatMeatUnti()).isEqualTo(DEFAULT_HIGH_FAT_MEAT_UNTI);
+        assertThat(testMeal.getHighFatMeatUnit()).isEqualTo(DEFAULT_HIGH_FAT_MEAT_UNIT);
         assertThat(testMeal.getBreadUnit()).isEqualTo(DEFAULT_BREAD_UNIT);
         assertThat(testMeal.getCerealUnit()).isEqualTo(DEFAULT_CEREAL_UNIT);
         assertThat(testMeal.getRiceUnit()).isEqualTo(DEFAULT_RICE_UNIT);
@@ -221,7 +221,7 @@ public class MealResourceIT {
             .andExpect(jsonPath("$.[*].highFatDairyUnit").value(hasItem(DEFAULT_HIGH_FAT_DAIRY_UNIT)))
             .andExpect(jsonPath("$.[*].lowFatMeatUnit").value(hasItem(DEFAULT_LOW_FAT_MEAT_UNIT)))
             .andExpect(jsonPath("$.[*].mediumFatMeatUnit").value(hasItem(DEFAULT_MEDIUM_FAT_MEAT_UNIT)))
-            .andExpect(jsonPath("$.[*].highFatMeatUnti").value(hasItem(DEFAULT_HIGH_FAT_MEAT_UNTI)))
+            .andExpect(jsonPath("$.[*].highFatMeatUnit").value(hasItem(DEFAULT_HIGH_FAT_MEAT_UNIT)))
             .andExpect(jsonPath("$.[*].breadUnit").value(hasItem(DEFAULT_BREAD_UNIT)))
             .andExpect(jsonPath("$.[*].cerealUnit").value(hasItem(DEFAULT_CEREAL_UNIT)))
             .andExpect(jsonPath("$.[*].riceUnit").value(hasItem(DEFAULT_RICE_UNIT)))
@@ -249,7 +249,7 @@ public class MealResourceIT {
             .andExpect(jsonPath("$.highFatDairyUnit").value(DEFAULT_HIGH_FAT_DAIRY_UNIT))
             .andExpect(jsonPath("$.lowFatMeatUnit").value(DEFAULT_LOW_FAT_MEAT_UNIT))
             .andExpect(jsonPath("$.mediumFatMeatUnit").value(DEFAULT_MEDIUM_FAT_MEAT_UNIT))
-            .andExpect(jsonPath("$.highFatMeatUnti").value(DEFAULT_HIGH_FAT_MEAT_UNTI))
+            .andExpect(jsonPath("$.highFatMeatUnit").value(DEFAULT_HIGH_FAT_MEAT_UNIT))
             .andExpect(jsonPath("$.breadUnit").value(DEFAULT_BREAD_UNIT))
             .andExpect(jsonPath("$.cerealUnit").value(DEFAULT_CEREAL_UNIT))
             .andExpect(jsonPath("$.riceUnit").value(DEFAULT_RICE_UNIT))
@@ -286,7 +286,7 @@ public class MealResourceIT {
             .highFatDairyUnit(UPDATED_HIGH_FAT_DAIRY_UNIT)
             .lowFatMeatUnit(UPDATED_LOW_FAT_MEAT_UNIT)
             .mediumFatMeatUnit(UPDATED_MEDIUM_FAT_MEAT_UNIT)
-            .highFatMeatUnti(UPDATED_HIGH_FAT_MEAT_UNTI)
+            .highFatMeatUnit(UPDATED_HIGH_FAT_MEAT_UNIT)
             .breadUnit(UPDATED_BREAD_UNIT)
             .cerealUnit(UPDATED_CEREAL_UNIT)
             .riceUnit(UPDATED_RICE_UNIT)
@@ -312,7 +312,7 @@ public class MealResourceIT {
         assertThat(testMeal.getHighFatDairyUnit()).isEqualTo(UPDATED_HIGH_FAT_DAIRY_UNIT);
         assertThat(testMeal.getLowFatMeatUnit()).isEqualTo(UPDATED_LOW_FAT_MEAT_UNIT);
         assertThat(testMeal.getMediumFatMeatUnit()).isEqualTo(UPDATED_MEDIUM_FAT_MEAT_UNIT);
-        assertThat(testMeal.getHighFatMeatUnti()).isEqualTo(UPDATED_HIGH_FAT_MEAT_UNTI);
+        assertThat(testMeal.getHighFatMeatUnit()).isEqualTo(UPDATED_HIGH_FAT_MEAT_UNIT);
         assertThat(testMeal.getBreadUnit()).isEqualTo(UPDATED_BREAD_UNIT);
         assertThat(testMeal.getCerealUnit()).isEqualTo(UPDATED_CEREAL_UNIT);
         assertThat(testMeal.getRiceUnit()).isEqualTo(UPDATED_RICE_UNIT);

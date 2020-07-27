@@ -23,7 +23,7 @@ public class MealDTO implements Serializable {
 
     private Integer mediumFatMeatUnit;
 
-    private Integer highFatMeatUnti;
+    private Integer highFatMeatUnit;
 
     private Integer breadUnit;
 
@@ -106,12 +106,12 @@ public class MealDTO implements Serializable {
         this.mediumFatMeatUnit = mediumFatMeatUnit;
     }
 
-    public Integer getHighFatMeatUnti() {
-        return highFatMeatUnti;
+    public Integer getHighFatMeatUnit() {
+        return highFatMeatUnit;
     }
 
-    public void setHighFatMeatUnti(Integer highFatMeatUnti) {
-        this.highFatMeatUnti = highFatMeatUnti;
+    public void setHighFatMeatUnit(Integer highFatMeatUnit) {
+        this.highFatMeatUnit = highFatMeatUnit;
     }
 
     public Integer getBreadUnit() {
@@ -207,7 +207,7 @@ public class MealDTO implements Serializable {
             ", highFatDairyUnit=" + getHighFatDairyUnit() +
             ", lowFatMeatUnit=" + getLowFatMeatUnit() +
             ", mediumFatMeatUnit=" + getMediumFatMeatUnit() +
-            ", highFatMeatUnti=" + getHighFatMeatUnti() +
+            ", highFatMeatUnit=" + getHighFatMeatUnit() +
             ", breadUnit=" + getBreadUnit() +
             ", cerealUnit=" + getCerealUnit() +
             ", riceUnit=" + getRiceUnit() +

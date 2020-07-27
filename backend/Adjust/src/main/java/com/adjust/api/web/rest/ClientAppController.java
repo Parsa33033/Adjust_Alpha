@@ -1,16 +1,14 @@
 package com.adjust.api.web.rest;
 
-import com.adjust.api.domain.AdjustClient;
-import com.adjust.api.domain.Tutorial;
-import com.adjust.api.domain.TutorialVideo;
+import com.adjust.api.domain.*;
 import com.adjust.api.repository.AdjustClientRepository;
+import com.adjust.api.repository.AdjustProgramRepository;
 import com.adjust.api.repository.TutorialRepository;
 import com.adjust.api.security.SecurityUtils;
 import com.adjust.api.security.jwt.TokenProvider;
 import com.adjust.api.service.*;
 import com.adjust.api.service.dto.*;
-import com.adjust.api.service.mapper.AdjustClientMapper;
-import com.adjust.api.service.mapper.TutorialMapper;
+import com.adjust.api.service.mapper.*;
 import com.adjust.api.web.rest.errors.BadRequestAlertException;
 import com.adjust.api.web.rest.errors.InvalidPasswordException;
 import com.adjust.api.web.rest.errors.LoginAlreadyUsedException;
@@ -27,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
@@ -34,8 +33,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -85,19 +86,49 @@ public class ClientAppController {
     private final AdjustTokensResource adjustTokensResource;
     private final AdjustTokensService adjustTokensService;
 
+    private final SpecialistService specialistService;
+    private final SpecialistMapper specialistMapper;
+
+    private final AdjustProgramService adjustProgramService;
+    private final BodyCompositionService bodyCompositionService;
+    private final FitnessProgramService fitnessProgramService;
+    private final NutritionProgramService nutritionProgramService;
+    private final MealService mealService;
+    private final WorkoutService workoutService;
+    private final ExerciseService exerciseService;
+    private final MoveService moveService;
+
+    private final AdjustProgramMapper adjustProgramMapper;
+    private final BodyCompositionMapper bodyCompositionMapper;
+    private final NutritionProgramMapper nutritionProgramMapper;
+    private final FitnessProgramMapper fitnessProgramMapper;
+    private final MealMapper mealMapper;
+    private final WorkoutMapper workoutMapper;
+    private final ExerciseMapper exerciseMapper;
+    private final MoveMapper moveMapper;
+
+    private final AdjustProgramRepository adjustProgramRepository;
+
+
     public ClientAppController(UserService userService, UserJWTController userJWTController, TokenProvider tokenProvider, AdjustClientService adjustClientService,
                                AdjustClientRepository adjustClientRepository, AdjustClientMapper adjustClientMapper,
                                AdjustTokensResource adjustTokensResource, AdjustTutorialService adjustTutorialService,
                                TutorialRepository tutorialRepository, AdjustTutorialVideoService adjustTutorialVideoService,
                                TutorialService tutorialService, TutorialVideoService tutorialVideoService, TutorialMapper tutorialMapper,
                                AdjustShopingItemService adjustShopingItemService, OrderService orderService,
-                               CartService cartService, ShopingItemService shopingItemService, AdjustTokensService adjustTokensService) {
+                               CartService cartService, ShopingItemService shopingItemService, AdjustTokensService adjustTokensService,
+                               SpecialistService specialistService, SpecialistMapper specialistMapper, AdjustProgramService adjustProgramService, BodyCompositionService bodyCompositionService,
+                               FitnessProgramService fitnessProgramService, NutritionProgramService nutritionProgramService,
+                               MealService mealService, WorkoutService workoutService, ExerciseService exerciseService, MoveService moveService,
+                               BodyCompositionMapper bodyCompositionMapper, NutritionProgramMapper nutritionProgramMapper, FitnessProgramMapper fitnessProgramMapper, MealMapper mealMapper,
+                               WorkoutMapper workoutMapper, ExerciseMapper exerciseMapper, MoveMapper moveMapper,
+                               AdjustProgramRepository adjustProgramRepository, AdjustProgramMapper adjustProgramMapper) {
         this.userService = userService;
         this.userJWTController = userJWTController;
         this.tokenProvider = tokenProvider;
         this.adjustClientService = adjustClientService;
         this.adjustClientRepository = adjustClientRepository;
-        this.adjustClientMapper = adjustClientMapper;;
+        this.adjustClientMapper = adjustClientMapper;
         this.adjustTutorialService = adjustTutorialService;
         this.adjustTutorialVideoService = adjustTutorialVideoService;
         this.tutorialRepository = tutorialRepository;
@@ -110,6 +141,25 @@ public class ClientAppController {
         this.shopingItemService = shopingItemService;
         this.adjustTokensResource = adjustTokensResource;
         this.adjustTokensService = adjustTokensService;
+        this.specialistService = specialistService;
+        this.specialistMapper = specialistMapper;
+        this.adjustProgramService = adjustProgramService;
+        this.bodyCompositionService = bodyCompositionService;
+        this.fitnessProgramService = fitnessProgramService;
+        this.nutritionProgramService = nutritionProgramService;
+        this.mealService = mealService;
+        this.workoutService = workoutService;
+        this.exerciseService = exerciseService;
+        this.moveService = moveService;
+        this.bodyCompositionMapper = bodyCompositionMapper;
+        this.nutritionProgramMapper = nutritionProgramMapper;
+        this.fitnessProgramMapper = fitnessProgramMapper;
+        this.mealMapper = mealMapper;
+        this.workoutMapper = workoutMapper;
+        this.exerciseMapper = exerciseMapper;
+        this.moveMapper = moveMapper;
+        this.adjustProgramRepository = adjustProgramRepository;
+        this.adjustProgramMapper = adjustProgramMapper;
     }
 
     private static boolean checkPasswordLength(String password) {
@@ -124,7 +174,7 @@ public class ClientAppController {
      * @param managedUserVM the managed user View Model.
      * @throws com.adjust.api.web.rest.errors.InvalidPasswordException  {@code 400 (Bad Request)} if the password is incorrect.
      * @throws com.adjust.api.web.rest.errors.EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
+     * @throws LoginAlreadyUsedException                                {@code 400 (Bad Request)} if the login is already used.
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
@@ -162,6 +212,7 @@ public class ClientAppController {
 
     /**
      * get adjust client for login
+     *
      * @return
      */
     @GetMapping("/adjust-clients")
@@ -204,6 +255,7 @@ public class ClientAppController {
 
     /**
      * buy a video by client app
+     *
      * @param videoId
      * @param response
      * @return
@@ -259,6 +311,7 @@ public class ClientAppController {
 
     /**
      * get the list of tutorials owned by client
+     *
      * @return
      */
     @GetMapping("/get-tutorials")
@@ -271,6 +324,7 @@ public class ClientAppController {
 
     /**
      * broadcast tutorial video by videoId
+     *
      * @param videoId
      * @param jwt
      * @return
@@ -349,6 +403,7 @@ public class ClientAppController {
 
     /**
      * get the amount of token client has
+     *
      * @return
      */
     @GetMapping("/get-client-token")
@@ -378,6 +433,118 @@ public class ClientAppController {
     public List<AdjustTutorialDTO> getAllAdjustTutorialsForClientApp() {
         log.debug("REST request to get all AdjustTutorials");
         return adjustTutorialService.findAll();
+    }
+
+    /**
+     * {@code GET  /specialists} : get all the specialists.
+     *
+     * @param filter the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of specialists in body.
+     */
+    @GetMapping("/specialists")
+    public List<SpecialistDTO> getAllSpecialists(@RequestParam(required = false) String filter) {
+        if ("conversation-is-null".equals(filter)) {
+            log.debug("REST request to get all Specialists where conversation is null");
+            return specialistService.findAllWhereConversationIsNull();
+        }
+        log.debug("REST request to get all Specialists");
+        return specialistService.findAll();
+    }
+
+    //program request
+
+    /**
+     * reuquest program by client app
+     *
+     * @param dummyAdjustProgramDTO
+     * @return
+     */
+    @PostMapping("/request-program")
+    public ResponseEntity<AdjustProgramDTO> requestForProgramByClient(@RequestBody DummyAdjustProgramDTO dummyAdjustProgramDTO) {
+        // set client id for program
+        String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new AccountResourceException("Current user login not found"));
+        AdjustClientDTO adjustClientDTO = adjustClientRepository.findAdjustClientByUsername(userLogin).map(adjustClientMapper::toDto).get();
+        dummyAdjustProgramDTO.setClientId(adjustClientDTO.getId());
+
+        // set adjust program (nutrition program, fitness program and body composition)
+        BodyCompositionDTO bodyCompositionDTO = bodyCompositionService.save(dummyAdjustProgramDTO.getBodyComposition());
+        dummyAdjustProgramDTO.setBodyCompostionId(bodyCompositionDTO.getId());
+        AdjustProgramDTO adjustProgramDTO = adjustProgramService.save(dummyAdjustProgramDTO);
+        return ResponseEntity.ok().header("charset", "utf-8").body(adjustProgramDTO);
+    }
+
+    /**
+     * {@code GET  /adjust-programs} : get all the adjustPrograms.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adjustPrograms in body.
+     */
+    @Transactional
+    @GetMapping("/adjust-programs")
+    public List<DummyAdjustProgramDTO> getAllAdjustPrograms() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new AccountResourceException("Current user login not found"));
+        AdjustClientDTO adjustClientDTO = adjustClientRepository.findAdjustClientByUsername(userLogin).map(adjustClientMapper::toDto).get();
+        List<AdjustProgram> adjustPrograms = adjustProgramRepository.findAllByClient(adjustClientMapper.toEntity(adjustClientDTO));
+        List<DummyAdjustProgramDTO> adjustProgramDTOList = adjustPrograms.stream().map((program) -> {
+
+            // set adjust program's client
+            AdjustClient adjustClient = program.getClient();
+            DummyAdjustClientDTO dummyAdjustClientDTO = new DummyAdjustClientDTO(adjustClientMapper.toDto(adjustClient));
+
+            // set adjust program's specialist
+            Specialist specialist = program.getSpecialist();
+            DummySpecialistDTO dummySpecialistDTO = new DummySpecialistDTO(specialistMapper.toDto(specialist));
+
+            // set adjust program's body composition
+            BodyComposition bodyComposition = program.getBodyCompostion();
+            DummyBodyCompositionDTO dummyBodyCompositionDTO = new DummyBodyCompositionDTO(bodyCompositionMapper.toDto(bodyComposition));
+
+
+            // set adjust program's nutrition program
+            NutritionProgram nutritionProgram = program.getNutritionProgram();
+            List<DummyMealDTO> dummyMealDTOList = new ArrayList<>();
+            DummyNutritionProgramDTO dummyNutritionProgramDTO = new DummyNutritionProgramDTO();
+            if (nutritionProgram != null) {
+                dummyMealDTOList = nutritionProgram.getMeals().stream().map((meal) -> {
+                    DummyMealDTO dummyMealDTO = new DummyMealDTO(mealMapper.toDto(meal));
+                    return dummyMealDTO;
+                }).collect(Collectors.toList());
+                dummyNutritionProgramDTO = new DummyNutritionProgramDTO(nutritionProgramMapper.toDto(nutritionProgram));
+                dummyNutritionProgramDTO.setMeals(dummyMealDTOList);
+            }
+
+
+            // set adjust programs's fitness program
+            FitnessProgram fitnessProgram = program.getFitnessProgram();
+            List<DummyWorkoutDTO> dummyWorkoutDTOList = new ArrayList<>();
+            DummyFitnessProgramDTO dummyFitnessProgramDTO = new DummyFitnessProgramDTO();
+            if (fitnessProgram != null) {
+                dummyWorkoutDTOList = fitnessProgram.getWorkouts().stream().map((workout) -> {
+                    List<DummyExerciseDTO> dummyExerciseDTOList = workout.getExercises().stream().map((exercise) -> {
+                        DummyMoveDTO dummyMoveDTO = new DummyMoveDTO(moveMapper.toDto(exercise.getMove()));
+                        DummyExerciseDTO dummyExerciseDTO = new DummyExerciseDTO(exerciseMapper.toDto(exercise));
+                        dummyExerciseDTO.setMove(dummyMoveDTO);
+                        return dummyExerciseDTO;
+                    }).collect(Collectors.toList());
+                    DummyWorkoutDTO dummyWorkoutDTO = new DummyWorkoutDTO(workoutMapper.toDto(workout));
+                    dummyWorkoutDTO.setExercises(dummyExerciseDTOList);
+                    return dummyWorkoutDTO;
+                }).collect(Collectors.toList());
+                dummyFitnessProgramDTO = new DummyFitnessProgramDTO(fitnessProgramMapper.toDto(fitnessProgram));
+                dummyFitnessProgramDTO.setWorkouts(dummyWorkoutDTOList);
+            }
+
+
+            DummyAdjustProgramDTO dummyAdjustProgramDTO = new DummyAdjustProgramDTO(adjustProgramMapper.toDto(program));
+            dummyAdjustProgramDTO.setClient(dummyAdjustClientDTO);
+            dummyAdjustProgramDTO.setSpecialist(dummySpecialistDTO);
+            dummyAdjustProgramDTO.setBodyComposition(dummyBodyCompositionDTO);
+            dummyAdjustProgramDTO.setNutritionProgram(dummyNutritionProgramDTO);
+            dummyAdjustProgramDTO.setFitnessProgram(dummyFitnessProgramDTO);
+
+            return dummyAdjustProgramDTO;
+        }).collect(Collectors.toList());
+        log.debug("REST request to get all AdjustPrograms");
+        return adjustProgramDTOList;
     }
 
 }

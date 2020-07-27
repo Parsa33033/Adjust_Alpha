@@ -52,6 +52,15 @@ export const Specialist = (props: ISpecialistProps) => {
                   <Translate contentKey="adjustApp.specialist.gender">Gender</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="adjustApp.specialist.degree">Degree</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="adjustApp.specialist.field">Field</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="adjustApp.specialist.resume">Resume</Translate>
+                </th>
+                <th>
                   <Translate contentKey="adjustApp.specialist.stars">Stars</Translate>
                 </th>
                 <th>
@@ -78,6 +87,9 @@ export const Specialist = (props: ISpecialistProps) => {
                   <td>
                     <Translate contentKey={`adjustApp.Gender.${specialist.gender}`} />
                   </td>
+                  <td>{specialist.degree}</td>
+                  <td>{specialist.field}</td>
+                  <td>{specialist.resume}</td>
                   <td>{specialist.stars}</td>
                   <td>
                     {specialist.image ? (

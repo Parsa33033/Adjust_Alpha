@@ -20,3 +20,8 @@ final String BUY_TUTORIAL_URL = BASE_URL + "/api/client/app/buy-tutorial";
 final String GET_CLIENT_TUTORIALS_URL = BASE_URL + "/api/client/app/get-tutorials";
 final String GET_CLIENT_TUTORIALS_VIDEO_URL = BASE_URL + "/api/client/app/get-tutorial-video";
 final String GET_CLIENT_TOKENS_URL = BASE_URL + "/api/client/app/get-client-token";
+
+final String SPECIALIST_URL = BASE_URL + "/api/client/app/specialists";
+
+final String REQUEST_PROGRAM_URL = BASE_URL + "/api/client/app/request-program";
+final String PROGRAM_URL = BASE_URL + "/api/client/app/adjust-programs";

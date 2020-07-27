@@ -1,14 +1,22 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:adjust_client/actions/program_action.dart';
 import 'package:adjust_client/actions/shoping_action.dart';
+import 'package:adjust_client/actions/specialist_action.dart';
 import 'package:adjust_client/actions/tutorial_action.dart';
+import 'package:adjust_client/components/adjust_dialog.dart';
 import 'package:adjust_client/components/dashboard.dart';
 import 'package:adjust_client/components/preloader.dart';
-import 'file:///F:/Projects/Adjust/alpha/frontend/adjust_client/lib/constants/adjust_colors.dart';
+import 'package:adjust_client/constants/adjust_colors.dart';
+import 'package:adjust_client/constants/words.dart';
 import 'package:adjust_client/notifications/adjust_state_change_notification.dart';
 import 'package:adjust_client/pages/menu_page.dart';
+import 'package:adjust_client/pages/program_page.dart';
+import 'package:adjust_client/pages/program_request_page.dart';
 import 'package:adjust_client/pages/shoping_page.dart';
+import 'package:adjust_client/pages/specialist_page.dart';
 import 'package:adjust_client/pages/tutorial_page.dart';
 import 'package:adjust_client/pages/tutorial_video_page.dart';
 import 'package:adjust_client/states/app_state.dart';
@@ -32,7 +40,7 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin{
   Widget _content;
   GlobalKey _bottomNavigationKey = GlobalKey();
 
@@ -81,7 +89,7 @@ class _MainPageState extends State<MainPage> {
     if (clientState.image == null) {
       _image = Image.asset("assets/adjust_logo1.png");
     } else {
-      Uint8List imageByte = Uint8List.fromList(clientState.image);
+      Uint8List imageByte = Uint8List.fromList(base64Decode(clientState.image));
       _image = Image.memory(imageByte);
     }
   }
@@ -109,19 +117,17 @@ class _MainPageState extends State<MainPage> {
             color: GREEN_COLOR,
             index: 1,
             items: <Widget>[
-              Icon(Icons.open_in_browser, size: 30),
+              Icon(Icons.open_in_browser, size: 30, color: LIGHT_GREY_COLOR,),
               CircleAvatar(
                   radius: 30, child: Image.asset("assets/adjust_logo1.png")),
-              Icon(Icons.shopping_cart, size: 30),
+              Icon(Icons.shopping_cart, size: 30, color: LIGHT_GREY_COLOR,),
             ],
             onTap: (index) {
               //Handle button tap
               if (index == 0) {
                 setState(() {
                   _content = Container(
-                    child: Center(
-                      child: Text("0"),
-                    ),
+                    child: ProgramRequestPage()
                   );
                 });
               } else if (index == 1) {
@@ -204,14 +210,30 @@ class _MainPageState extends State<MainPage> {
                 Expanded(
                   flex: 5,
                   child: menuItem(
-                      "متخصص من", "assets/game_icon.png", ORANGE_COLOR, null),
+                      "آموزش", "assets/game_icon.png", ORANGE_COLOR, () async {
+                    preloader(context);
+                    int j = await getClientTutorials(context);
+                    int i = await getTutorials(context);
+                    if (i == 1 && j == 1) {
+                      Navigator.of(context, rootNavigator: true).pop("dialog");
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => TutorialPage()));
+                    }
+                  }),
                 ),
                 Expanded(
                   flex: 5,
                   child:
-                      menuItem("آموزش", "assets/tutorial_icon.png", YELLOW_COLOR, () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TutorialPage()));
+                      menuItem("برنامه ها", "assets/tutorial_icon.png", YELLOW_COLOR, () async {
+                    preloader(context);
+                    int i = await getClientPrograms(context);
+                    if (i == 1) {
+                      Navigator.of(context, rootNavigator: true).pop("dialog");
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProgramPage()));
+                    } else {
+                      Navigator.of(context, rootNavigator: true).pop("dialog");
+                      showAdjustDialog(context, FAILURE, false, null, GREEN_COLOR);
+                    }
                   }),
                 )
               ],

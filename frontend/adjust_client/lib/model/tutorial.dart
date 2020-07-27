@@ -14,7 +14,7 @@ class Tutorial {
 
   String text;
 
-  List<int> thumbnail;
+  String thumbnail;
 
   String thumbnailContentType;
   double tokenPrice;

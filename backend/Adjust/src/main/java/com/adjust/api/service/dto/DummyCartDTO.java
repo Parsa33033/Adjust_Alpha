@@ -1,5 +1,6 @@
 package com.adjust.api.service.dto;
 
+import com.adjust.api.domain.Cart;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -11,7 +12,17 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DummyCartDTO extends CartDTO implements Serializable {
 
+
     private List<DummyShopingItemDTO> items;
+
+    public DummyCartDTO() {}
+
+    public DummyCartDTO(CartDTO cartDTO) {
+        this.setId(cartDTO.getId());
+        this.setFirstName(cartDTO.getFirstName());
+        this.setLastName(cartDTO.getLastName());
+        this.setUsername(cartDTO.getUsername());
+    }
 
     public List<DummyShopingItemDTO> getItems() {
         return items;

@@ -77,6 +77,9 @@ entity Specialist {
     lastName String,
     birth LocalDate,
     gender Gender,
+    degree String,
+    field String,
+    resume String
 	stars Double,
     image ImageBlob,
     busy Boolean
@@ -100,8 +103,8 @@ entity BodyComposition {
     height Double,
     weight Double,
     bmi Double,
-    bodyCompositionFile AnyBlob,
-    bloodTestFile AnyBlob,
+    bodyCompositionFile ImageBlob,
+    bloodTestFile ImageBlob,
 }
 
 //fitness program
@@ -177,7 +180,7 @@ entity Meal {
     highFatDairyUnit Integer,
     lowFatMeatUnit Integer,
     mediumFatMeatUnit Integer,
-    highFatMeatUnti Integer,
+    highFatMeatUnit Integer,
     breadUnit Integer,
     cerealUnit Integer,
     riceUnit Integer,

@@ -42,6 +42,7 @@ class _DashboardState extends State<Dashboard> {
     return StoreConnector<AppState, AppState>(
       converter: (Store store) => store.state,
       builder: (BuildContext context, AppState state) {
+        int l = state.cartState.items.length;
         return Container(
           margin: EdgeInsets.only(top: 20),
           child: Row(
@@ -67,7 +68,8 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     child: Center(
                         child: Badge(
-                          badgeContent: Text(state.cartState.items.length.toString()),
+                          showBadge: l > 0 ? true : false,
+                          badgeContent: Text(l.toString()),
                           child: Icon(Icons.add_shopping_cart),
                         )
                     ),
@@ -131,6 +133,7 @@ class _DashboardState extends State<Dashboard> {
                                   flex: 25,
                                   child: FittedBox(
                                     alignment: Alignment.center,
+                                    fit: BoxFit.scaleDown,
                                     child: Directionality(
                                       textDirection: TextDirection.rtl,
                                       child: Text(
@@ -148,6 +151,7 @@ class _DashboardState extends State<Dashboard> {
                                   flex: 25,
                                   child: FittedBox(
                                     alignment: Alignment.center,
+                                    fit: BoxFit.scaleDown,
                                     child: Directionality(
                                       textDirection: TextDirection.rtl,
                                       child: Text(
